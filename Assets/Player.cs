@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public float jumpvelocity = 20f;
     public float horizdamping = 10f;
 
+    public GameObject viewcam;
+
     private Rigidbody body;
     private float yaw = 0;
     private float pitch = 0;
@@ -30,10 +32,10 @@ public class Player : MonoBehaviour
         //rotation of playerbody
         pitch += Input.GetAxis("Mouse Y") * Ysens * -1;
         yaw += Input.GetAxis("Mouse X") * Xsens;
-        transform.rotation = Quaternion.Euler(pitch,yaw,0);
+        viewcam.transform.rotation = Quaternion.Euler(pitch,yaw,0);
 
         //getting rotation for controls
-        float xrotation = transform.eulerAngles.y * Mathf.PI/180;
+        float xrotation = viewcam.transform.eulerAngles.y * Mathf.PI/180;
 
         //damping horizontal movement
         body.linearVelocity = new Vector3(body.linearVelocity.x - body.linearVelocity.x*Time.deltaTime / horizdamping ,body.linearVelocity.y,body.linearVelocity.z - body.linearVelocity.z * Time.deltaTime / horizdamping);
