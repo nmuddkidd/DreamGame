@@ -22,15 +22,12 @@ public class FPSController : MonoBehaviour
     private Vector3 currentMovement;
     private float verticalRotation;
 
-    private logic logic;
-
     LayerMask layerMask;
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         mainCamera = Camera.main;
         layerMask = LayerMask.GetMask("Default"); 
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<logic>();
     }
 
     private void Start()
@@ -42,8 +39,6 @@ public class FPSController : MonoBehaviour
     {
         HandleMovement();
         HandleRotation();
-        ClickInteraction();
-        Sleep();
     }
 
     void HandleMovement()
@@ -90,41 +85,6 @@ public class FPSController : MonoBehaviour
         verticalRotation -= inputHandler.LookInput.y * mouseSensitivity;
         verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
         mainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0,0);
-    }
-
-    void Sleep()
-    {
-        if (inputHandler.TestTriggered)
-        {
-            Debug.Log("Test triggered");
-            inputHandler.ResetTest();
-            logic.wakeup();
-        }
-    }
-
-    void ClickInteraction()
-    {
-        if (inputHandler.ClickTriggered)
-        {
-            Debug.Log("Click triggered");
-            inputHandler.ResetClick();
-        }
-        /*pickups = GameObject.FindGameObjectsWithTag("pickup");
-        foreach (GameObject pickup in pickups)
-        {
-            //Debug.Log(Vector3.Distance(transform.position, pickup.transform.position)+" "+Vector3.Angle(pickup.transform.position - transform.position, transform.forward));
-            if(Input.GetMouseButtonDown(0)){
-                if(Vector3.Distance(transform.position, pickup.transform.position)<5
-                &&Vector3.Angle(pickup.transform.position - transform.position, transform.forward)<50)
-                {
-                    pickedup[Array.IndexOf(reqitems,pickup.name)] = true;
-                    //Debug.Log(reqitems[Array.IndexOf(reqitems,pickup.name)]+" picked up");
-                    Destroy(pickup);
-                    audioSource.Play();
-                }
-            }
-        }for future implementation*/
-        inputHandler.ResetClick();
     }
 
 }

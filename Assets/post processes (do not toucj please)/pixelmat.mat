@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 10
+  version: 7
 =======
 >>>>>>> 46371939712035a73a8981fe9627791c4fbe787f:Assets/post processes (do not toucj please)/pixelmat.mat
 --- !u!21 &2100000

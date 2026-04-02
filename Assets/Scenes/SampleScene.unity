@@ -2397,30 +2397,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5886aca384d90644859f8e19262ec96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  playerSpeed: 5
-  jumpHeight: 1.5
-  gravityValue: -9.81
+  moveSpeed: 5
   Xsens: 5
   Ysens: 5
-  moveAction: {fileID: 0}
-  jumpAction: {fileID: 0}
-  controller: {fileID: 0}
-  animate: 1
-  mirror: {fileID: 0}
-  reqitems:
-  - block1
-  - block2
-  - block3
-  audioSource: {fileID: 0}
-  snowfootsteps:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  footsteps:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  steptimer: 20
+  jumpvelocity: 2
+  horizdamping: 2
+  viewcam: {fileID: 330585543}
 --- !u!54 &812433903
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -60,13 +60,12 @@
         "*.asset": "yaml",
         "*.meta": "yaml",
         "*.prefab": "yaml",
-        "*.unity": "yaml"
+        "*.unity": "yaml",
     },
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "DreamGame.slnx=======dotnet.defaultSolution": "unfucked_dreamgame.slnx>>>>>>>46371939712035a73a8981fe9627791c4fbe787f",
-    "dotnet.defaultSolution": "unfucked_dreamgame.slnx"
+    "dotnet.defaultSolution": "dreamgame.slnx"
 }
