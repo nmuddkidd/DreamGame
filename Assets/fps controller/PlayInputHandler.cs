@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayInputHandler : MonoBehaviour
@@ -14,20 +15,36 @@ public class PlayInputHandler : MonoBehaviour
     [SerializeField] private string look = "Look";
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string sprint = "Sprint";
+    [SerializeField] private string test = "Test";
+    [SerializeField] private string click = "Click";
 
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
+    private InputAction testAction;
+    private InputAction clickAction;
 
     public Vector2 MoveInput { get; private set;}
     public Vector2 LookInput { get; private set;}
     public bool JumpTriggered { get; private set;}
     public float SprintValue {get; private set;}
+    public bool TestTriggered { get; private set;}
+    public bool ClickTriggered { get; private set;}
 
     public void ResetJump()
     {
         JumpTriggered = false;
+    }
+
+    public void ResetTest()
+    {
+        TestTriggered = false;
+    }
+
+    public void ResetClick()
+    {
+        ClickTriggered = false;
     }
 
     public static PlayInputHandler Instance { get; private set; }
@@ -49,6 +66,8 @@ public class PlayInputHandler : MonoBehaviour
         lookAction = playerControls.FindActionMap(actionMapName).FindAction(look);
         jumpAction = playerControls.FindActionMap(actionMapName).FindAction(jump);
         sprintAction = playerControls.FindActionMap(actionMapName).FindAction(sprint);
+        testAction = playerControls.FindActionMap(actionMapName).FindAction(test);
+        clickAction = playerControls.FindActionMap(actionMapName).FindAction(click);
         RegisterInputActions();
     }
 
@@ -64,22 +83,20 @@ public class PlayInputHandler : MonoBehaviour
 
         sprintAction.performed += context => SprintValue = context.ReadValue<float>();
         sprintAction.canceled += context => SprintValue = 0.0f;
+
+        testAction.performed += context => TestTriggered = true;
+
+        clickAction.performed += context => ClickTriggered = true;
     }
 
     private void OnEnable()
     {
-        moveAction.Enable();
-        lookAction.Enable();
-        jumpAction.Enable();
-        sprintAction.Enable();
+        playerControls.FindActionMap(actionMapName).Enable();
     }
 
     private void OnDisable()
     {
         if (moveAction == null) return;
-        moveAction.Disable();
-        lookAction.Disable();
-        jumpAction.Disable();
-        sprintAction.Disable();
+        playerControls.FindActionMap(actionMapName).Disable();
     }
 }
