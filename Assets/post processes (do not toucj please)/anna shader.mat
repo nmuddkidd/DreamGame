@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pixelmaterial
+  m_Name: anna shader
   m_Shader: {fileID: -6465566751694194690, guid: 9de3fd2a1c3f6cf48aaef158e0922ff1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
