@@ -38,11 +38,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Ocean1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5160e88108730894fa67f7634c1b259b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ocean2:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 54ca24f07eeae294c87d30a1836cf630, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -61,8 +61,8 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Shoreline_Softness: 5
+    - _Shoreline_Softness: 10
     m_Colors:
-    - _Shallow_Water_Color: {r: 0.6250147, g: 0.7643016, b: 0.8679245, a: 0.6509804}
+    - _Shallow_Water_Color: {r: 0.7026027, g: 0.8248945, b: 0.91194963, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
