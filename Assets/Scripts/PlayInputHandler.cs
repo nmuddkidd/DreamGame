@@ -17,6 +17,7 @@ public class PlayInputHandler : MonoBehaviour
     [SerializeField] private string sprint = "Sprint";
     [SerializeField] private string test = "Test";
     [SerializeField] private string click = "Click";
+    [SerializeField] private string rotate = "Rotate";
 
     private InputAction moveAction;
     private InputAction lookAction;
@@ -24,6 +25,7 @@ public class PlayInputHandler : MonoBehaviour
     private InputAction sprintAction;
     private InputAction testAction;
     private InputAction clickAction;
+    private InputAction rotateAction;
 
     public Vector2 MoveInput { get; private set;}
     public Vector2 LookInput { get; private set;}
@@ -31,6 +33,7 @@ public class PlayInputHandler : MonoBehaviour
     public float SprintValue {get; private set;}
     public bool TestTriggered { get; private set;}
     public bool ClickTriggered { get; private set;}
+    public Vector2 RotateInput { get; private set;}
 
     public void ResetJump()
     {
@@ -68,6 +71,7 @@ public class PlayInputHandler : MonoBehaviour
         sprintAction = playerControls.FindActionMap(actionMapName).FindAction(sprint);
         testAction = playerControls.FindActionMap(actionMapName).FindAction(test);
         clickAction = playerControls.FindActionMap(actionMapName).FindAction(click);
+        rotateAction = playerControls.FindActionMap(actionMapName).FindAction(rotate);
         RegisterInputActions();
     }
 
@@ -87,16 +91,30 @@ public class PlayInputHandler : MonoBehaviour
         testAction.performed += context => TestTriggered = true;
 
         clickAction.performed += context => ClickTriggered = true;
+
+        rotateAction.performed += context => RotateInput = context.ReadValue<Vector2>();
+        rotateAction.canceled += context => RotateInput = Vector2.zero;
     }
 
     private void OnEnable()
     {
         playerControls.FindActionMap(actionMapName).Enable();
+        playerControls.FindActionMap(actionMapName).FindAction(rotate).Disable();
     }
 
     private void OnDisable()
     {
         if (moveAction == null) return;
         playerControls.FindActionMap(actionMapName).Disable();
+    }
+
+    public void inspect(){
+        playerControls.FindActionMap(actionMapName).Disable();
+        playerControls.FindActionMap(actionMapName).FindAction(rotate).Enable();
+        playerControls.FindActionMap(actionMapName).FindAction(click).Enable();
+    }
+
+    public void reset(){
+        OnEnable();
     }
 }
