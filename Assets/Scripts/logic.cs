@@ -7,8 +7,15 @@ public class logic : MonoBehaviour
 {
     private int days;
     private float timer;
+    [Header("Item Interaction")]
+    public Text title;
+    public Text description;
+    public GameObject interractionUI;
+    [Header("TEMP calendar")]
     public GameObject calendarx; // Drag your Image prefab here in Inspector
     public Transform calendar; // Drag your Canvas or a Panel here
+
+
     
     public void SpawnImage(float x, float y)
     {
@@ -43,5 +50,14 @@ public class logic : MonoBehaviour
         days++;
         //calendar.SetActive(true);
         SpawnImage(-100+days*50,0);
+    }
+
+    public void interactText(string top, string body){
+        title.text = top;
+        description.text = body;
+    }
+
+    public void interactionUI(bool option){
+        interractionUI.SetActive(option);
     }
 }

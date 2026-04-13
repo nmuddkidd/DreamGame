@@ -22,6 +22,10 @@ public class FPSController : MonoBehaviour
     private Vector3 currentMovement;
     private float verticalRotation;
 
+    //Inspection system
+    private GameObject inspecItem;
+    private bool inspecMode;
+
     private logic logic;
 
     LayerMask layerMask;
@@ -41,8 +45,12 @@ public class FPSController : MonoBehaviour
     private void Update()
     {
         HandleMovement();
+        HandleLook();
+        if (inputHandler.ClickTriggered){
+            ClickInteraction();
+            inputHandler.ResetClick();
+        }
         HandleRotation();
-        ClickInteraction();
         Sleep();
     }
 
@@ -82,7 +90,7 @@ public class FPSController : MonoBehaviour
 
         inputHandler.ResetJump();
     }
-    void HandleRotation()
+    void HandleLook()
     {
         float mouseXRotation = inputHandler.LookInput.x * mouseSensitivity;
         transform.Rotate(0, mouseXRotation, 0);
@@ -90,6 +98,13 @@ public class FPSController : MonoBehaviour
         verticalRotation -= inputHandler.LookInput.y * mouseSensitivity;
         verticalRotation = Mathf.Clamp(verticalRotation, -upDownRange, upDownRange);
         mainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0,0);
+    }
+
+    void HandleRotation(){
+        if(inspecMode&&inspecItem!=null){
+            Debug.Log(inputHandler.RotateInput);
+            inspecItem.transform.Rotate(inputHandler.RotateInput.x,inputHandler.RotateInput.y,0);
+        }
     }
 
     void Sleep()
@@ -104,27 +119,37 @@ public class FPSController : MonoBehaviour
 
     void ClickInteraction()
     {
-        if (inputHandler.ClickTriggered)
-        {
-            Debug.Log("Click triggered");
-            inputHandler.ResetClick();
-        }
-        /*pickups = GameObject.FindGameObjectsWithTag("pickup");
-        foreach (GameObject pickup in pickups)
-        {
-            //Debug.Log(Vector3.Distance(transform.position, pickup.transform.position)+" "+Vector3.Angle(pickup.transform.position - transform.position, transform.forward));
-            if(Input.GetMouseButtonDown(0)){
+        Debug.Log("Click triggered");
+        inputHandler.ResetClick();
+        if(!inspecMode){
+            GameObject[] pickups = GameObject.FindGameObjectsWithTag("Interactable");
+            foreach (GameObject pickup in pickups)
+            {
+                //Debug.Log(Vector3.Distance(transform.position, pickup.transform.position)+" "+Vector3.Angle(pickup.transform.position - transform.position, transform.forward));
                 if(Vector3.Distance(transform.position, pickup.transform.position)<5
                 &&Vector3.Angle(pickup.transform.position - transform.position, transform.forward)<50)
                 {
-                    pickedup[Array.IndexOf(reqitems,pickup.name)] = true;
-                    //Debug.Log(reqitems[Array.IndexOf(reqitems,pickup.name)]+" picked up");
-                    Destroy(pickup);
-                    audioSource.Play();
+                    inspecItem = pickup;
+                    break;
                 }
             }
-        }for future implementation*/
-        inputHandler.ResetClick();
+            if(inspecItem!=null){
+                inputHandler.inspect();
+                inspecMode=true;
+                Vector3 newpos = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y+.25f,mainCamera.transform.position.z) + mainCamera.transform.forward;
+                inspecItem.transform.position = newpos;
+                interactable script = inspecItem.GetComponent<interactable>();
+                logic.interactText(script.title,script.description);
+                logic.interactionUI(true);
+            }
+        }else{
+            interactable script = inspecItem.GetComponent<interactable>();
+            script.reorigin();
+            inspecItem=null;
+            inputHandler.reset();
+            inspecMode=false;
+            logic.interactionUI(false);
+        }
     }
 
 }
