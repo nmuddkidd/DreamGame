@@ -2,6 +2,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
+using System.Diagnostics;
+using System.IO;
+using System.Collections;
 
 public class logic : MonoBehaviour
 {
@@ -10,7 +13,13 @@ public class logic : MonoBehaviour
     [Header("Item Interaction")]
     public Text title;
     public Text description;
-    public GameObject interractionUI;
+    public GameObject interactionUI;
+    private string interactPrompt;
+
+    [Header("Pih game")]
+    public GameObject computerMenu;
+    public bool fastquit;
+
     [Header("TEMP calendar")]
     public GameObject calendarx; // Drag your Image prefab here in Inspector
     public Transform calendar; // Drag your Canvas or a Panel here
@@ -31,7 +40,7 @@ public class logic : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -52,12 +61,53 @@ public class logic : MonoBehaviour
         SpawnImage(-100+days*50,0);
     }
 
-    public void interactText(string top, string body){
-        title.text = top;
-        description.text = body;
+    void openwindows()
+    {
+        computerMenu.SetActive(true);
+        
     }
 
-    public void interactionUI(bool option){
-        interractionUI.SetActive(option);
+    public void executepihh()
+    {
+        string projectRoot = Path.GetDirectoryName(Application.dataPath);
+        
+        // Combine to get the full path to the .exe
+        string exePath = Path.Combine(projectRoot, "PIH-FPS-BUILD", "pih.exe");
+
+
+        if (File.Exists(exePath))
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo(exePath);
+            // Set working directory to the folder containing the exe
+            startInfo.WorkingDirectory = Path.GetDirectoryName(exePath);
+            
+            Process.Start(startInfo);
+            UnityEngine.Debug.Log("Executing: " + exePath);
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("File not found at: " + exePath);
+        }
+    }
+
+    public void interactText(string top, string body, string interaction){
+        title.text = top;
+        description.text = body;
+        switch (interaction)
+        {
+            case "computer":
+                computerMenu.SetActive(true);
+                fastquit = false;
+                break;
+            default:
+                interactionUI.SetActive(true);
+                fastquit = true;
+                break;
+        }
+    }
+
+    public void disableInteractionUI(){
+        interactionUI.SetActive(false);
+        computerMenu.SetActive(false);
     }
 }

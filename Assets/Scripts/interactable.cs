@@ -7,6 +7,7 @@ public class interactable : MonoBehaviour
     [Multiline]
     public string description;
     public string[] response;
+    public string interaction;
 
     private Vector3 origin;
     private Quaternion rotorigin;

@@ -139,17 +139,21 @@ public class FPSController : MonoBehaviour
                 Vector3 newpos = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y+.25f,mainCamera.transform.position.z) + mainCamera.transform.forward;
                 inspecItem.transform.position = newpos;
                 interactable script = inspecItem.GetComponent<interactable>();
-                logic.interactText(script.title,script.description);
-                logic.interactionUI(true);
+                logic.interactText(script.title,script.description,script.interaction);
             }
-        }else{
-            interactable script = inspecItem.GetComponent<interactable>();
-            script.reorigin();
-            inspecItem=null;
-            inputHandler.reset();
-            inspecMode=false;
-            logic.interactionUI(false);
+        }else if(logic.fastquit){
+            exitInspecMode();
         }
+    }
+
+    public void exitInspecMode()
+    {
+        interactable script = inspecItem.GetComponent<interactable>();
+        script.reorigin();
+        inspecItem=null;
+        inputHandler.reset();
+        inspecMode=false;
+        logic.disableInteractionUI();
     }
 
 }
