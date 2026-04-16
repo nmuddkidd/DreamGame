@@ -8,35 +8,30 @@ using System.Collections;
 
 public class logic : MonoBehaviour
 {
-    private int days;
-    private float timer;
     [Header("Item Interaction")]
     public Text title;
     public Text description;
     public GameObject interactionUI;
     private string interactPrompt;
+    public bool fastquit;
+    public bool setInspecMode;
 
     [Header("Pih game")]
     public GameObject computerMenu;
-    public bool fastquit;
 
-    [Header("TEMP calendar")]
-    public GameObject calendarx; // Drag your Image prefab here in Inspector
-    public Transform calendar; // Drag your Canvas or a Panel here
+    [Header("Calendar")]
+    public Text dayCounter;
+    private int days;
+    private float textTimer;
+    private int wakeupTextIndex = 99;
+    private string wakeupText = "Today is day of the trial";
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip alarm;
 
-    
-    public void SpawnImage(float x, float y)
-    {
-        // 1. Instantiate the prefab
-        GameObject newImage = Instantiate(calendarx,calendar);
-
-        // 2. Parent it to the Canvas (WorldPositionStays = false)
-        // This ensures it uses the Canvas's local coordinate system correctly.
-        newImage.transform.SetParent(calendar, false);
-        RectTransform rect = newImage.GetComponent<RectTransform>();
-        rect.anchoredPosition = new Vector2(x,y);
-    }
+    [Header("Player")]
+    public GameObject Player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -46,25 +41,39 @@ public class logic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer+=Time.deltaTime;
-        if (timer > 100000)
-        {
-            timer = 0;
+        if(wakeupTextIndex<wakeupText.Length){
+            textTimer+=Time.deltaTime;
+            if (textTimer > .25)
+            {
+                advanceWakeupText();
+                textTimer = 0;
+            }
         }
     }
 
     public void wakeup()
     {
-        //SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SampleScene");
+        Player.transform.position = new Vector3(-24,100,0);
         days++;
-        //calendar.SetActive(true);
-        SpawnImage(-100+days*50,0);
+        wakeupText = "Today is day "+days+" of the trial";
+        audioSource.PlayOneShot(alarm,1);
+        dayCounter.enabled = true;
+        wakeupTextIndex = -17;
+        textTimer = -14;
     }
 
-    void openwindows()
-    {
-        computerMenu.SetActive(true);
-        
+    private void advanceWakeupText(){
+        wakeupTextIndex++;
+        string scrollDisplay = "";
+        for(int i = wakeupTextIndex; i < wakeupTextIndex+17; i++){
+            if(i<wakeupText.Length&&i>-1){
+                scrollDisplay += wakeupText[i];
+            }else{
+                scrollDisplay += " ";
+            }
+        }
+        dayCounter.text = scrollDisplay;
     }
 
     public void executepihh()
@@ -95,13 +104,22 @@ public class logic : MonoBehaviour
         description.text = body;
         switch (interaction)
         {
+            case "bed":
+                //wakeup();
+                SceneManager.LoadScene("GriffinDream");
+                Player.transform.position = new Vector3(-24,5,0);
+                fastquit = true;
+                setInspecMode = false;
+                break;
             case "computer":
                 computerMenu.SetActive(true);
                 fastquit = false;
+                setInspecMode = true;
                 break;
             default:
                 interactionUI.SetActive(true);
                 fastquit = true;
+                setInspecMode = true;
                 break;
         }
     }

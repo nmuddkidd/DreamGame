@@ -35,6 +35,8 @@ public class FPSController : MonoBehaviour
         mainCamera = Camera.main;
         layerMask = LayerMask.GetMask("Default"); 
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<logic>();
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -102,19 +104,19 @@ public class FPSController : MonoBehaviour
 
     void HandleRotation(){
         if(inspecMode&&inspecItem!=null){
-            Debug.Log(inputHandler.RotateInput);
+            //Debug.Log(inputHandler.RotateInput);
             inspecItem.transform.Rotate(inputHandler.RotateInput.x,inputHandler.RotateInput.y,0);
         }
     }
 
     void Sleep()
     {
-        if (inputHandler.TestTriggered)
+        /*if (inputHandler.TestTriggered)
         {
             Debug.Log("Test triggered");
             inputHandler.ResetTest();
             logic.wakeup();
-        }
+        }*/
     }
 
     void ClickInteraction()
@@ -134,12 +136,14 @@ public class FPSController : MonoBehaviour
                 }
             }
             if(inspecItem!=null){
-                inputHandler.inspect();
-                inspecMode=true;
-                Vector3 newpos = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y+.25f,mainCamera.transform.position.z) + mainCamera.transform.forward;
-                inspecItem.transform.position = newpos;
                 interactable script = inspecItem.GetComponent<interactable>();
                 logic.interactText(script.title,script.description,script.interaction);
+                if(logic.setInspecMode){
+                    inputHandler.inspect();
+                    inspecMode=true;
+                    Vector3 newpos = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y+.25f,mainCamera.transform.position.z) + mainCamera.transform.forward;
+                    inspecItem.transform.position = newpos;
+                }
             }
         }else if(logic.fastquit){
             exitInspecMode();
@@ -155,5 +159,4 @@ public class FPSController : MonoBehaviour
         inspecMode=false;
         logic.disableInteractionUI();
     }
-
 }
