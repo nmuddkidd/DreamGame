@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Logic
   - Interactable
+  - Boat
+  - Terrian
+  - Terrain
   layers:
   - Default
   - TransparentFX
