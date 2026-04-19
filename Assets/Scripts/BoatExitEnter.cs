@@ -43,7 +43,7 @@ public class BoatExitEnter : MonoBehaviour
                 }
             }
             //enter boat
-            else if (!isPlayerInBoat && hit.collider.gameObject == gameObject)
+            else if (!isPlayerInBoat && hit.collider.CompareTag("Boat"))
             {
                 //find player in scene
                 currentPlayer = GameObject.FindGameObjectWithTag("Player");
@@ -59,7 +59,15 @@ public class BoatExitEnter : MonoBehaviour
     {
         
         GameObject newPlayer = Instantiate(player, landPoint + Vector3.up * 1.5f, Quaternion.identity);
-        BoatCamera.SetActive(false); //turn off child camera
+        //turn off boat camera and listener
+        BoatCamera.SetActive(false); 
+        if(BoatCamera.GetComponent<AudioListener>())
+            BoatCamera.GetComponent<AudioListener>().enabled = false;
+
+        //switch audio listener to main camera
+        AudioListener playerEar = newPlayer.GetComponentInChildren<AudioListener>();
+        if (playerEar != null) playerEar.enabled = true;
+
         boatScript.enabled = false;
         isPlayerInBoat = false;
     }
@@ -67,7 +75,13 @@ public class BoatExitEnter : MonoBehaviour
     void EnterBoat() //destroys roaming player and turns boat on
     {
         Destroy(currentPlayer);
-        BoatCamera.SetActive(true); //turn on child camera
+
+        //turn on boat camera and listener
+        BoatCamera.SetActive(true); 
+        if (BoatCamera.GetComponent<AudioListener>())
+            BoatCamera.GetComponent<AudioListener>().enabled = true;
+
+
         boatScript.enabled = true;
         isPlayerInBoat = true;
         Debug.Log("In Boat");
