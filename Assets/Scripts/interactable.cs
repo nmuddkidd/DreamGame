@@ -7,6 +7,10 @@ public class interactable : MonoBehaviour
     [Multiline]
     public string description;
     public string[] response;
+    [Header("FPS Controller modes")]
+    public bool fastquit = true;
+    public bool setInspecMode = true;
+    [Header("Scripting Reference")]
     public string interaction;
 
     private Vector3 origin;

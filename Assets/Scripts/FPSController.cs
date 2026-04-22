@@ -25,6 +25,7 @@ public class FPSController : MonoBehaviour
     //Inspection system
     private GameObject inspecItem;
     private bool inspecMode;
+    private interactable interactionScript;
 
     private logic logic;
 
@@ -136,16 +137,16 @@ public class FPSController : MonoBehaviour
                 }
             }
             if(inspecItem!=null){
-                interactable script = inspecItem.GetComponent<interactable>();
-                logic.interactText(script.title,script.description,script.interaction);
-                if(logic.setInspecMode){
+                interactionScript = inspecItem.GetComponent<interactable>();
+                logic.interactText(interactionScript.title,interactionScript.description,interactionScript.interaction);
+                if(interactionScript.setInspecMode){
                     inputHandler.inspect();
                     inspecMode=true;
                     Vector3 newpos = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y+.25f,mainCamera.transform.position.z) + mainCamera.transform.forward;
                     inspecItem.transform.position = newpos;
                 }
             }
-        }else if(logic.fastquit){
+        }else if(interactionScript.fastquit){
             exitInspecMode();
         }
     }
