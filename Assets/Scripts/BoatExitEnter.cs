@@ -4,7 +4,8 @@ public class BoatExitEnter : MonoBehaviour
 {
     public GameObject player;
     public GameObject BoatCamera;
-    public float clickDistance = 10f;
+    public GameObject sittingVisual;
+    public float clickDistance = 100f;
 
     private GameObject currentPlayer;
     private BoatController boatScript;
@@ -13,8 +14,11 @@ public class BoatExitEnter : MonoBehaviour
     void Start()
     {
         boatScript = GetComponent<BoatController>();
+
         BoatCamera.SetActive(true); //boat starts with child camera on
         boatScript.enabled = true; //boat starts with controller enabled
+
+        if (sittingVisual != null) sittingVisual.SetActive(true); //sitting player in boat visual when dream starts
         
     }
 
@@ -33,13 +37,20 @@ public class BoatExitEnter : MonoBehaviour
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit))
-        { 
+        {
+            //debugging 
+            Debug.Log("Raycast hit: " + hit.collider.name + "Tag: " + hit.collider.tag + "Layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+
             //exit boat
             if (isPlayerInBoat && hit.collider.CompareTag("Terrain"))
             {
                 if (Vector3.Distance(transform.position, hit.point) <= clickDistance)
                 {
                     ExitToLand(hit.point);
+                }
+                else
+                {
+                    Debug.Log("Too far from terrain. Distance: " + Vector3.Distance(transform.position, hit.point));
                 }
             }
             //enter boat
@@ -52,13 +63,22 @@ public class BoatExitEnter : MonoBehaviour
                 {
                     EnterBoat();
                 }
+                else
+                {
+                    Debug.Log("Too far fromm boat/player not found");
+                }
             }
+        }
+        else
+        {
+            Debug.Log("Raycast not hitting anything");
         }
     } 
     void ExitToLand(Vector3 landPoint) //spawns player on land and turns boat off
     {
         
         GameObject newPlayer = Instantiate(player, landPoint + Vector3.up * 1.5f, Quaternion.identity);
+        if (sittingVisual != null) sittingVisual.SetActive(false); //turns sitting visual off when on land
         //turn off boat camera and listener
         BoatCamera.SetActive(false); 
         if(BoatCamera.GetComponent<AudioListener>())
@@ -75,6 +95,8 @@ public class BoatExitEnter : MonoBehaviour
     void EnterBoat() //destroys roaming player and turns boat on
     {
         Destroy(currentPlayer);
+        if (sittingVisual != null) sittingVisual.SetActive(true); //turns sitting visual on
+
 
         //turn on boat camera and listener
         BoatCamera.SetActive(true); 
