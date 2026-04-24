@@ -165,7 +165,9 @@ public class NPC_Movement : MonoBehaviour
             //navigating up the parents
  
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
-            
+            transform.LookAt(target.transform);
+
+
             if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z))
             {
                 if(target.gameObject.name == "Starting_1")
