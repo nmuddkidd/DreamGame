@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,7 +54,7 @@ public class FPSController : MonoBehaviour
             inputHandler.ResetClick();
         }
         HandleRotation();
-        Sleep();
+        testOOB();
     }
 
     void HandleMovement()
@@ -138,7 +139,7 @@ public class FPSController : MonoBehaviour
             if(inspecItem!=null){
                 interactionScript = inspecItem.GetComponent<interactable>();
                 logic.interactText(interactionScript);
-                if(interactionScript.setInspecMode){
+                if(interactionScript.grab){
                     inputHandler.inspect();
                     inspecMode=true;
                     Vector3 newpos = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y+.25f,mainCamera.transform.position.z) + mainCamera.transform.forward;
@@ -168,5 +169,13 @@ public class FPSController : MonoBehaviour
             gameObject.transform.position = new Vector3(0,90,0);
         }
         Debug.Log(collision.gameObject.name);
+    }
+
+    void testOOB()
+    {
+        if (transform.position.y < -10)
+        {
+            logic.wakeup();
+        }
     }
 }
