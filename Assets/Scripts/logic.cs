@@ -12,9 +12,9 @@ public class logic : MonoBehaviour
     public Text title;
     public Text description;
     public GameObject interactionUI;
-    private string interactPrompt;
     private int dialogueIndex;
     private interactable interactableScript;
+    private float interactTimer;
 
     [Header("Pih game")]
     public GameObject computerMenu;
@@ -49,9 +49,9 @@ public class logic : MonoBehaviour
                 textTimer = 0;
             }
         }
-        if(textTimer>0){
-            textTimer-=Time.deltaTime;
-            if (textTimer < 0)
+        if(interactTimer>0){
+            interactTimer-=Time.deltaTime;
+            if (interactTimer < 0)
             {
                 advanceInteractText();
             }
@@ -135,11 +135,11 @@ public class logic : MonoBehaviour
         {
             dialogueIndex++;
             description.text = interactableScript.description[dialogueIndex];
-            textTimer = interactableScript.description[dialogueIndex].Length * .1f;
+            interactTimer = interactableScript.description[dialogueIndex].Length * .1f;
         }
         else
         {
-            textTimer = -1;
+            interactTimer = -1;
             disableInteractionUI();
         }
     }
