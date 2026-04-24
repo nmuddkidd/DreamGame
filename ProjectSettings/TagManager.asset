@@ -9,11 +9,12 @@ TagManager:
   - Boat
   - Terrian
   - Terrain
+  - Path
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Pills
   - Water
   - UI
   - 
