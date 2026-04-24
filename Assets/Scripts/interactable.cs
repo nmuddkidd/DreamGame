@@ -5,7 +5,7 @@ public class interactable : MonoBehaviour
     [Header("Inputs")]
     public string title;
     [Multiline]
-    public string description;
+    public string[] description;
     public string[] response;
     [Header("FPS Controller modes")]
     public bool fastquit = true;

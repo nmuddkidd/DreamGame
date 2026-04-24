@@ -446,6 +446,8 @@ MonoBehaviour:
   title: 
   description: 
   response: []
+  fastquit: 1
+  setInspecMode: 0
   interaction: bed
 --- !u!1 &260721290
 GameObject:
@@ -754,7 +756,7 @@ GameObject:
   - component: {fileID: 589546892}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1352,6 +1354,8 @@ MonoBehaviour:
   title: SeaShell
   description: hello I am a seashell
   response: []
+  fastquit: 1
+  setInspecMode: 1
   interaction: 
 --- !u!1 &1076567087
 GameObject:
@@ -1973,6 +1977,8 @@ MonoBehaviour:
 
     Too bad they discontinued it'
   response: []
+  fastquit: 1
+  setInspecMode: 1
   interaction: 
 --- !u!1 &1551349834 stripped
 GameObject:
@@ -1994,6 +2000,8 @@ MonoBehaviour:
   title: Pills
   description: fuck i missed a dose
   response: []
+  fastquit: 1
+  setInspecMode: 1
   interaction: 
 --- !u!1 &1601653707
 GameObject:
@@ -2338,6 +2346,8 @@ MonoBehaviour:
   title: 
   description: 
   response: []
+  fastquit: 1
+  setInspecMode: 1
   interaction: computer
 --- !u!1001 &2108116085
 PrefabInstance:

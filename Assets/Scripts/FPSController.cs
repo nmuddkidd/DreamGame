@@ -1,6 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class FPSController : MonoBehaviour
 {
@@ -106,18 +105,18 @@ public class FPSController : MonoBehaviour
     void HandleRotation(){
         if(inspecMode&&inspecItem!=null){
             //Debug.Log(inputHandler.RotateInput);
-            inspecItem.transform.Rotate(inputHandler.RotateInput.x,inputHandler.RotateInput.y,0);
+            inspecItem.transform.Rotate(inputHandler.RotateInput.x,inputHandler.RotateInput.y,.1f);
         }
     }
 
     void Sleep()
     {
-        /*if (inputHandler.TestTriggered)
+        if (inputHandler.TestTriggered)
         {
             Debug.Log("Test triggered");
             inputHandler.ResetTest();
             logic.wakeup();
-        }*/
+        }
     }
 
     void ClickInteraction()
@@ -138,7 +137,7 @@ public class FPSController : MonoBehaviour
             }
             if(inspecItem!=null){
                 interactionScript = inspecItem.GetComponent<interactable>();
-                logic.interactText(interactionScript.title,interactionScript.description,interactionScript.interaction);
+                logic.interactText(interactionScript);
                 if(interactionScript.setInspecMode){
                     inputHandler.inspect();
                     inspecMode=true;
@@ -159,5 +158,15 @@ public class FPSController : MonoBehaviour
         inputHandler.reset();
         inspecMode=false;
         logic.disableInteractionUI();
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        // 'collision' contains data like contact points and impact velocity
+        if (collision.gameObject.name == "earth")
+        {
+            SceneManager.LoadScene("GriffinDream");
+            gameObject.transform.position = new Vector3(0,90,0);
+        }
+        Debug.Log(collision.gameObject.name);
     }
 }

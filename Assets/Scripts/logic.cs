@@ -13,8 +13,8 @@ public class logic : MonoBehaviour
     public Text description;
     public GameObject interactionUI;
     private string interactPrompt;
-    public bool fastquit;
-    public bool setInspecMode;
+    private int dialogueIndex;
+    private interactable interactableScript;
 
     [Header("Pih game")]
     public GameObject computerMenu;
@@ -47,6 +47,13 @@ public class logic : MonoBehaviour
             {
                 advanceWakeupText();
                 textTimer = 0;
+            }
+        }
+        if(textTimer>0){
+            textTimer-=Time.deltaTime;
+            if (textTimer < 0)
+            {
+                advanceInteractText();
             }
         }
     }
@@ -99,28 +106,41 @@ public class logic : MonoBehaviour
         }
     }
 
-    public void interactText(string top, string body, string interaction){
-        title.text = top;
-        description.text = body;
-        switch (interaction)
+    public void interactText(interactable script){
+        dialogueIndex = -1;
+        interactableScript = script;
+        title.text = interactableScript.title;
+        advanceInteractText();
+        switch (interactableScript.interaction)
         {
+            case "dialogue":
+                
             case "bed":
                 //wakeup();
-                SceneManager.LoadScene("GriffinDream");
-                Player.transform.position = new Vector3(-24,5,0);
-                fastquit = true;
-                setInspecMode = false;
+                SceneManager.LoadScene("Space");
+                Player.transform.position = new Vector3(0,5,0);
                 break;
             case "computer":
                 computerMenu.SetActive(true);
-                fastquit = false;
-                setInspecMode = true;
                 break;
             default:
                 interactionUI.SetActive(true);
-                fastquit = true;
-                setInspecMode = true;
                 break;
+        }
+    }
+
+    public void advanceInteractText()
+    {
+        if (dialogueIndex < interactableScript.description.Length-1)
+        {
+            dialogueIndex++;
+            description.text = interactableScript.description[dialogueIndex];
+            textTimer = interactableScript.description[dialogueIndex].Length * .1f;
+        }
+        else
+        {
+            textTimer = -1;
+            disableInteractionUI();
         }
     }
 
