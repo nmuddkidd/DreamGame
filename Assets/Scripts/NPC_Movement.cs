@@ -131,21 +131,18 @@ public class NPC_Movement : MonoBehaviour
                     transform.LookAt(GameObject.Find("Cube.013").transform);
                     moving = false;
                     Invoke("Wait",5);
-                    target = target.transform.parent.gameObject;
+                    target = GameObject.Find("Paths End"); //target.transform.parent.gameObject;
+                    leaving = true;
                 }
-                else if (target.gameObject.name == "Inside")
+               /* else if (target.gameObject.name == "Inside")
                 {
                     target = GameObject.Find("Paths End");
                     leaving = true;
-                }
+                } */
                 else if ((target.gameObject.name == "Aisle 2") | (target.gameObject.name == "Aisle 3"))
                 {
                     target = GameObject.Find("Cashier");
                 }
-               // else
-               // {
-               //     target = target.transform.parent.gameObject;
-               // }
                 if (moving)
                 {
                     transform.LookAt(target.transform);
@@ -163,10 +160,12 @@ public class NPC_Movement : MonoBehaviour
         else
         {
             //navigating up the parents
- 
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
-            transform.LookAt(target.transform);
 
+            if (moving)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
+                transform.LookAt(target.transform);
+            }
 
             if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z))
             {
