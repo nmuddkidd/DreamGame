@@ -11,6 +11,9 @@ TagManager:
   - Path
   - Enemy
   - trash
+  - playermodel
+  - player
+  - wakeup
   layers:
   - Default
   - TransparentFX

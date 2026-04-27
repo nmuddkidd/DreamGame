@@ -21,7 +21,7 @@ public class logic : MonoBehaviour
 
     [Header("Calendar")]
     public Text dayCounter;
-    private int days;
+    public int days;
     private float textTimer;
     private int wakeupTextIndex = 99;
     private string wakeupText = "Today is day of the trial";
@@ -143,11 +143,10 @@ public class logic : MonoBehaviour
     public void wakeup()
     {
         SceneManager.LoadScene("SampleScene");
-        days+=3;
+        days++;
         if(days>7){
             endgame();
         }
-        Player.transform.position = new Vector3(-24,100,0);
         wakeupText = "Today is day "+days+" of the trial";
         audioSource.PlayOneShot(alarm,1);
         dayCounter.enabled = true;
@@ -176,7 +175,7 @@ public class logic : MonoBehaviour
         }else{
             sfxlogic.changeBackground("Reflection");
         }
-        switch(Random.Range(1, 2)){
+        switch(Random.Range(0, 4)){
             case 0:
                 handleSpaceDream();
                 break;
@@ -187,6 +186,7 @@ public class logic : MonoBehaviour
                 handleGriffinDream();
                 break;
             case 3:
+                handleSnowDream();
                 break;
             case 4:
                 break;
@@ -201,12 +201,21 @@ public class logic : MonoBehaviour
 
     public void handleGriffinDream(){
         SceneManager.LoadScene("GriffinDream");
-        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(0,0,0));
+        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(0,10,0));
     }
 
     public void handleSpaceDream(){
         sfxlogic.changeBackground("Engine");
         SceneManager.LoadScene("Space");
-        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(0,0,0));
+        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(0,10,0));
+    }
+
+    public void handleSnowDream(){
+        SceneManager.LoadScene("SnowDream");
+        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(0,10,0));
+    }
+
+    public void teleportPlayer(Vector3 newpos){
+        Player.GetComponent<FPSController>().teleportPlayer(newpos);
     }
 }

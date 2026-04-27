@@ -77,7 +77,7 @@ public class FPSController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(gameObject.transform.position);
+        Sleep();
         if(!boatmode){
             HandleMovement();
         }else{
@@ -218,6 +218,7 @@ public class FPSController : MonoBehaviour
             return;
         }
         if(!inspecMode&&!boatmode){
+            inspecItem = null;
             GameObject[] pickups = GameObject.FindGameObjectsWithTag("Interactable");
             foreach (GameObject pickup in pickups)
             {
@@ -290,20 +291,27 @@ public class FPSController : MonoBehaviour
         logic.disableInteractionUI();
     }                            
 
-    void OnCollisionEnter(Collision collision) {
-        // 'collision' contains data like contact points and impact velocity
-        if (collision.gameObject.name == "earth")
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        
+        if (hit.gameObject.name == "earth")
         {
             SceneManager.LoadScene("GriffinDream");
             teleportPlayer(new Vector3(0,90,0));
         }
-        Debug.Log(collision.gameObject.name);
+        Debug.Log(hit.gameObject.name);
+        if (hit.gameObject.tag == "wakeup")
+        {
+            logic.teleportPlayer(new Vector3(-14,4,-7));
+            logic.wakeup();
+        }
     }
 
     void testOOB()
     {
         if (transform.position.y < -10)
         {
+            teleportPlayer(new Vector3(-24,100,0));
             logic.wakeup();
         }
     }
