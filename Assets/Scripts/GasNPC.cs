@@ -25,6 +25,7 @@ public class GasNPC : MonoBehaviour
     void Creation()
     {
         int switcher = Random.Range(1, 4);
+        //spawn in a random NPC
         switch (switcher)
         {
             case 1:
@@ -38,6 +39,7 @@ public class GasNPC : MonoBehaviour
                 break;
         }
         Instantiate(current, this.transform.position, this.transform.rotation);
+        //different spawn times and whatnot
         Invoke("Wait", Random.Range(5, 30));
     }
 
