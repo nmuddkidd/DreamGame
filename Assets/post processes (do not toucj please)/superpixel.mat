@@ -111,7 +111,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FogFar: 1000
-    - _FogNear: 1000
+    - _FogNear: 3.4028235e+38
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0

@@ -58,6 +58,4 @@ Once you've made changes to the code:
 - Write clear, descriptive commit messages
 - Test your changes before committing
 
-### Important Notes
 
-Cloning this repo **WILL NOT** automatically add particular initializion settings, assets, or other things we've made graphically. Our .gitignore file specifies that this repo is not to hold that stuff. Please do not change the .gitignore! The asset files will be posted in the discord (in the blender channel) and you'll only have to load them in once.

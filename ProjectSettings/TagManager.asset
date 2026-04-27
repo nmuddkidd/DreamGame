@@ -7,9 +7,9 @@ TagManager:
   - Logic
   - Interactable
   - Boat
-  - Terrian
   - Terrain
   - Path
+  - Enemy
   layers:
   - Default
   - TransparentFX
