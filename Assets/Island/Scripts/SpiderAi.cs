@@ -3,11 +3,11 @@ using UnityEngine.AI;
 
 public class SpiderAi : MonoBehaviour
 {
-    public float sihtRange = 15f;
-    public float roamRadius = 10f;
+    public float sightRange = 15f;
+    public float roamRadius = 20f;
     public float damage = 10f;
     public float attackRate = 1f;
-    public float roamWaitTime = 3f;
+    public float roamWaitTime = 0.5f;
 
     private float nextAttackTime;
     private float pathUpdateTimer = 0.5f;
@@ -52,7 +52,7 @@ public class SpiderAi : MonoBehaviour
 
 
         //spider chase/roam based on player distance 
-        if (distanceToPlayer <= sihtRange)
+        if (distanceToPlayer <= sightRange)
         {
             waitTimer = 0; //prevents spiders pausing while chasing player
             if (Time.time >= pathUpdate)
@@ -99,17 +99,18 @@ public class SpiderAi : MonoBehaviour
         //generate random point in radius/set as destination
         Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
         randomDirection += startPosition;
-        NavMeshHit hit;
+        //NavMeshHit hit;
 
         //check if point is on navmesh/set destination if it is
-        if (NavMesh.SamplePosition(randomDirection, out hit, 2f, NavMesh.AllAreas))
+        /*if (NavMesh.SamplePosition(randomDirection, out hit, 2f, NavMesh.AllAreas))
         {
             Debug.Log(gameObject.name + "Navmesh point found " + hit.position);
             agent.SetDestination(hit.position);
         } else
         {
             Debug.Log(gameObject.name + "No navmesh point found");
-        }
+        }*/
+        agent.SetDestination(randomDirection);
     }
 
     private void OnCollisionStay(Collision collision)
