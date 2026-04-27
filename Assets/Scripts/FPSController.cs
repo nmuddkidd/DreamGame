@@ -295,9 +295,7 @@ public class FPSController : MonoBehaviour
         if (collision.gameObject.name == "earth")
         {
             SceneManager.LoadScene("GriffinDream");
-            characterController.enabled = false;
-            gameObject.transform.position = new Vector3(0,90,0);
-            characterController.enabled = true;
+            teleportPlayer(new Vector3(0,90,0));
         }
         Debug.Log(collision.gameObject.name);
     }
@@ -313,4 +311,12 @@ public class FPSController : MonoBehaviour
     void enterBoat(){
         inputHandler.boatmode();
     }
+
+    public void teleportPlayer(Vector3 newpos){
+        characterController.enabled = false;
+        gameObject.transform.position = newpos;
+        characterController.enabled = true;
+    }
+
+    public void setSpeed(float s){walkSpeed = s;}
 }

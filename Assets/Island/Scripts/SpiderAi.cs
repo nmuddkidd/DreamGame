@@ -99,7 +99,7 @@ public class SpiderAi : MonoBehaviour
         //generate random point in radius/set as destination
         Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
         randomDirection += startPosition;
-        NavMeshHit hit;
+        //NavMeshHit hit;
 
         //check if point is on navmesh/set destination if it is
         /*if (NavMesh.SamplePosition(randomDirection, out hit, 2f, NavMesh.AllAreas))
