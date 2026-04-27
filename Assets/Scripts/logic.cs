@@ -35,6 +35,10 @@ public class logic : MonoBehaviour
     public GameObject Player;
     private GameObject trash;
 
+    [Header("Misc UI")]
+    public GameObject blind;
+    private float blindTimer;
+
     //timers
     void Update()
     {
@@ -51,6 +55,12 @@ public class logic : MonoBehaviour
             if (interactTimer < 0)
             {
                 advanceInteractText();
+            }
+        }
+        if(blindTimer>0){
+            blindTimer -= Time.deltaTime;
+            if(blindTimer < 0){
+                wakeup();
             }
         }
     }
@@ -96,32 +106,69 @@ public class logic : MonoBehaviour
     }
 
     public void interactText(interactable script){
+        if (script == null)
+        {
+            UnityEngine.Debug.LogWarning("logic.interactText called with null interactable.");
+            return;
+        }
+
+        if (script.interaction == "cashregister" && CashRegisterQueue.ReleaseNextGrandma())
+        {
+            StartCoroutine(ShowCashRegisterCheckoutMessage());
+            return;
+        }
+
         dialogueIndex = -1;
         interactableScript = script;
-        title.text = interactableScript.title;
+        if (title != null)
+        {
+            title.text = interactableScript.title;
+        }
         advanceInteractText();
         switch (interactableScript.interaction)
         {
             case "vehicle":
                 break;
+            case "cashregister":
+                if (interactionUI != null)
+                {
+                    interactionUI.SetActive(true);
+                }
+                break;
             case "bed":
                 dream();
                 break;
             case "computer":
-                computerMenu.SetActive(true);
+                if (computerMenu != null)
+                {
+                    computerMenu.SetActive(true);
+                }
                 break;
             default:
-                interactionUI.SetActive(true);
+                if (interactionUI != null)
+                {
+                    interactionUI.SetActive(true);
+                }
                 break;
         }
     }
 
     public void advanceInteractText()
     {
+        if (interactableScript == null || interactableScript.description == null || interactableScript.description.Length == 0)
+        {
+            interactTimer = -1;
+            disableInteractionUI();
+            return;
+        }
+
         if (dialogueIndex < interactableScript.description.Length-1)
         {
             dialogueIndex++;
-            description.text = interactableScript.description[dialogueIndex];
+            if (description != null)
+            {
+                description.text = interactableScript.description[dialogueIndex];
+            }
             interactTimer = interactableScript.description[dialogueIndex].Length * .1f;
         }
         else
@@ -132,8 +179,43 @@ public class logic : MonoBehaviour
     }
 
     public void disableInteractionUI(){
-        interactionUI.SetActive(false);
-        computerMenu.SetActive(false);
+        if (interactionUI != null)
+        {
+            interactionUI.SetActive(false);
+        }
+        if (computerMenu != null)
+        {
+            computerMenu.SetActive(false);
+        }
+    }
+
+    IEnumerator ShowCashRegisterCheckoutMessage()
+    {
+        interactTimer = -1;
+
+        if (title != null)
+        {
+            title.text = "Checked Out!";
+        }
+
+        if (description != null)
+        {
+            description.text = "Another customer served...";
+        }
+
+        if (interactionUI != null)
+        {
+            interactionUI.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        disableInteractionUI();
+    }
+
+    public void blind(){
+        blindTimer = .2;
+        blind.setActive(true);
     }
 
     //Gameplay logic
@@ -142,6 +224,7 @@ public class logic : MonoBehaviour
 
     public void wakeup()
     {
+        blind.SetActive(false);
         SceneManager.LoadScene("SampleScene");
         days++;
         if(days>7){
@@ -175,7 +258,7 @@ public class logic : MonoBehaviour
         }else{
             sfxlogic.changeBackground("Reflection");
         }
-        switch(Random.Range(0, 4)){
+        switch(Random.Range(3, 4)){
             case 0:
                 handleSpaceDream();
                 break;
@@ -212,7 +295,7 @@ public class logic : MonoBehaviour
 
     public void handleSnowDream(){
         SceneManager.LoadScene("SnowDream");
-        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(0,10,0));
+        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(1215,8,1890));
     }
 
     public void teleportPlayer(Vector3 newpos){

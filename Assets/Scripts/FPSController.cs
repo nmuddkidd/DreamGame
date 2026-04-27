@@ -218,6 +218,18 @@ public class FPSController : MonoBehaviour
             return;
         }
         if(!inspecMode&&!boatmode){
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                NPC_Movement npcMovement = hit.collider.GetComponentInParent<NPC_Movement>();
+                if (npcMovement != null && npcMovement.IsWaitingAtRegister())
+                {
+                    npcMovement.InteractAtRegister();
+                    return;
+                }
+            }
+
             inspecItem = null;
             GameObject[] pickups = GameObject.FindGameObjectsWithTag("Interactable");
             foreach (GameObject pickup in pickups)
@@ -232,6 +244,11 @@ public class FPSController : MonoBehaviour
             }
             if(inspecItem!=null){
                 interactionScript = inspecItem.GetComponent<interactable>();
+                if (interactionScript == null)
+                {
+                    Debug.LogWarning("Interactable-tagged object is missing interactable component: " + inspecItem.name);
+                    return;
+                }
                 logic.interactText(interactionScript);
                 if(interactionScript.grab){
                     inputHandler.inspect();
@@ -247,7 +264,7 @@ public class FPSController : MonoBehaviour
                     boatmode = true;
                 }
             }
-        }else if(inspecMode&&interactionScript.fastquit){
+        }else if(inspecMode && interactionScript != null && interactionScript.fastquit){
             exitInspecMode();
         }else if(boatmode){
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
