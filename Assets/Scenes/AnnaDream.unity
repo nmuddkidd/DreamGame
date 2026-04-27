@@ -1719,7 +1719,7 @@ Transform:
   m_GameObject: {fileID: 480007046}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 98.19263, y: 24.49185, z: 557.57227}
+  m_LocalPosition: {x: 22, y: 31, z: 389}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1738,8 +1738,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpiderManager
   spiderPrefab: {fileID: 7788814136762492640, guid: 4714c60ab5e9bcc4fa456290b645c758, type: 3}
-  dropedItemPrefab: {fileID: 919132149155446097, guid: daddbbc6f94017c4abdd50b4490d0fb4, type: 3}
+  spawnPoints:
+  - {fileID: 480007047}
+  - {fileID: 962945007}
+  - {fileID: 977409653}
+  - {fileID: 1392814486}
+  - {fileID: 1378649413}
+  dropedItemPrefab: {fileID: 919132149155446097, guid: 8950210f7ba2f3f4fa360f0f72d988e0, type: 3}
   maxSpiders: 5
+  spawnRadius: 5
   requiredKills: 10
 --- !u!4 &489609211 stripped
 Transform:
@@ -2971,6 +2978,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4436197150292846529, guid: 548ef586dd7cf0949b1de345ccf4e120, type: 3}
   m_PrefabInstance: {fileID: 949597723}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &962945006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 962945007}
+  m_Layer: 0
+  m_Name: SpiderSpawn2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &962945007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962945006}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 151.69824, y: 24.47, z: -121.127686}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2119733825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &965572789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4814929218503858380, guid: d8bb9829956703c46b0122ecc4055c46, type: 3}
@@ -2981,6 +3019,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1488015054496965713, guid: b4659d647b835474e9a9f3421c04cb91, type: 3}
   m_PrefabInstance: {fileID: 7136431838855053078}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &977409652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977409653}
+  m_Layer: 0
+  m_Name: SpiderSpawn3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &977409653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977409652}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 755.4927, y: 30.2, z: -64.127686}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2119733825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &987500701 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1488015054496965713, guid: b4659d647b835474e9a9f3421c04cb91, type: 3}
@@ -4095,6 +4164,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8298307389669505929, guid: ba299252a8200e246a1bd5e352f7735f, type: 3}
   m_PrefabInstance: {fileID: 1366782348}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1378649412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1378649413}
+  m_Layer: 0
+  m_Name: SpiderSpawn5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1378649413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378649412}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 659.8, y: 31.67, z: 711}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2119733825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1392814485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1392814486}
+  m_Layer: 0
+  m_Name: SpiderSpawn4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1392814486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392814485}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 463.5, y: 27.7, z: 764.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2119733825}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1402500972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6791,6 +6922,10 @@ Transform:
   - {fileID: 1087062771}
   - {fileID: 357696221}
   - {fileID: 480007047}
+  - {fileID: 962945007}
+  - {fileID: 977409653}
+  - {fileID: 1392814486}
+  - {fileID: 1378649413}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2129211255 stripped

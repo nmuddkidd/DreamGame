@@ -7,39 +7,84 @@ public class SpiderAi : MonoBehaviour
     public float roamRadius = 10f;
     public float damage = 10f;
     public float attackRate = 1f;
+    public float roamWaitTime = 3f;
 
     private float nextAttackTime;
     private float pathUpdateTimer = 0.5f;
     private float pathUpdate;
+    private float waitTimer;
     private Vector3 startPosition;
     private NavMeshAgent agent;
     private Transform player;
+    private Animator anim;
 
     void Start()
     {
 
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         startPosition = transform.position;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+
+        if (playerObj != null)
+        {
+            player = playerObj.transform;
+        }
         Roam();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (anim != null)
+        {
+            anim.SetFloat("Speed", agent.velocity.magnitude); //animation speed based on navmesh velocity/make legs move
+        }
 
+        //spiders roam if player not in scene
+        if (player == null) 
+        {
+            RoamingLogic();
+            return;
+        }
+
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position); 
+
+
+        //spider chase/roam based on player distance 
         if (distanceToPlayer <= sihtRange)
         {
+            waitTimer = 0; //prevents spiders pausing while chasing player
             if (Time.time >= pathUpdate)
             {
                 agent.SetDestination(player.position); //chase player while in range
                 pathUpdate = Time.time + pathUpdateTimer;
             }
+
+            if (distanceToPlayer <= agent.stoppingDistance + 0.2f && Time.time >= nextAttackTime)
+            {
+                anim.SetTrigger("Attack");
+            }
         }
-        else if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        else
         {
-            Roam(); //roam when player out of range
+            RoamingLogic(); //roam when player out of range
+        }
+    }
+
+    void RoamingLogic()
+    {
+        //if destination reached
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            waitTimer += Time.deltaTime; //start tijmer
+
+            if (waitTimer >= roamWaitTime) //if timer hits wait time roam again
+            {
+                Roam();
+                waitTimer = 0; //reset timer
+
+            }
         }
     }
 

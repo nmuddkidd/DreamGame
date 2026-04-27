@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpiderManager : MonoBehaviour
 {
     public GameObject spiderPrefab;
+    public Transform[] spawnPoints;
     public GameObject dropedItemPrefab;
     public int maxSpiders = 5;
+    public float spawnRadius = 5f;
     public int requiredKills = 10;
 
     private int currentKills = 0;
@@ -38,13 +41,26 @@ public class SpiderManager : MonoBehaviour
 
     void SpawnSpider()
     {
-        GameObject newSpider = Instantiate(spiderPrefab, transform.position, Quaternion.identity); //spawn spider at manager position
+        // pick random point from list
+        int randomIndex = Random.Range(0, spawnPoints.Length);
+        Transform point = spawnPoints[randomIndex];
 
-        UnityEngine.AI.NavMeshAgent agent = newSpider.GetComponent<UnityEngine.AI.NavMeshAgent>(); //get nav mesh agent component from spider
+        // check point is clear 
+        if (!Physics.CheckSphere(point.position, 1f))
+        {
+            GameObject newSpider = Instantiate(spiderPrefab, point.position, point.rotation);
+            NavMeshAgent agent = newSpider.GetComponent<NavMeshAgent>();
 
-        if (agent != null) {
-            agent.Warp(transform.position); //Warp spider to navmesh at manager location
+            if (agent != null)
+            {
+                agent.avoidancePriority = Random.Range(30, 60); //prevent spideers from clumping together
+                
+            }
+            activeSpiders++;
         }
-        activeSpiders++;
+        else
+        {
+            Invoke("SpawnSpider", 0.5f);
+        }
     }
 }
