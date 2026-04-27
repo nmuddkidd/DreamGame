@@ -96,32 +96,69 @@ public class logic : MonoBehaviour
     }
 
     public void interactText(interactable script){
+        if (script == null)
+        {
+            UnityEngine.Debug.LogWarning("logic.interactText called with null interactable.");
+            return;
+        }
+
+        if (script.interaction == "cashregister" && CashRegisterQueue.ReleaseNextGrandma())
+        {
+            StartCoroutine(ShowCashRegisterCheckoutMessage());
+            return;
+        }
+
         dialogueIndex = -1;
         interactableScript = script;
-        title.text = interactableScript.title;
+        if (title != null)
+        {
+            title.text = interactableScript.title;
+        }
         advanceInteractText();
         switch (interactableScript.interaction)
         {
             case "vehicle":
                 break;
+            case "cashregister":
+                if (interactionUI != null)
+                {
+                    interactionUI.SetActive(true);
+                }
+                break;
             case "bed":
                 dream();
                 break;
             case "computer":
-                computerMenu.SetActive(true);
+                if (computerMenu != null)
+                {
+                    computerMenu.SetActive(true);
+                }
                 break;
             default:
-                interactionUI.SetActive(true);
+                if (interactionUI != null)
+                {
+                    interactionUI.SetActive(true);
+                }
                 break;
         }
     }
 
     public void advanceInteractText()
     {
+        if (interactableScript == null || interactableScript.description == null || interactableScript.description.Length == 0)
+        {
+            interactTimer = -1;
+            disableInteractionUI();
+            return;
+        }
+
         if (dialogueIndex < interactableScript.description.Length-1)
         {
             dialogueIndex++;
-            description.text = interactableScript.description[dialogueIndex];
+            if (description != null)
+            {
+                description.text = interactableScript.description[dialogueIndex];
+            }
             interactTimer = interactableScript.description[dialogueIndex].Length * .1f;
         }
         else
@@ -132,8 +169,38 @@ public class logic : MonoBehaviour
     }
 
     public void disableInteractionUI(){
-        interactionUI.SetActive(false);
-        computerMenu.SetActive(false);
+        if (interactionUI != null)
+        {
+            interactionUI.SetActive(false);
+        }
+        if (computerMenu != null)
+        {
+            computerMenu.SetActive(false);
+        }
+    }
+
+    IEnumerator ShowCashRegisterCheckoutMessage()
+    {
+        interactTimer = -1;
+
+        if (title != null)
+        {
+            title.text = "Checked Out!";
+        }
+
+        if (description != null)
+        {
+            description.text = "Another customer served...";
+        }
+
+        if (interactionUI != null)
+        {
+            interactionUI.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        disableInteractionUI();
     }
 
     //Gameplay logic

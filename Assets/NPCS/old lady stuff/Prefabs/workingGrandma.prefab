@@ -114,3 +114,8 @@ MonoBehaviour:
   walking: 1
   leaving: 0
   moving: 1
+  outsideMoveSpeed: 3
+  insideMoveSpeed: 1.5
+  registerWaitObjectNames:
+  - exclaim (1)
+  - exclaim.001 (1)
