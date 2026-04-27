@@ -58,12 +58,12 @@ public class NPC_Movement : MonoBehaviour
     void Update()
     {
         //move along the path
-        //transform.LookAt(target.transform);
         if (walking)
         {
             if (moving)
             {
                 transform.LookAt(target.transform);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position), 35 * Time.deltaTime);
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
             }
             if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z) && !(inside))
@@ -82,7 +82,6 @@ public class NPC_Movement : MonoBehaviour
                 else
                 {
                     target = target.transform.GetChild(Paths).gameObject;
-                    // transform.LookAt(target.transform);
                     //Paths = Paths + 1;
                 }
             }
@@ -108,7 +107,9 @@ public class NPC_Movement : MonoBehaviour
                 {
                     //collect the pills
                     transform.LookAt(Pills.transform);
-                    Debug.Log(Pills.gameObject.name);
+                    //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Pills.transform.position), 35 * Time.deltaTime);
+
+                    //Debug.Log(Pills.gameObject.name);
                     Pills.GetComponent<Collider>().enabled = false;
                     Pills.GetComponent<MeshRenderer>().enabled = false;
                     Restock.current.OnPillsTaken(Pills);
@@ -129,6 +130,9 @@ public class NPC_Movement : MonoBehaviour
                 if (target.gameObject.name == "Cashier")
                 {
                     transform.LookAt(GameObject.Find("Cube.013").transform);
+                    //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(GameObject.Find("Cube.013").transform.position), 35 * Time.deltaTime);
+
+
                     moving = false;
                     Invoke("Wait",5);
                     target = GameObject.Find("Paths End"); //target.transform.parent.gameObject;
@@ -146,14 +150,14 @@ public class NPC_Movement : MonoBehaviour
                 if (moving)
                 {
                     transform.LookAt(target.transform);
-
+                    //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position), 35 * Time.deltaTime);
                     transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
                 }
             }
             else if (moving)
             {
                 transform.LookAt(target.transform);
-
+                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position), 35 * Time.deltaTime);
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
             }
         }
@@ -165,6 +169,8 @@ public class NPC_Movement : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
                 transform.LookAt(target.transform);
+            //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position), 35 * Time.deltaTime);
+
             }
 
             if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z))

@@ -1,6 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+
 
 public class FPSController : MonoBehaviour
 {
@@ -15,6 +17,12 @@ public class FPSController : MonoBehaviour
     [Header("Look Sensitivity")]
     [SerializeField] private float mouseSensitivity = 2.0f;
     [SerializeField] private float upDownRange = 90.0f;
+    //mouse reset parameters
+    private Vector2 priorpos = Vector2.zero;
+    private Vector2 center;
+
+
+
 
     private CharacterController characterController;
     private Camera mainCamera;
@@ -43,8 +51,21 @@ public class FPSController : MonoBehaviour
     private void Start()
     {
         inputHandler = PlayInputHandler.Instance;
+        //set cursor to center
+        float width = Screen.width / 2;
+        float height = Screen.height / 2;
+        center = new Vector2(width, height);
+        Mouse.current.WarpCursorPosition(center);
+        ///make cursor invis
+        ///this won't really happen in unity debugging unless you click the screen
+        Cursor.visible = false;
+        CustomEvents.current.PickUp += RayHit;
     }
 
+    private void OnDestroy()
+    {
+        Cursor.visible = true;
+    }
     private void Update()
     {
         HandleMovement();
@@ -55,7 +76,20 @@ public class FPSController : MonoBehaviour
         }
         HandleRotation();
         testOOB();
+        //reset mouse position if off center and still
+        Vector2 mouse = Mouse.current.delta.ReadValue();
+        if (mouse == priorpos)
+        {
+            Mouse.current.WarpCursorPosition(center);
+        }
+        else
+        {
+            priorpos = mouse;
+        }
+        //update the raycast to fit the mouse pointer
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
     }
+
 
     void HandleMovement()
     {
@@ -120,10 +154,39 @@ public class FPSController : MonoBehaviour
         }
     }
 
+    void RayHit(GameObject other)
+    {
+        inputHandler.ResetClick();
+        inspecItem = other;
+        interactionScript = inspecItem.GetComponent<interactable>();
+        logic.interactText(interactionScript);
+        //if the set interaction is to exit
+        if (CustomEvents.current.currentMode == CustomEvents.InputMode.Absent)
+        {
+            exitInspecMode();
+            return;
+        }
+        //if the set interaction is to inspect, also double check for NULL
+        else if (inspecItem != null)
+        {
+            inputHandler.inspect();
+            inspecMode = true;
+            //set up the highlighted item
+            Vector3 newpos = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y + .25f, mainCamera.transform.position.z) + mainCamera.transform.forward;
+            inspecItem.transform.position = newpos;
+            return;
+        }
+    }
+                              
     void ClickInteraction()
     {
         Debug.Log("Click triggered");
         inputHandler.ResetClick();
+        //make sure the raycast function isn't the one being used
+        if (CustomEvents.current.currentMode == CustomEvents.InputMode.Interact)
+        {
+            return;
+        }
         if(!inspecMode){
             GameObject[] pickups = GameObject.FindGameObjectsWithTag("Interactable");
             foreach (GameObject pickup in pickups)
@@ -149,8 +212,9 @@ public class FPSController : MonoBehaviour
         }else if(interactionScript.fastquit){
             exitInspecMode();
         }
-    }
-
+        
+    }       
+                   
     public void exitInspecMode()
     {
         interactable script = inspecItem.GetComponent<interactable>();
@@ -159,7 +223,7 @@ public class FPSController : MonoBehaviour
         inputHandler.reset();
         inspecMode=false;
         logic.disableInteractionUI();
-    }
+    }                            
 
     void OnCollisionEnter(Collision collision) {
         // 'collision' contains data like contact points and impact velocity

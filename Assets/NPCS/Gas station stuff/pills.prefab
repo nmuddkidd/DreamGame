@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: daddbbc6f94017c4abdd50b4490d0fb4, type: 3}
       propertyPath: m_TagString
-      value: Interactable
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -86,6 +86,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: daddbbc6f94017c4abdd50b4490d0fb4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7820426630418208121}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: daddbbc6f94017c4abdd50b4490d0fb4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 737457614853117063}
   m_SourcePrefab: {fileID: 100100000, guid: daddbbc6f94017c4abdd50b4490d0fb4, type: 3}
 --- !u!1 &4062792403673638911 stripped
 GameObject:
@@ -105,12 +108,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::interactable
   title: Doxylamine
-  description: 'Take once 30 minutes before bed.
-
-    Goodnight :)'
-  response: []
+  description: []
   fastquit: 1
-  setInspecMode: 1
+  grab: 1
   interaction: 
 --- !u!65 &7820426630418208121
 BoxCollider:
@@ -131,5 +131,17 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 4}
+  m_Size: {x: 5, y: 5, z: 6}
   m_Center: {x: 0, y: 0, z: -0.8110968}
+--- !u!114 &737457614853117063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062792403673638911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3fa3b0500d745841b8214e2e7942e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interact_pt2
