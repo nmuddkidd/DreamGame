@@ -11,13 +11,10 @@ TagManager:
   - Path
   - Enemy
   - trash
-<<<<<<< HEAD
   - playermodel
   - player
   - wakeup
-=======
   - Dumpster
->>>>>>> 5a520dd1c22465cd3b3f67da7dccbe33a1ddcfa3
   layers:
   - Default
   - TransparentFX
