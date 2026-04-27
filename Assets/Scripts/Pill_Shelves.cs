@@ -12,11 +12,7 @@ public class Pill_Shelves : MonoBehaviour
     [SerializeField] private GameObject crispy;
     [SerializeField] private GameObject greese;
     [SerializeField] private GameObject pills;
-    [Header("Aisles")]
-    [SerializeField] private GameObject Aisle1;
-    [SerializeField] private GameObject Aisle2;
-    [SerializeField] private GameObject Aisle3;
-    [SerializeField] private GameObject Aisle4;
+
 
     private Vector3 box_pos = new Vector3((float)-9.5, 2, 8);
     private Vector3 box_dim = new Vector3(3, 2, 4);
@@ -94,7 +90,11 @@ public class Pill_Shelves : MonoBehaviour
     //wait for the automatic restock, not immediate 
     IEnumerator Refill(GameObject other)
     {
-        yield return new WaitForSeconds(15f);
+       /* yield return new WaitForSeconds(15f);
+        if (Random.Range(1,101) < (Time.deltaTime / 2))
+        {
+
+        }     */
         other.GetComponent<Collider>().enabled = true;
         other.GetComponent<MeshRenderer>().enabled = true;
     }
