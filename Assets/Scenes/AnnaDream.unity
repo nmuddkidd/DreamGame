@@ -851,7 +851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e37cf499694b5114a965c3391f8687af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 971.3
+      value: 2138
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e37cf499694b5114a965c3391f8687af, type: 3}
       propertyPath: m_LocalPosition.y
@@ -859,7 +859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e37cf499694b5114a965c3391f8687af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1034.8
+      value: 1712
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e37cf499694b5114a965c3391f8687af, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1147,7 +1147,7 @@ GameObject:
   - component: {fileID: 357696222}
   m_Layer: 0
   m_Name: Terrain_(-2101.44, 0.00, -3433.33)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1246,7 +1246,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 13
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -1581,6 +1581,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d208e13b0a7aaae46939713186144600, type: 3}
   m_PrefabInstance: {fileID: 445976461}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &480007046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480007047}
+  - component: {fileID: 480007048}
+  m_Layer: 0
+  m_Name: SpiderManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &480007047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480007046}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2562.7, y: 49.2, z: 1722.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &480007048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480007046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6f5f431c1e2ef4eb3c476080c2cce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpiderManager
+  spiderPrefab: {fileID: 7788814136762492640, guid: 4714c60ab5e9bcc4fa456290b645c758, type: 3}
+  dropedItemPrefab: {fileID: 919132149155446097, guid: daddbbc6f94017c4abdd50b4490d0fb4, type: 3}
+  maxSpiders: 5
+  requiredKills: 10
 --- !u!4 &489609211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1488015054496965713, guid: b4659d647b835474e9a9f3421c04cb91, type: 3}
@@ -2989,7 +3037,7 @@ GameObject:
   - component: {fileID: 1087062772}
   m_Layer: 0
   m_Name: Terrain_(-2101.44, 0.00, -2433.33)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3088,7 +3136,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 13
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -3120,7 +3168,7 @@ GameObject:
   - component: {fileID: 1126213816}
   m_Layer: 0
   m_Name: Terrain_(-3101.44, 0.00, -3433.33)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3219,7 +3267,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 13
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -3636,7 +3684,7 @@ GameObject:
   - component: {fileID: 1347455187}
   m_Layer: 0
   m_Name: Terrain_(-3101.44, 0.00, -2433.33)
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3735,7 +3783,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 13
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -7081,63 +7129,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4659d647b835474e9a9f3421c04cb91, type: 3}
---- !u!1001 &7296714730239921187
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7255146221502925766, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_Name
-      value: Huntsman_Spider(Rigged)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2870.7046
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 44.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1952.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8062751339857531260, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 87a37fb825209284ab5ed1029c066732, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -7149,6 +7140,7 @@ SceneRoots:
   - {fileID: 883822152}
   - {fileID: 235590757}
   - {fileID: 934303258}
+  - {fileID: 480007047}
   - {fileID: 1347455186}
   - {fileID: 1126213815}
   - {fileID: 1087062771}
@@ -7156,7 +7148,6 @@ SceneRoots:
   - {fileID: 1434107810}
   - {fileID: 6320995}
   - {fileID: 400807569}
-  - {fileID: 7296714730239921187}
   - {fileID: 5793889791829813797}
   - {fileID: 4661169514348683410}
   - {fileID: 633897732}
