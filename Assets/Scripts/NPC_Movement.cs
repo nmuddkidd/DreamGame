@@ -15,6 +15,8 @@ public class NPC_Movement : MonoBehaviour
     [SerializeField] private bool leaving = false;
     //forces NPC's to remain still
     [SerializeField] private bool moving = true;
+    [SerializeField] private float outsideMoveSpeed = 3f;
+    [SerializeField] private float insideMoveSpeed = 1.5f;
     //Pills to find
     private GameObject Pills;
     //distance between NPC and the pills               
@@ -23,12 +25,14 @@ public class NPC_Movement : MonoBehaviour
     //get the desired rotation 
     private Quaternion target_rotation;
     private Quaternion cur_rotation;
+
+    Animation anim;
     private float time = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-
+        anim = GetComponent<Animation>();
         //set the starting direction
         int direction = Random.Range(0, 2);
         GameObject[] walk_to = GameObject.FindGameObjectsWithTag("Path");
@@ -62,6 +66,17 @@ public class NPC_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (anim.isPlaying == false)
+        {
+            if (moving)
+            {
+                anim.Play("walkerWalk");
+            }
+            else
+            {
+                anim.Play("idle");
+            }
+        }
         time += Time.deltaTime;
         transform.rotation = Quaternion.Slerp(cur_rotation, target_rotation,  time * 3);
         if (target.gameObject.name == "Cube.013")
@@ -76,7 +91,8 @@ public class NPC_Movement : MonoBehaviour
         {
             if (moving)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, GetMoveSpeed() * Time.deltaTime);
+                anim.Play("walkerWalk");
             }
             if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z) && !(inside))
             {
@@ -145,7 +161,6 @@ public class NPC_Movement : MonoBehaviour
                 {
                     //collect the pills
                     //transform.LookAt(Pills.transform);
-
                     cur_rotation = transform.rotation;
                     transform.LookAt(Pills.transform);
                     target_rotation = transform.rotation;
@@ -158,7 +173,8 @@ public class NPC_Movement : MonoBehaviour
                     Restock.current.OnPillsTaken(Pills);
                     walking = false;
                     moving = false;
-                    Invoke("Wait",2);
+                    anim.Play("pickingUp");
+                    Invoke("Wait",4);
                     NextTargetPostPill();
 
                     //course is set for the register
@@ -180,6 +196,7 @@ public class NPC_Movement : MonoBehaviour
                     time = 0;
 
                     moving = false;
+                    anim.Play("idle");
                     Invoke("Waiter",5);
                      //target.transform.parent.gameObject;
                 }
@@ -201,14 +218,14 @@ public class NPC_Movement : MonoBehaviour
                 {
                    // transform.LookAt(target.transform);
                    
-                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, GetMoveSpeed() * Time.deltaTime);
                 }
             }
             else if (moving)
             {
                // transform.LookAt(target.transform);
                
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, GetMoveSpeed() * Time.deltaTime);
             }
         }
         else
@@ -217,7 +234,7 @@ public class NPC_Movement : MonoBehaviour
 
             if (moving)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, GetMoveSpeed() * Time.deltaTime);
                 //transform.LookAt(target.transform);
                
             }
@@ -266,6 +283,7 @@ public class NPC_Movement : MonoBehaviour
     }
     void Waiter()
     {
+        anim.Play("dance");
         print("waiters script " + target.gameObject.name);
         target = GameObject.Find("Paths End");
         cur_rotation = transform.rotation;
@@ -275,5 +293,10 @@ public class NPC_Movement : MonoBehaviour
         time = 0;
         leaving = true;
         moving = true;
+    }
+
+    float GetMoveSpeed()
+    {
+        return inside ? insideMoveSpeed : outsideMoveSpeed;
     }
 }
