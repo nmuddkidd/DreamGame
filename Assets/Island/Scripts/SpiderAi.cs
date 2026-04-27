@@ -48,11 +48,15 @@ public class SpiderAi : MonoBehaviour
             return;
         }
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position); 
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
+        //ignore spider/player height for distance 
+        Vector3 flatSpiderPos = new Vector3(transform.position.x, 0, transform.position.z);
+        Vector3 flatPlayerPos = new Vector3(player.position.x, 0, player.position.z);
+        float flatDistance = Vector3.Distance(flatSpiderPos, flatPlayerPos);
 
         //spider chase/roam based on player distance 
-        if (distanceToPlayer <= sightRange)
+        if (flatDistance <= sightRange)
         {
             waitTimer = 0; //prevents spiders pausing while chasing player
             if (Time.time >= pathUpdate)
@@ -61,14 +65,30 @@ public class SpiderAi : MonoBehaviour
                 pathUpdate = Time.time + pathUpdateTimer;
             }
 
-            if (distanceToPlayer <= agent.stoppingDistance + 0.2f && Time.time >= nextAttackTime)
+            if (flatDistance <= agent.stoppingDistance + 5.0f && Time.time >= nextAttackTime)
             {
-                anim.SetTrigger("Attack");
+                Health playerHealth = player.GetComponent<Health>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(damage);
+                    anim.SetTrigger("Attack"); // Play the animation
+                    nextAttackTime = Time.time + 1f / attackRate;
+                    Debug.Log("Spider bit the player!");
+                }
             }
         }
         else
         {
             RoamingLogic(); //roam when player out of range
+        }
+        //keep spider on ground when chasing player
+        transform.position = new Vector3(transform.position.x, agent.nextPosition.y, transform.position.z);
+        //stop spider from flying into air when metting player
+        if (agent.isOnNavMesh)
+        {
+            Vector3 currentPos = transform.position;
+            currentPos.y = agent.nextPosition.y;
+            transform.position = currentPos;
         }
     }
 
@@ -81,7 +101,7 @@ public class SpiderAi : MonoBehaviour
 
             if (Time.frameCount % 60 == 0)
             {
-                Debug.Log(gameObject.name + "wait timer: " + waitTimer);
+                //Debug.Log(gameObject.name + "wait timer: " + waitTimer);
             }
 
             if (waitTimer >= roamWaitTime) // roam again after timer
@@ -99,7 +119,9 @@ public class SpiderAi : MonoBehaviour
         //generate random point in radius/set as destination
         Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
         randomDirection += startPosition;
-        agent.SetDestination(randomDirection);
+        
+            agent.SetDestination(randomDirection);
+       
     }
 
     private void OnCollisionStay(Collision collision)

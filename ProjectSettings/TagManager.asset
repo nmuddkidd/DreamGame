@@ -5,29 +5,19 @@ TagManager:
   serializedVersion: 3
   tags:
   - Logic
-  - Interactable
-  - Boat
   - Terrain
-  - Path
+  - Interactable
   - Enemy
-  - trash
-  - playermodel
-  - player
-  - wakeup
-<<<<<<< HEAD
-  - Blind
-=======
-  - Dumpster
->>>>>>> 14987f09fecea4a5ad27e83751e13f1cf9aac05e
+  - Projectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Pills
+  - Enemy
   - Water
   - UI
-  - Enemy
-  - 
+  - Player
+  - Projectile
   - 
   - 
   - 
@@ -58,10 +48,3 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
-  - Light Layer 1
-  - Light Layer 2
-  - Light Layer 3
-  - Light Layer 4
-  - Light Layer 5
-  - Light Layer 6
-  - Light Layer 7
