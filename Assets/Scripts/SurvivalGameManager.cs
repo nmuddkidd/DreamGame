@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ public class SurvivalGameManager : MonoBehaviour
 
     [Header("Result UI")]
     [SerializeField] private Text resultText;
+    [SerializeField] private float resultTextDurationSeconds = 15f;
+    [SerializeField] private float winWakeupDelaySeconds = 3f;
 
     [Header("Monster Trigger")]
     [SerializeField] private GameObject activeMonsterOnLose;
@@ -33,6 +36,8 @@ public class SurvivalGameManager : MonoBehaviour
     private int nextTrashTaskId = 1;
     private float elapsedTime;
     private bool runEnded;
+    private bool chaseTriggered;
+    private float resultTextHideTimer;
     private Transform playerTransform;
     private MonsterAnimator monsterAnimator;
 
@@ -55,6 +60,8 @@ public class SurvivalGameManager : MonoBehaviour
 
     void Update()
     {
+        UpdateResultTimer();
+
         if (runEnded)
         {
             return;
@@ -62,6 +69,17 @@ public class SurvivalGameManager : MonoBehaviour
 
         elapsedTime += Time.deltaTime;
         UpdateClockText();
+
+        if (elapsedTime >= surviveDurationSeconds)
+        {
+            TriggerWin();
+            return;
+        }
+
+        if (chaseTriggered)
+        {
+            return;
+        }
 
         CleanupMissingCustomers();
 
@@ -78,12 +96,6 @@ public class SurvivalGameManager : MonoBehaviour
         if (oldestTrashWait >= trashFailSeconds)
         {
             TriggerLoss("Trash was left out too long.");
-            return;
-        }
-
-        if (elapsedTime >= surviveDurationSeconds)
-        {
-            TriggerWin();
             return;
         }
 
@@ -134,7 +146,12 @@ public class SurvivalGameManager : MonoBehaviour
 
     private void TriggerLoss(string reason)
     {
-        runEnded = true;
+        if (chaseTriggered)
+        {
+            return;
+        }
+
+        chaseTriggered = true;
         SetWarning(string.Empty);
         SetResult("Try to run until 6:00 AM.. You lose.. " + reason);
 
@@ -169,6 +186,24 @@ public class SurvivalGameManager : MonoBehaviour
         runEnded = true;
         SetWarning(string.Empty);
         SetResult("6:00 AM - You survived.");
+        StartCoroutine(TriggerWinWakeupAfterDelay());
+    }
+
+    private IEnumerator TriggerWinWakeupAfterDelay()
+    {
+        if (winWakeupDelaySeconds > 0f)
+        {
+            yield return new WaitForSeconds(winWakeupDelaySeconds);
+        }
+
+        if (monsterAnimator != null)
+        {
+            monsterAnimator.TriggerWakeupSequence();
+        }
+        else
+        {
+            TriggerWakeupFallback();
+        }
     }
 
     private void UpdateWarnings(float oldestCustomerWait, float oldestTrashWait)
@@ -231,6 +266,49 @@ public class SurvivalGameManager : MonoBehaviour
 
         resultText.text = result;
         resultText.enabled = !string.IsNullOrEmpty(result);
+
+        if (resultText.enabled)
+        {
+            resultTextHideTimer = resultTextDurationSeconds;
+        }
+        else
+        {
+            resultTextHideTimer = 0f;
+        }
+    }
+
+    private void UpdateResultTimer()
+    {
+        if (resultText == null || !resultText.enabled || resultTextHideTimer <= 0f)
+        {
+            return;
+        }
+
+        resultTextHideTimer -= Time.deltaTime;
+        if (resultTextHideTimer <= 0f)
+        {
+            resultTextHideTimer = 0f;
+            resultText.text = string.Empty;
+            resultText.enabled = false;
+        }
+    }
+
+    private void TriggerWakeupFallback()
+    {
+        GameObject logicObject = GameObject.FindGameObjectWithTag("Logic");
+        if (logicObject == null)
+        {
+            return;
+        }
+
+        logic logicScript = logicObject.GetComponent<logic>();
+        if (logicScript == null)
+        {
+            return;
+        }
+
+        logicScript.teleportPlayer(new Vector3(-14, 4, -7));
+        logicScript.wakeup();
     }
 
     private void CleanupMissingCustomers()

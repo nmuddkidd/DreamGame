@@ -21607,11 +21607,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4113335438354044546, guid: 52872987bf5d5ad4c8bd5fd19e753ece, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.06156228
+      value: 0.0377346
       objectReference: {fileID: 0}
     - target: {fileID: 4113335438354044546, guid: 52872987bf5d5ad4c8bd5fd19e753ece, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.12
+      value: -0.08664284
       objectReference: {fileID: 0}
     - target: {fileID: 4113335438354044546, guid: 52872987bf5d5ad4c8bd5fd19e753ece, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24749,6 +24749,8 @@ MonoBehaviour:
   trashWarnSeconds: 30
   warningText: {fileID: 1687942726}
   resultText: {fileID: 1624042420}
+  resultTextDurationSeconds: 15
+  winWakeupDelaySeconds: 3
   activeMonsterOnLose: {fileID: 942034989}
   monsterPrefabOnLose: {fileID: 5700501469568276362, guid: 72c36df7e436e5c4594ea5716fb69bd3, type: 3}
   monsterSpawnPoint: {fileID: 227083896}

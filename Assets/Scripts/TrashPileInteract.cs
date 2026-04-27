@@ -35,7 +35,15 @@ public class TrashPileInteract : MonoBehaviour
 
         if (destroyPileAfterSpawn)
         {
-            Destroy(gameObject);
+            Transform pileRoot = transform.parent;
+            if (pileRoot != null)
+            {
+                Destroy(pileRoot.gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         return true;
