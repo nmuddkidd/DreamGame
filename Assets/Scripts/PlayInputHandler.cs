@@ -117,4 +117,11 @@ public class PlayInputHandler : MonoBehaviour
     public void reset(){
         OnEnable();
     }
+
+    public void boatmode(){
+        OnDisable();
+        playerControls.FindActionMap(actionMapName).FindAction(rotate).Enable();
+        playerControls.FindActionMap(actionMapName).FindAction(move).Enable();
+        playerControls.FindActionMap(actionMapName).FindAction(click).Enable();
+    }
 }

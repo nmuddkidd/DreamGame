@@ -5,8 +5,6 @@ public class GasNPC : MonoBehaviour
     //private List<GameObject> NPCs;
     [Header("Prefabs")]
     [SerializeField] private GameObject NPC1;
-    [SerializeField] private GameObject NPC2;
-    [SerializeField] private GameObject NPC3;
     private bool waiting = true;
     private GameObject current;
 
@@ -24,20 +22,8 @@ public class GasNPC : MonoBehaviour
 
     void Creation()
     {
-        int switcher = Random.Range(1, 4);
         //spawn in a random NPC
-        switch (switcher)
-        {
-            case 1:
-                current = NPC1;
-                break;
-            case 2:
-                current = NPC2;
-                break;
-            case 3:
-                current = NPC3;
-                break;
-        }
+        current = NPC1;
         Instantiate(current, this.transform.position, this.transform.rotation);
         //different spawn times and whatnot
         Invoke("Wait", Random.Range(5, 30));

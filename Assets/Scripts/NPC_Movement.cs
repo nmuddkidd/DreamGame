@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class NPC_Movement : MonoBehaviour
 {
-    private GameObject target;
+    [SerializeField] private GameObject target;
  //   [SerializeField] private LayerMask layer;
     private int Paths = 0;
     //navigating too the pills from within the store. False does not mean out of the store, just navigating out of it
@@ -15,16 +15,24 @@ public class NPC_Movement : MonoBehaviour
     [SerializeField] private bool leaving = false;
     //forces NPC's to remain still
     [SerializeField] private bool moving = true;
+    [SerializeField] private float outsideMoveSpeed = 3f;
+    [SerializeField] private float insideMoveSpeed = 1.5f;
     //Pills to find
     private GameObject Pills;
     //distance between NPC and the pills               
     private Vector2 pill_loc = new Vector2(0, 0);
     private Vector2 NPC_loc = new Vector2(0, 0);
+    //get the desired rotation 
+    private Quaternion target_rotation;
+    private Quaternion cur_rotation;
+
+    Animation anim;
+    private float time = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-
+        anim = GetComponent<Animation>();
         //set the starting direction
         int direction = Random.Range(0, 2);
         GameObject[] walk_to = GameObject.FindGameObjectsWithTag("Path");
@@ -36,35 +44,55 @@ public class NPC_Movement : MonoBehaviour
                 target = walk_to[1];
                 break;
         }
+        cur_rotation = transform.rotation;
         transform.LookAt(target.transform);
+        target_rotation = transform.rotation;
+        transform.rotation = cur_rotation;
+        //transform.LookAt(target.transform);
     }
 
     void Searcher()
     {
 
-        //int hits = Physics.OverlapBoxNonAlloc(box_pos, box_dim, Located, Quaternion.Euler(Vector3.zero), layer);
         GameObject shelves = GameObject.Find("Pill Shelves");
         Pill_Shelves script = shelves.GetComponent<Pill_Shelves>();
         Pills = script.Shelves[Random.Range(0, (script.Shelves.Length))].gameObject;
-       // Pills = bottles[Random.Range(0, len(bottles))];
-      //  Pills = Located[Random.Range(0, hits)].gameObject;       
+    
         pill_loc.x = Pills.transform.position.x;
         pill_loc.y = Pills.transform.position.z;
-        //Debug.Log(Pills.gameObject.name);
         inside = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (anim.isPlaying == false)
+        {
+            if (moving)
+            {
+                anim.Play("walkerWalk");
+            }
+            else
+            {
+                anim.Play("idle");
+            }
+        }
+        time += Time.deltaTime;
+        transform.rotation = Quaternion.Slerp(cur_rotation, target_rotation,  time * 3);
+        if (target.gameObject.name == "Cube.013")
+        {
+            return;
+        }
+        {
+            
+        }
         //move along the path
         if (walking)
         {
             if (moving)
             {
-                transform.LookAt(target.transform);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position), 35 * Time.deltaTime);
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, GetMoveSpeed() * Time.deltaTime);
+                anim.Play("walkerWalk");
             }
             if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z) && !(inside))
             {
@@ -72,30 +100,56 @@ public class NPC_Movement : MonoBehaviour
                 if (target.gameObject.name == "Paths End")
                 {
                     target = GameObject.Find("Inside");
+                    cur_rotation = transform.rotation;
+                    transform.LookAt(target.transform);
+                    target_rotation = transform.rotation;
+                    transform.rotation = cur_rotation;
+                    time = 0;
                 }
                 //if the target is inside of the station
                 else if (target.gameObject.name == "Inside")
                 {
                     target = target.transform.GetChild(Paths).gameObject;
+                    cur_rotation = transform.rotation;
+                    transform.LookAt(target.transform);
+                    target_rotation = transform.rotation;
+                    transform.rotation = cur_rotation;
+                    time = 0;
                     Searcher();
                 }
                 else
                 {
                     target = target.transform.GetChild(Paths).gameObject;
+                    cur_rotation = transform.rotation;
+                    transform.LookAt(target.transform);
+                    target_rotation = transform.rotation;
+                    transform.rotation = cur_rotation;
+                    time = 0;
                     //Paths = Paths + 1;
                 }
             }
             //once inside the store, switch up navigation if statements
             else if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z))
             {
+                //if pills are a certain distance away, move to next aisle 
                 if (Mathf.Abs(transform.position.z - Pills.transform.position.z) > 1.75)
                 {
-                    Paths = Paths + 1;
+                    Paths = Paths + 1; 
                     target = target.transform.parent.gameObject.transform.GetChild(Paths).gameObject;
+                    cur_rotation = transform.rotation;
+                    transform.LookAt(target.transform);
+                    target_rotation = transform.rotation;
+                    transform.rotation = cur_rotation;
+                    time = 0;
                 }
                 else
                 {
                     target = target.transform.GetChild(0).gameObject;
+                    cur_rotation = transform.rotation;
+                    transform.LookAt(target.transform);
+                    target_rotation = transform.rotation;
+                    transform.rotation = cur_rotation;
+                    time = 0;
                 }
             }
             if (target.gameObject.name == "Aisle End" | target.gameObject.name == "Aisle 1")
@@ -106,16 +160,21 @@ public class NPC_Movement : MonoBehaviour
                 if (Vector2.Distance(NPC_loc, pill_loc) < 1.5)
                 {
                     //collect the pills
+                    //transform.LookAt(Pills.transform);
+                    cur_rotation = transform.rotation;
                     transform.LookAt(Pills.transform);
-                    //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Pills.transform.position), 35 * Time.deltaTime);
+                    target_rotation = transform.rotation;
+                    transform.rotation = cur_rotation;
+                    time = 0;
 
-                    //Debug.Log(Pills.gameObject.name);
+                    //Turn off Pill visibility
                     Pills.GetComponent<Collider>().enabled = false;
                     Pills.GetComponent<MeshRenderer>().enabled = false;
                     Restock.current.OnPillsTaken(Pills);
                     walking = false;
                     moving = false;
-                    Invoke("Wait",2);
+                    anim.Play("pickingUp");
+                    Invoke("Wait",4);
                     NextTargetPostPill();
 
                     //course is set for the register
@@ -127,16 +186,19 @@ public class NPC_Movement : MonoBehaviour
             //return to the register
             if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z))
             {
-                if (target.gameObject.name == "Cashier")
+                if (target.gameObject.name == "Cashier" && moving)
                 {
+                    //transform.LookAt(GameObject.Find("Cube.013").transform);
+                    cur_rotation = transform.rotation;
                     transform.LookAt(GameObject.Find("Cube.013").transform);
-                    //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(GameObject.Find("Cube.013").transform.position), 35 * Time.deltaTime);
-
+                    target_rotation = transform.rotation;
+                    transform.rotation = cur_rotation;
+                    time = 0;
 
                     moving = false;
-                    Invoke("Wait",5);
-                    target = GameObject.Find("Paths End"); //target.transform.parent.gameObject;
-                    leaving = true;
+                    anim.Play("idle");
+                    Invoke("Waiter",5);
+                     //target.transform.parent.gameObject;
                 }
                /* else if (target.gameObject.name == "Inside")
                 {
@@ -146,19 +208,24 @@ public class NPC_Movement : MonoBehaviour
                 else if ((target.gameObject.name == "Aisle 2") | (target.gameObject.name == "Aisle 3"))
                 {
                     target = GameObject.Find("Cashier");
+                    cur_rotation = transform.rotation;
+                    transform.LookAt(target.transform);
+                    target_rotation = transform.rotation;
+                    transform.rotation = cur_rotation;
+                    time = 0;
                 }
                 if (moving)
                 {
-                    transform.LookAt(target.transform);
-                    //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position), 35 * Time.deltaTime);
-                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
+                   // transform.LookAt(target.transform);
+                   
+                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, GetMoveSpeed() * Time.deltaTime);
                 }
             }
             else if (moving)
             {
-                transform.LookAt(target.transform);
-                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position), 35 * Time.deltaTime);
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
+               // transform.LookAt(target.transform);
+               
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, GetMoveSpeed() * Time.deltaTime);
             }
         }
         else
@@ -167,19 +234,23 @@ public class NPC_Movement : MonoBehaviour
 
             if (moving)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, 3 * Time.deltaTime);
-                transform.LookAt(target.transform);
-            //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position), 35 * Time.deltaTime);
-
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, GetMoveSpeed() * Time.deltaTime);
+                //transform.LookAt(target.transform);
+               
             }
 
             if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z))
             {
                 if(target.gameObject.name == "Starting_1")
                 {
-                    Destroy(this);
+                    Destroy(this.gameObject);
                 }
                 target = target.transform.parent.gameObject;
+                cur_rotation = transform.rotation;
+                transform.LookAt(target.transform);
+                target_rotation = transform.rotation;
+                transform.rotation = cur_rotation;
+                time = 0;
             }
         }
 
@@ -189,15 +260,43 @@ public class NPC_Movement : MonoBehaviour
         if (target.gameObject.name == "Aisle End")
         {
             target = target.transform.parent.gameObject;
+            cur_rotation = transform.rotation;
+            transform.LookAt(target.transform);
+            target_rotation = transform.rotation;
+            transform.rotation = cur_rotation;
+            time = 0;
         }
         else if (target.gameObject.name == "Aisle 1")
         {
             target = GameObject.Find("Cashier");
+            cur_rotation = transform.rotation;
+            transform.LookAt(target.transform);
+            target_rotation = transform.rotation;
+            transform.rotation = cur_rotation;
+            time = 0;
         }
     }
     //pause at the register
     void Wait()
     {
         moving = true;
+    }
+    void Waiter()
+    {
+        anim.Play("dance");
+        print("waiters script " + target.gameObject.name);
+        target = GameObject.Find("Paths End");
+        cur_rotation = transform.rotation;
+        transform.LookAt(target.transform);
+        target_rotation = transform.rotation;
+        transform.rotation = cur_rotation;
+        time = 0;
+        leaving = true;
+        moving = true;
+    }
+
+    float GetMoveSpeed()
+    {
+        return inside ? insideMoveSpeed : outsideMoveSpeed;
     }
 }
