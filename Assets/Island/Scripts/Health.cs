@@ -5,10 +5,12 @@ public class Health : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
     public bool isPlayer = false;
+    private Animator anim;
 
     void Start()
     {
         currentHealth = maxHealth;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -16,6 +18,10 @@ public class Health : MonoBehaviour
 
     {
         currentHealth -= damage;
+        if (anim != null)
+        {
+            anim.SetTrigger("Take Damage");
+        }
 
         if (currentHealth <= 0)
         {
