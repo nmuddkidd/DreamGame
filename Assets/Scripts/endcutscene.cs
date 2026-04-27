@@ -52,6 +52,9 @@ public class endcutscene : MonoBehaviour
                 case 7:
                     credits.enabled = true;
                     break;
+                case 9:
+                    Application.Quit();
+                    break;
             }
             trigger++;
             timer = 0;

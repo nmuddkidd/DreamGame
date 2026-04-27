@@ -274,8 +274,10 @@ public class logic : MonoBehaviour
         GameObject.FindWithTag("trash").SetActive(false);
         blind.SetActive(false);
     }
-    public void endgame(){
 
+    public void endgame(){
+        SceneManager.LoadScene("endgame");
+        Destroy(Player);
     }
     
     public void dream(){
