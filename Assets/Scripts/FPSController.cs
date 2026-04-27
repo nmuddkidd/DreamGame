@@ -343,5 +343,11 @@ public class FPSController : MonoBehaviour
         characterController.enabled = true;
     }
 
+    void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Blind")) {
+            logic.blind();
+        }
+    }
+
     public void setSpeed(float s){walkSpeed = s;}
 }
