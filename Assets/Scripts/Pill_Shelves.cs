@@ -12,11 +12,17 @@ public class Pill_Shelves : MonoBehaviour
     [SerializeField] private GameObject crispy;
     [SerializeField] private GameObject greese;
     [SerializeField] private GameObject pills;
+    [Header("Aisles")]
+    [SerializeField] private GameObject Aisle1;
+    [SerializeField] private GameObject Aisle2;
+    [SerializeField] private GameObject Aisle3;
+    [SerializeField] private GameObject Aisle4;
 
     private Vector3 box_pos = new Vector3((float)-9.5, 2, 8);
     private Vector3 box_dim = new Vector3(3, 2, 4);
     public Collider[] Shelves = { };
     private GameObject[] Items = { };
+   // private bool flip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,12 +34,21 @@ public class Pill_Shelves : MonoBehaviour
             GameObject temp = Shelves[i].gameObject;
             int select = Random.Range(0, Items.Length);
             GameObject baby = Instantiate(Items[select], temp.gameObject.transform.position, temp.gameObject.transform.rotation);
+            baby.transform.parent = temp.gameObject.transform.parent.transform;
             Vector3 pos = baby.transform.position;
             Vector3 rot = transform.rotation.eulerAngles;
+          /*  if (temp.transform.parent.gameObject.name == "Aisle 2" || temp.transform.parent.gameObject.name == "Aisle 4")
+            {
+                flip = true;
+            }
+            else
+            {
+                flip = false;
+            } */
             switch (select)
             {
                 case 0:
-                    rot = Vector3.zero;
+                    rot.z = 90;
                     break;
                 case 1:
                     rot.x = -180;
@@ -44,11 +59,12 @@ public class Pill_Shelves : MonoBehaviour
                     break;
                 case 3:
                     pos.y = pos.y - (float)0.1;
+                    rot.z = -140;
                     break;
                 case 4:
-                    pos.y = pos.y - (float)0.15;
-                    rot.x = 0;
-                    rot.z = 180;
+                    pos.y = pos.y - (float)0.05;
+                    rot.x = 180;
+                    rot.z = 90;
                     break;
                 case 5:
                     pos.y = pos.y - (float)0.17;
