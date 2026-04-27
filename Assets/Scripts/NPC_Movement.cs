@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
 public class NPC_Movement : MonoBehaviour
@@ -17,6 +18,9 @@ public class NPC_Movement : MonoBehaviour
     [SerializeField] private bool moving = true;
     [SerializeField] private float outsideMoveSpeed = 3f;
     [SerializeField] private float insideMoveSpeed = 1.5f;
+    [SerializeField] private string[] registerWaitObjectNames;
+    private readonly List<GameObject> registerWaitObjects = new List<GameObject>();
+    private bool waitingAtRegister = false;
     //Pills to find
     private GameObject Pills;
     //distance between NPC and the pills               
@@ -48,6 +52,8 @@ public class NPC_Movement : MonoBehaviour
         transform.LookAt(target.transform);
         target_rotation = transform.rotation;
         transform.rotation = cur_rotation;
+        CacheRegisterWaitObjects();
+        SetRegisterWaitObjectsVisible(false);
         //transform.LookAt(target.transform);
     }
 
@@ -109,22 +115,14 @@ public class NPC_Movement : MonoBehaviour
                 //if the target is inside of the station
                 else if (target.gameObject.name == "Inside")
                 {
-                    target = target.transform.GetChild(Paths).gameObject;
-                    cur_rotation = transform.rotation;
-                    transform.LookAt(target.transform);
-                    target_rotation = transform.rotation;
-                    transform.rotation = cur_rotation;
-                    time = 0;
-                    Searcher();
+                    if (TrySetTargetToChild(target.transform, Paths))
+                    {
+                        Searcher();
+                    }
                 }
                 else
                 {
-                    target = target.transform.GetChild(Paths).gameObject;
-                    cur_rotation = transform.rotation;
-                    transform.LookAt(target.transform);
-                    target_rotation = transform.rotation;
-                    transform.rotation = cur_rotation;
-                    time = 0;
+                    TrySetTargetToChild(target.transform, Paths);
                     //Paths = Paths + 1;
                 }
             }
@@ -135,21 +133,11 @@ public class NPC_Movement : MonoBehaviour
                 if (Mathf.Abs(transform.position.z - Pills.transform.position.z) > 1.75)
                 {
                     Paths = Paths + 1; 
-                    target = target.transform.parent.gameObject.transform.GetChild(Paths).gameObject;
-                    cur_rotation = transform.rotation;
-                    transform.LookAt(target.transform);
-                    target_rotation = transform.rotation;
-                    transform.rotation = cur_rotation;
-                    time = 0;
+                    TrySetTargetToChild(target.transform.parent, Paths);
                 }
                 else
                 {
-                    target = target.transform.GetChild(0).gameObject;
-                    cur_rotation = transform.rotation;
-                    transform.LookAt(target.transform);
-                    target_rotation = transform.rotation;
-                    transform.rotation = cur_rotation;
-                    time = 0;
+                    TrySetTargetToChild(target.transform, 0);
                 }
             }
             if (target.gameObject.name == "Aisle End" | target.gameObject.name == "Aisle 1")
@@ -195,9 +183,11 @@ public class NPC_Movement : MonoBehaviour
                     transform.rotation = cur_rotation;
                     time = 0;
 
+                    waitingAtRegister = true;
+                    CashRegisterQueue.Enqueue(this);
+                    SetRegisterWaitObjectsVisible(true);
                     moving = false;
                     anim.Play("idle");
-                    Invoke("Waiter",5);
                      //target.transform.parent.gameObject;
                 }
                /* else if (target.gameObject.name == "Inside")
@@ -283,6 +273,9 @@ public class NPC_Movement : MonoBehaviour
     }
     void Waiter()
     {
+        waitingAtRegister = false;
+        CashRegisterQueue.Remove(this);
+        SetRegisterWaitObjectsVisible(false);
         anim.Play("dance");
         print("waiters script " + target.gameObject.name);
         target = GameObject.Find("Paths End");
@@ -295,8 +288,114 @@ public class NPC_Movement : MonoBehaviour
         moving = true;
     }
 
+    public bool IsWaitingAtRegister()
+    {
+        return waitingAtRegister;
+    }
+
+    public void InteractAtRegister()
+    {
+        if (waitingAtRegister && !leaving && target != null && target.gameObject.name == "Cashier")
+        {
+            Waiter();
+        }
+    }
+
     float GetMoveSpeed()
     {
         return inside ? insideMoveSpeed : outsideMoveSpeed;
+    }
+
+    void SetRegisterWaitObjectsVisible(bool visible)
+    {
+        if (registerWaitObjects.Count == 0)
+        {
+            CacheRegisterWaitObjects();
+        }
+
+        foreach (GameObject registerWaitObject in registerWaitObjects)
+        {
+            if (registerWaitObject != null)
+            {
+                registerWaitObject.SetActive(visible);
+            }
+        }
+    }
+
+    void CacheRegisterWaitObjects()
+    {
+        registerWaitObjects.Clear();
+
+        if (registerWaitObjectNames == null)
+        {
+            return;
+        }
+
+        foreach (string objectName in registerWaitObjectNames)
+        {
+            if (string.IsNullOrWhiteSpace(objectName))
+            {
+                continue;
+            }
+
+            GameObject sceneObject = FindSceneObjectByName(objectName);
+            if (sceneObject != null)
+            {
+                registerWaitObjects.Add(sceneObject);
+            }
+        }
+    }
+
+    GameObject FindSceneObjectByName(string objectName)
+    {
+        GameObject foundObject = GameObject.Find(objectName);
+        if (foundObject != null)
+        {
+            return foundObject;
+        }
+
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+        foreach (GameObject sceneObject in allObjects)
+        {
+            if (sceneObject.scene.IsValid() && sceneObject.name == objectName)
+            {
+                return sceneObject;
+            }
+        }
+
+        return null;
+    }
+
+    void OnDisable()
+    {
+        CashRegisterQueue.Remove(this);
+    }
+
+    void OnDestroy()
+    {
+        CashRegisterQueue.Remove(this);
+    }
+
+    bool TrySetTargetToChild(Transform parentTransform, int childIndex)
+    {
+        if (parentTransform == null)
+        {
+            Debug.LogWarning("NPC_Movement: parent transform was null while selecting next path node.");
+            return false;
+        }
+
+        if (childIndex < 0 || childIndex >= parentTransform.childCount)
+        {
+            Debug.LogWarning("NPC_Movement: attempted child index " + childIndex + " on " + parentTransform.name + " with childCount " + parentTransform.childCount + ".");
+            return false;
+        }
+
+        target = parentTransform.GetChild(childIndex).gameObject;
+        cur_rotation = transform.rotation;
+        transform.LookAt(target.transform);
+        target_rotation = transform.rotation;
+        transform.rotation = cur_rotation;
+        time = 0;
+        return true;
     }
 }
