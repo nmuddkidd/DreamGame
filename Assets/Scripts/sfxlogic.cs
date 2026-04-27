@@ -13,7 +13,7 @@ public class sfxlogic : MonoBehaviour
     }
     public List<MyDictionaryEntry> inspectorList;
 
-    private Dictionary<string, AudioClip> music = new Dictionary<string, AudioClip>();
+    private Dictionary<string, AudioClip> music = new Dictionary<string, AudioClip>(StringComparer.OrdinalIgnoreCase);
     [Header("Common Ambiance")]
     public AudioClip[] cambiance;
     [Header("Rare Ambiance")]
@@ -21,10 +21,18 @@ public class sfxlogic : MonoBehaviour
 
 
     void Start(){
-        audioSource.Play();
         foreach (var entry in inspectorList)
         {
+            if (string.IsNullOrWhiteSpace(entry.key) || entry.value == null)
+            {
+                continue;
+            }
             music[entry.key] = entry.value;
+        }
+
+        if (audioSource != null && audioSource.clip != null)
+        {
+            audioSource.Play();
         }
     }
 
@@ -33,8 +41,32 @@ public class sfxlogic : MonoBehaviour
     }
 
     public void changeBackground(string song){
-        if(music[song]!=null){
-            audioSource.clip = music[song];
+        if (audioSource == null)
+        {
+            Debug.LogWarning("sfxlogic.changeBackground: AudioSource is not assigned.");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(song))
+        {
+            Debug.LogWarning("sfxlogic.changeBackground: requested track key was empty.");
+            return;
+        }
+
+        AudioClip clip;
+        if (!music.TryGetValue(song, out clip) || clip == null)
+        {
+            Debug.LogWarning("sfxlogic.changeBackground: missing track key '" + song + "'. Add it to inspectorList.");
+            return;
+        }
+
+        if (audioSource.clip != clip)
+        {
+            audioSource.clip = clip;
+        }
+
+        if (!audioSource.isPlaying)
+        {
             audioSource.Play();
         }
     }

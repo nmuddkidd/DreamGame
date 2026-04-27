@@ -8,6 +8,10 @@ using System.Collections;
 
 public class logic : MonoBehaviour
 {
+    private const int DreamCount = 4;
+    private static readonly bool[] dreamSeen = new bool[DreamCount];
+    private static int seenDreamCount = 0;
+
     [Header("Item Interaction")]
     public Text title;
     public Text description;
@@ -288,7 +292,9 @@ public class logic : MonoBehaviour
         }else{
             sfxlogic.changeBackground("Reflection");
         }
-        switch(Random.Range(0, 4)){
+
+        int selectedDream = SelectDreamIndex();
+        switch(selectedDream){
             case 0:
                 handleSpaceDream();
                 break;
@@ -301,9 +307,33 @@ public class logic : MonoBehaviour
             case 3:
                 handleSnowDream();
                 break;
-            case 4:
-                break;
         }
+    }
+
+    int SelectDreamIndex()
+    {
+        if (seenDreamCount < DreamCount)
+        {
+            int unseenToSkip = Random.Range(0, DreamCount - seenDreamCount);
+            for (int i = 0; i < DreamCount; i++)
+            {
+                if (dreamSeen[i])
+                {
+                    continue;
+                }
+
+                if (unseenToSkip == 0)
+                {
+                    dreamSeen[i] = true;
+                    seenDreamCount++;
+                    return i;
+                }
+
+                unseenToSkip--;
+            }
+        }
+
+        return Random.Range(0, DreamCount);
     }
 
     public void handleAnnaDream(){
