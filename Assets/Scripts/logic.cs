@@ -176,7 +176,7 @@ public class logic : MonoBehaviour
         }else{
             sfxlogic.changeBackground("Reflection");
         }
-        switch(Random.Range(0, 3)){
+        switch(Random.Range(1, 2)){
             case 0:
                 handleSpaceDream();
                 break;
@@ -194,18 +194,19 @@ public class logic : MonoBehaviour
     }
 
     public void handleAnnaDream(){
+        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(2363,10,289));
+        Player.GetComponent<FPSController>().setSpeed(50);
         SceneManager.LoadScene("AnnaDream");
-        Player.transform.position = new Vector3(0,0,0);
     }
 
     public void handleGriffinDream(){
         SceneManager.LoadScene("GriffinDream");
-        Player.transform.position = new Vector3(0,0,0);
+        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(0,0,0));
     }
 
     public void handleSpaceDream(){
         sfxlogic.changeBackground("Engine");
         SceneManager.LoadScene("Space");
-        Player.transform.position = new Vector3(0,5,0);
+        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(0,0,0));
     }
 }
