@@ -1416,6 +1416,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!64 &180710350
 MeshCollider:
@@ -2768,6 +2769,7 @@ MonoBehaviour:
 '
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!1001 &321739814
@@ -4326,6 +4328,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!1001 &486354015
 PrefabInstance:
@@ -5155,6 +5158,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!4 &540053565 stripped
 Transform:
@@ -5848,6 +5852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   NPC1: {fileID: 377926596304674284, guid: 650b3e1bbb08f3d45919939b22440ecc, type: 3}
+  NPC1: {fileID: 377926596304674284, guid: 650b3e1bbb08f3d45919939b22440ecc, type: 3}
 --- !u!65 &564694330
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6010,6 +6015,7 @@ MonoBehaviour:
   - You never know what you'll get...
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!4 &569386217 stripped
@@ -6352,6 +6358,7 @@ MonoBehaviour:
   - You never know what you'll get...
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!4 &598165475 stripped
@@ -7097,7 +7104,7 @@ Transform:
   m_GameObject: {fileID: 674014613}
   serializedVersion: 2
   m_LocalRotation: {x: -0.6172491, y: -0.34496903, z: -0.34496903, w: -0.6172491}
-  m_LocalPosition: {x: 71.38522, y: 79.1, z: 16.3}
+  m_LocalPosition: {x: 71.38522, y: 77, z: 16.3}
   m_LocalScale: {x: 0.050855517, y: 0.09529879, z: 0.050855525}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7155,6 +7162,7 @@ MonoBehaviour:
 '
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!1 &689529452
@@ -7370,6 +7378,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!64 &698234858
 MeshCollider:
@@ -7439,6 +7448,7 @@ MonoBehaviour:
 '
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!64 &705465353
@@ -8791,6 +8801,7 @@ MonoBehaviour:
 '
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!64 &768593815
@@ -10152,6 +10163,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!1 &872031540
 GameObject:
@@ -10663,6 +10675,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!1 &941644504
 GameObject:
@@ -10910,6 +10923,7 @@ MonoBehaviour:
   - You never know what you'll get...
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!4 &961781861 stripped
@@ -11290,6 +11304,10 @@ MonoBehaviour:
   crispy: {fileID: 5967259578786240496, guid: 8f4de923ae290ae44b36f54b136951a3, type: 3}
   greese: {fileID: 5295122038945549514, guid: 2a1319355bfc63948a58b3f9933b8d97, type: 3}
   pills: {fileID: 4062792403673638911, guid: 2c3900d9b10a658459cde597f69e07b9, type: 3}
+  Aisle1: {fileID: 0}
+  Aisle2: {fileID: 0}
+  Aisle3: {fileID: 0}
+  Aisle4: {fileID: 0}
   Shelves: []
 --- !u!4 &1004810091
 Transform:
@@ -11339,6 +11357,7 @@ MonoBehaviour:
 '
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!1 &1014480566 stripped
@@ -14430,6 +14449,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!64 &1284895581
 MeshCollider:
@@ -14589,6 +14609,7 @@ MonoBehaviour:
 '
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!1001 &1294249576
@@ -15011,6 +15032,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   alarm: {fileID: 0}
   sfxlogic: {fileID: 0}
+  sfxlogic: {fileID: 0}
   Player: {fileID: 1906178855}
 --- !u!4 &1345540690
 Transform:
@@ -15076,6 +15098,7 @@ MonoBehaviour:
   - You never know what you'll get...
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!64 &1359652653
@@ -15260,6 +15283,7 @@ MonoBehaviour:
 '
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!1001 &1371312418
@@ -15929,6 +15953,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!1001 &1398258826
 PrefabInstance:
@@ -16058,6 +16083,7 @@ MonoBehaviour:
   - Are they pills or cigarettes..?
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!64 &1408678683
@@ -17263,6 +17289,7 @@ MonoBehaviour:
   - You never know what you'll get...
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!1 &1457530980
@@ -19419,6 +19446,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!4 &1520108892 stripped
 Transform:
@@ -20578,6 +20606,7 @@ MonoBehaviour:
 '
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!1001 &1679456746
@@ -21947,6 +21976,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!1 &1757964683
 GameObject:
@@ -21958,7 +21988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1757964684}
   m_Layer: 3
-  m_Name: Aisle 1 (1)
+  m_Name: Aisle 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22907,6 +22937,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
+  vehicle: 0
   interaction: 
 --- !u!64 &1844766140
 MeshCollider:
@@ -23099,6 +23130,7 @@ MonoBehaviour:
 '
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!4 &1879301897 stripped
@@ -24650,7 +24682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.027404845, y: 0.039258428}
   m_AnchorMax: {x: 0.9728928, y: 0.40125847}
-  m_AnchoredPosition: {x: -0.016113281, y: 3.9746094}
+  m_AnchoredPosition: {x: -0.016113281, y: 3.9745789}
   m_SizeDelta: {x: -24.0321, y: -21.7107}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2014010973
@@ -24717,6 +24749,7 @@ MonoBehaviour:
   - This is simply too much slurm for me..
   fastquit: 1
   grab: 1
+  vehicle: 0
   vehicle: 0
   interaction: 
 --- !u!65 &2015315668
@@ -26075,7 +26108,7 @@ Transform:
   m_GameObject: {fileID: 2119655327}
   serializedVersion: 2
   m_LocalRotation: {x: -0.33923835, y: 0.6204171, z: 0.6204171, w: -0.33923835}
-  m_LocalPosition: {x: 26.252542, y: 87.51231, z: 16.30875}
+  m_LocalPosition: {x: 26.252542, y: 89.5, z: 16.3}
   m_LocalScale: {x: 0.050855517, y: 0.09529879, z: 0.050855525}
   m_ConstrainProportionsScale: 0
   m_Children:
