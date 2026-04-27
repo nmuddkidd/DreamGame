@@ -613,6 +613,7 @@ GameObject:
   - component: {fileID: 579709959}
   - component: {fileID: 579709960}
   - component: {fileID: 579709961}
+  - component: {fileID: 579709962}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Logic
@@ -753,6 +754,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &579709962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579709958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bffbdd3960942ea408f33ab417b6584c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomEvents
+  currentMode: 0
 --- !u!1 &589546885
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +806,9 @@ MonoBehaviour:
   gravity: 9.81
   mouseSensitivity: 0.4
   upDownRange: 90
+  boatSpeed: 10
+  exitDist: 100
+  boatRotateSpeed: 0.2
 --- !u!136 &589546888
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1441,25 +1458,13 @@ PrefabInstance:
       addedObject: {fileID: 1044080793}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e37cf499694b5114a965c3391f8687af, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1044080792}
+      addedObject: {fileID: 1044080797}
   m_SourcePrefab: {fileID: 100100000, guid: e37cf499694b5114a965c3391f8687af, type: 3}
 --- !u!1 &1044080791 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e37cf499694b5114a965c3391f8687af, type: 3}
   m_PrefabInstance: {fileID: 1044080790}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1044080792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044080791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff051e01f0c9eda4488a79721fc95ea4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!114 &1044080793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1476,8 +1481,22 @@ MonoBehaviour:
   description: []
   fastquit: 0
   grab: 0
-  vehicle: 0
-  interaction: boat
+  vehicle: 1
+  interaction: vehicle
+--- !u!114 &1044080797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044080791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff051e01f0c9eda4488a79721fc95ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::vehicle
+  maxSway: 2
+  speed: 5
 --- !u!1 &1076567087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2606,7 +2625,7 @@ GameObject:
   - component: {fileID: 1687589564}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

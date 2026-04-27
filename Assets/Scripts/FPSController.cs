@@ -66,7 +66,7 @@ public class FPSController : MonoBehaviour
         Mouse.current.WarpCursorPosition(center);
         ///make cursor invis
         ///this won't really happen in unity debugging unless you click the screen
-        Cursor.visible = false;
+        //Cursor.visible = false;
         CustomEvents.current.PickUp += RayHit;
     }
 
@@ -74,8 +74,10 @@ public class FPSController : MonoBehaviour
     {
         Cursor.visible = true;
     }
+
     private void Update()
     {
+        Debug.Log(gameObject.transform.position);
         if(!boatmode){
             HandleMovement();
         }else{
@@ -94,11 +96,11 @@ public class FPSController : MonoBehaviour
         Vector2 mouse = Mouse.current.delta.ReadValue();
         if (mouse == priorpos)
         {
-            Mouse.current.WarpCursorPosition(center);
+            //Mouse.current.WarpCursorPosition(center);
         }
         else
         {
-            priorpos = mouse;
+            //priorpos = mouse;
         }
         //update the raycast to fit the mouse pointer
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -128,7 +130,7 @@ public class FPSController : MonoBehaviour
         }
         inspecItem.transform.Rotate(0,inputHandler.MoveInput.x*boatRotateSpeed,0);
         Vector3 currentMovement = new Vector3(inputHandler.MoveInput.y * Mathf.Sin(inspecItem.transform.eulerAngles.y * Mathf.PI/180f) , 0 , inputHandler.MoveInput.y * Mathf.Cos(inspecItem.transform.eulerAngles.y * Mathf.PI/180f));
-        Debug.Log(transform.eulerAngles.y* Mathf.PI/180f);
+        //Debug.Log(transform.eulerAngles.y* Mathf.PI/180f);
         inspecItem.transform.position = new Vector3(transform.position.x,transform.position.y-2,transform.position.z);
         //inspecItem.transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
         characterController.Move(currentMovement * Time.deltaTime * boatSpeed);
@@ -236,8 +238,11 @@ public class FPSController : MonoBehaviour
                     Vector3 newpos = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y+.25f,mainCamera.transform.position.z) + mainCamera.transform.forward;
                     inspecItem.transform.position = newpos;
                 }else if(interactionScript.vehicle){
+                    characterController.enabled = false;
                     gameObject.transform.position = new Vector3(inspecItem.transform.position.x,inspecItem.transform.position.y+2,inspecItem.transform.position.z);
                     gameObject.transform.rotation = inspecItem.transform.rotation;
+                    characterController.enabled = true;
+                    currentMovement.y = 0;
                     boatmode = true;
                 }
             }
@@ -257,7 +262,10 @@ public class FPSController : MonoBehaviour
                 {
                     if (Vector3.Distance(transform.position, hit.point) <= exitDist)
                     {
-                        gameObject.transform.position = hit.point + Vector3.up * 1.5f;
+                        characterController.enabled = false;
+                        gameObject.transform.position = hit.point + Vector3.up * 5f;
+                        characterController.enabled = true;
+                        Debug.Log(hit.point+" "+gameObject.transform.position);
                         boatmode=false;
                     }
                     else
@@ -287,7 +295,9 @@ public class FPSController : MonoBehaviour
         if (collision.gameObject.name == "earth")
         {
             SceneManager.LoadScene("GriffinDream");
+            characterController.enabled = false;
             gameObject.transform.position = new Vector3(0,90,0);
+            characterController.enabled = true;
         }
         Debug.Log(collision.gameObject.name);
     }
