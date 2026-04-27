@@ -76,7 +76,7 @@ public class FPSController : MonoBehaviour
         Mouse.current.WarpCursorPosition(center);
         ///make cursor invis
         ///this won't really happen in unity debugging unless you click the screen
-        //Cursor.visible = false;
+        Cursor.visible = false;
         CustomEvents.current.PickUp += RayHit;
     }
 
@@ -107,11 +107,11 @@ public class FPSController : MonoBehaviour
         Vector2 mouse = Mouse.current.delta.ReadValue();
         if (mouse == priorpos)
         {
-            //Mouse.current.WarpCursorPosition(center);
+            Mouse.current.WarpCursorPosition(center);
         }
         else
         {
-            //priorpos = mouse;
+            priorpos = mouse;
         }
         //update the raycast to fit the mouse pointer
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
