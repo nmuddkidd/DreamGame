@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e25c5b809003d24397a427562fae699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpiderAi
-  sightRange: 100
+  sightRange: 150
   roamRadius: 50
   damage: 10
   attackRate: 1
@@ -321,6 +321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Health
   maxHealth: 100
   isPlayer: 0
+  hasDeathAnimation: 1
+  hitTriggerName: Hit
 --- !u!95 &7981644504757886803
 Animator:
   serializedVersion: 7

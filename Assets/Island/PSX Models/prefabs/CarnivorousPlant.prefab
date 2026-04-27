@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b263286f3ee43347bf738b97961fed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantAi
-  attackRange: 5
+  attackRange: 20
   damage: 20
   attackRate: 2
 --- !u!114 &4273499500496470141
