@@ -232,9 +232,9 @@ public class logic : MonoBehaviour
         disableInteractionUI();
     }
 
-    public void blind(){
-        blindTimer = .2;
-        blind.setActive(true);
+    public void blindUI(){
+        blindTimer = .2f;
+        blind.SetActive(true);
     }
 
     //Gameplay logic

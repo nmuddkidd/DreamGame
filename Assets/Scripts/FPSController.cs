@@ -548,7 +548,7 @@ public class FPSController : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.name == "earth")
+        if (hit.gameObject.name == "earth"){
             SceneManager.LoadScene("GriffinDream");
             teleportPlayer(new Vector3(0,90,0));
         }
@@ -581,7 +581,7 @@ public class FPSController : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Blind")) {
-            logic.blind();
+            logic.blindUI();
         }
     }
 
