@@ -102,14 +102,15 @@ public class SpiderAi : MonoBehaviour
         NavMeshHit hit;
 
         //check if point is on navmesh/set destination if it is
-        if (NavMesh.SamplePosition(randomDirection, out hit, 2f, NavMesh.AllAreas))
+        /*if (NavMesh.SamplePosition(randomDirection, out hit, 2f, NavMesh.AllAreas))
         {
             Debug.Log(gameObject.name + "Navmesh point found " + hit.position);
             agent.SetDestination(hit.position);
         } else
         {
             Debug.Log(gameObject.name + "No navmesh point found");
-        }
+        }*/
+        agent.SetDestination(randomDirection);
     }
 
     private void OnCollisionStay(Collision collision)
