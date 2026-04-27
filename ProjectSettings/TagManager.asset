@@ -11,6 +11,7 @@ TagManager:
   - Path
   - Enemy
   - trash
+  - Dumpster
   layers:
   - Default
   - TransparentFX

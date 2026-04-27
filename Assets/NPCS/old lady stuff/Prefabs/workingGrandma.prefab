@@ -116,6 +116,14 @@ MonoBehaviour:
   moving: 1
   outsideMoveSpeed: 3
   insideMoveSpeed: 1.5
+  trashPilePrefab: {fileID: 4677543517044998426, guid: 2e714c54c4355544b92090dd373bd50a, type: 3}
+  indoorTrashDropChancePerSecond: 1
+  indoorTrashDropCooldown: 0
+  indoorTrashDropMinDistance: 1.5
+  trashDropRaycastHeight: 2
+  trashDropRaycastDistance: 10
+  trashDropFloorOffset: 0.02
+  fixedTrashDropY: 2.341731
   registerWaitObjectNames:
   - exclaim (1)
   - exclaim.001 (1)
