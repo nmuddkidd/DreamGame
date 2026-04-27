@@ -6,6 +6,7 @@ public class interact_pt2 : MonoBehaviour, IPointerEnterHandler, IPointerClickHa
 {
 
     private bool picked = false;
+    public int barcode = 0;
 
     void Update()
     {
