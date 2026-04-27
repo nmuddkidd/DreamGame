@@ -108,7 +108,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::interactable
   title: Doxylamine
-  description: []
+  description:
+  - Take 30 minutes before bed :)
   fastquit: 1
   grab: 1
   interaction: 
