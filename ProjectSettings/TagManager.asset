@@ -14,7 +14,11 @@ TagManager:
   - playermodel
   - player
   - wakeup
+<<<<<<< HEAD
   - Blind
+=======
+  - Dumpster
+>>>>>>> 14987f09fecea4a5ad27e83751e13f1cf9aac05e
   layers:
   - Default
   - TransparentFX
