@@ -27,7 +27,15 @@ public class FPSController : MonoBehaviour
     private bool inspecMode;
     private interactable interactionScript;
 
+
+    private bool boatmode = false;
+    [Header("Vehicle")]
+    public float boatSpeed = 10f;
+    public float exitDist = 100f;
+    public float boatRotateSpeed = 2f;
+
     private logic logic;
+    private float timer;
 
     LayerMask layerMask;
     private void Awake()
@@ -47,13 +55,19 @@ public class FPSController : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
+        if(!boatmode){
+            HandleMovement();
+        }else{
+            HandleBoatMovement();
+        }
         HandleLook();
         if (inputHandler.ClickTriggered){
             ClickInteraction();
             inputHandler.ResetClick();
         }
-        HandleRotation();
+        if(inspecMode){
+            HandleRotation();
+        }
         testOOB();
     }
 
@@ -71,6 +85,19 @@ public class FPSController : MonoBehaviour
         HandleJumping();
 
         characterController.Move(currentMovement * Time.deltaTime);
+    }
+
+    void HandleBoatMovement(){
+        timer += Time.deltaTime;
+        if(timer > 10000){
+            timer = 0;
+        }
+        inspecItem.transform.Rotate(0,inputHandler.MoveInput.x*boatRotateSpeed,0);
+        Vector3 currentMovement = new Vector3(inputHandler.MoveInput.y * Mathf.Sin(inspecItem.transform.eulerAngles.y * Mathf.PI/180f) , 0 , inputHandler.MoveInput.y * Mathf.Cos(inspecItem.transform.eulerAngles.y * Mathf.PI/180f));
+        Debug.Log(transform.eulerAngles.y* Mathf.PI/180f);
+        inspecItem.transform.position = new Vector3(transform.position.x,transform.position.y-2,transform.position.z);
+        //inspecItem.transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
+        characterController.Move(currentMovement * Time.deltaTime * boatSpeed);
     }
 
     void HandleJumping()
@@ -93,6 +120,7 @@ public class FPSController : MonoBehaviour
 
         inputHandler.ResetJump();
     }
+
     void HandleLook()
     {
         float mouseXRotation = inputHandler.LookInput.x * mouseSensitivity;
@@ -124,13 +152,13 @@ public class FPSController : MonoBehaviour
     {
         Debug.Log("Click triggered");
         inputHandler.ResetClick();
-        if(!inspecMode){
+        if(!inspecMode&&!boatmode){
             GameObject[] pickups = GameObject.FindGameObjectsWithTag("Interactable");
             foreach (GameObject pickup in pickups)
             {
                 //Debug.Log(Vector3.Distance(transform.position, pickup.transform.position)+" "+Vector3.Angle(pickup.transform.position - transform.position, transform.forward));
                 if(Vector3.Distance(transform.position, pickup.transform.position)<5
-                &&Vector3.Angle(pickup.transform.position - transform.position, transform.forward)<50)
+                &&Vector3.Angle(pickup.transform.position - mainCamera.transform.position, mainCamera.transform.forward)<20)
                 {
                     inspecItem = pickup;
                     break;
@@ -144,10 +172,39 @@ public class FPSController : MonoBehaviour
                     inspecMode=true;
                     Vector3 newpos = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y+.25f,mainCamera.transform.position.z) + mainCamera.transform.forward;
                     inspecItem.transform.position = newpos;
+                }else if(interactionScript.vehicle){
+                    gameObject.transform.position = new Vector3(inspecItem.transform.position.x,inspecItem.transform.position.y+2,inspecItem.transform.position.z);
+                    gameObject.transform.rotation = inspecItem.transform.rotation;
+                    boatmode = true;
                 }
             }
-        }else if(interactionScript.fastquit){
+        }else if(inspecMode&&interactionScript.fastquit){
             exitInspecMode();
+        }else if(boatmode){
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                //debugging 
+                Debug.Log("Raycast hit: " + hit.collider.name + "Tag: " + hit.collider.tag + "Layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+
+                //exit boat
+                if (boatmode && hit.collider.CompareTag("Terrain"))
+                {
+                    if (Vector3.Distance(transform.position, hit.point) <= exitDist)
+                    {
+                        gameObject.transform.position = hit.point + Vector3.up * 1.5f;
+                        boatmode=false;
+                    }
+                    else
+                    {
+                        Debug.Log("Too far from terrain. Distance: " + Vector3.Distance(transform.position, hit.point));
+                    }
+                }
+            }else{
+                Debug.Log("Raycast not hitting anything");
+            }
         }
     }
 
@@ -177,5 +234,9 @@ public class FPSController : MonoBehaviour
         {
             logic.wakeup();
         }
+    }
+
+    void enterBoat(){
+        inputHandler.boatmode();
     }
 }

@@ -9,6 +9,7 @@ public class interactable : MonoBehaviour
     [Header("FPS Controller modes")]
     public bool fastquit = true;
     public bool grab = true;
+    public bool vehicle = false;
     [Header("Scripting Reference")]
     public string interaction;
 

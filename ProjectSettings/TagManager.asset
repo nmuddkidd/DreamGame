@@ -10,6 +10,7 @@ TagManager:
   - Terrain
   - Path
   - Enemy
+  - trash
   layers:
   - Default
   - TransparentFX

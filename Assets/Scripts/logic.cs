@@ -29,16 +29,13 @@ public class logic : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip alarm;
+    public sfxlogic sfxlogic;
 
     [Header("Player")]
     public GameObject Player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    private GameObject trash;
 
-    }
-
-    // Update is called once per frame
+    //timers
     void Update()
     {
         if(wakeupTextIndex<wakeupText.Length){
@@ -58,17 +55,9 @@ public class logic : MonoBehaviour
         }
     }
 
-    public void wakeup()
-    {
-        SceneManager.LoadScene("SampleScene");
-        Player.transform.position = new Vector3(-24,100,0);
-        days++;
-        wakeupText = "Today is day "+days+" of the trial";
-        audioSource.PlayOneShot(alarm,1);
-        dayCounter.enabled = true;
-        wakeupTextIndex = -17;
-        textTimer = -14;
-    }
+    //UI STUFF
+    //UI STUFF
+    //UI STUFF
 
     private void advanceWakeupText(){
         wakeupTextIndex++;
@@ -113,12 +102,10 @@ public class logic : MonoBehaviour
         advanceInteractText();
         switch (interactableScript.interaction)
         {
-            case "dialogue":
-                
+            case "vehicle":
+                break;
             case "bed":
-                //wakeup();
-                SceneManager.LoadScene("Space");
-                Player.transform.position = new Vector3(0,5,0);
+                dream();
                 break;
             case "computer":
                 computerMenu.SetActive(true);
@@ -147,5 +134,78 @@ public class logic : MonoBehaviour
     public void disableInteractionUI(){
         interactionUI.SetActive(false);
         computerMenu.SetActive(false);
+    }
+
+    //Gameplay logic
+    //Gameplay logic
+    //Gameplay logic
+
+    public void wakeup()
+    {
+        SceneManager.LoadScene("SampleScene");
+        days+=3;
+        if(days>7){
+            endgame();
+        }
+        Player.transform.position = new Vector3(-24,100,0);
+        wakeupText = "Today is day "+days+" of the trial";
+        audioSource.PlayOneShot(alarm,1);
+        dayCounter.enabled = true;
+        wakeupTextIndex = -17;
+        textTimer = -14;
+        if(days>4){
+            sfxlogic.changeBackground("RealWorldSoft");
+        }else{
+            StartCoroutine(oneFrame());
+            sfxlogic.changeBackground("RealWorld");
+        }
+    }
+
+    IEnumerator oneFrame()
+    {
+        yield return null;
+        GameObject.FindWithTag("trash").SetActive(false);
+    }
+    public void endgame(){
+
+    }
+    
+    public void dream(){
+        if(days>3){
+            sfxlogic.changeBackground("Mirror");
+        }else{
+            sfxlogic.changeBackground("Reflection");
+        }
+        switch(Random.Range(0, 3)){
+            case 0:
+                handleSpaceDream();
+                break;
+            case 1:
+                handleAnnaDream();
+                break;
+            case 2:
+                handleGriffinDream();
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+    }
+
+    public void handleAnnaDream(){
+        SceneManager.LoadScene("AnnaDream");
+        Player.transform.position = new Vector3(0,0,0);
+    }
+
+    public void handleGriffinDream(){
+        SceneManager.LoadScene("GriffinDream");
+        Player.transform.position = new Vector3(0,0,0);
+    }
+
+    public void handleSpaceDream(){
+        sfxlogic.changeBackground("Engine");
+        SceneManager.LoadScene("Space");
+        Player.transform.position = new Vector3(0,5,0);
     }
 }
