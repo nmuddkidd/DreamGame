@@ -783,6 +783,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148211488}
   m_CullTransparentMesh: 1
+--- !u!1 &150480192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5766468387005082979, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &150480196
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150480192}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.4913607, y: 2.0000005, z: 1.9999998}
+  m_Center: {x: 2.2456784, y: -0.000000008365807, z: -0.00000011920929}
 --- !u!1001 &151964679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -867,6 +893,52 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &170063420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6706295234712636171, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &170063424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170063420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Card Reader
+  description:
+  - YOU'RE BROKEEEE
+  fastquit: 1
+  grab: 1
+  interaction: 
+--- !u!1 &174201229 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2549984274457839881, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &174201233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174201229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &180710350
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1780,8 +1852,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 4277
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -1838,6 +1910,31 @@ Transform:
   - {fileID: 1457530981}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &321017075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5440172655476042743, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &321017079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321017075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &334997168
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2811,6 +2908,31 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &477561370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6925074012275457608, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &477561374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477561370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Long Box
+  description:
+  - 'This is odd packaging..
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1001 &486354015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3387,6 +3509,31 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &536720969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8910126966816947506, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &536720973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536720969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &540395462
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3510,8 +3657,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 4277
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -3878,6 +4025,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e819994ee5cae334695db0792250cbbb, type: 3}
   m_PrefabInstance: {fileID: 565879740}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &566585136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1012345604948322156, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &566585140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566585136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!4 &569386217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3412134817030933144, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
@@ -4117,6 +4287,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &597453447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1903268292696040307, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &597453451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597453447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &631687587
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4454,6 +4647,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f070ad474d31d44f94938b32ff9cf45, type: 3}
   m_PrefabInstance: {fileID: 671230562}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &678219218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1384724884628975482, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &678219222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 678219218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1 &689529452
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,6 +4855,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb89421edb4139645a60d5b77e838e08, type: 3}
   m_PrefabInstance: {fileID: 695281923}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &696462062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 514331552797698097, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &696462066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696462062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &698234858
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4681,6 +4924,31 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &703103440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1608364728276770476, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &703103444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703103440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &705465353
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5166,6 +5434,31 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &765549633 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1487967685330134819, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &765549637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765549633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &768593815
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6030,6 +6323,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &870232050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 747066654228548197, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &870232054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870232050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1 &872031540
 GameObject:
   m_ObjectHideFlags: 0
@@ -6485,6 +6801,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6b63d1ec8e52b594e978c26ab343948c, type: 3}
   m_PrefabInstance: {fileID: 937427455}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &941208227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4326733406617041980, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &941208231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941208227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1 &941644504
 GameObject:
   m_ObjectHideFlags: 0
@@ -6642,6 +6983,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &958968414 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6843116444963441728, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &958968418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958968414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1001 &978429957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6879,6 +7243,31 @@ Transform:
   - {fileID: 801121652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1010434982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5289491430396610990, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1010434986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010434982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1 &1014480566 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 005e552204d18624594910270ff4b7be, type: 3}
@@ -7695,8 +8084,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 4277
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -7747,6 +8136,133 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17000015, y: 0.1700001, z: 0.17000003}
   m_Center: {x: -0.08500006, y: -0.08500005, z: 0.085}
+--- !u!1 &1126808542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1126808545}
+  - component: {fileID: 1126808544}
+  - component: {fileID: 1126808543}
+  m_Layer: 0
+  m_Name: Point Light (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1126808543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126808542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!108 &1126808544
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126808542}
+  m_Enabled: 1
+  serializedVersion: 12
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 6
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 4277
+  m_UseColorTemperature: 1
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!4 &1126808545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126808542}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -12.14, y: 4.13, z: -18.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1143361282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9173,6 +9689,29 @@ Transform:
   - {fileID: 564694328}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1283800238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2143138658343175515, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1283800242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283800238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1001 &1284379635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9311,6 +9850,52 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &1291594837 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5426036238542446683, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1291594841
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291594837}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 2.0000002, z: 1.9999998}
+  m_Center: {x: -0.50000143, y: -0.0000076293945, z: -0.00000047683716}
+--- !u!114 &1291594842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291594837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Slurm Box
+  description:
+  - 'Wow, that''s a big box of slurm... yum
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &1297599358
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9723,6 +10308,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &1358917235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2005528178726599823, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1358917239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358917235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &1359652653
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9807,6 +10415,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7e2c4987529c60043a717abb3051c980, type: 3}
   m_PrefabInstance: {fileID: 1362632058}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1370616816 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6932632757832329579, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1370616820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370616816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &1381720220
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10123,6 +10756,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392100871}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1395313730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8174760778905620255, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1395313734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395313730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1001 &1398258826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10229,6 +10887,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &1406778687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3114720518238824868, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406778691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406778687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Doctors recommend this?
+  description:
+  - Are they pills or cigarettes..?
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &1408678683
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10273,6 +10954,50 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &1414701365 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3730793556288384742, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1414701369
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414701365}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6611568, y: 0.69276804, z: 0.39208806}
+  m_Center: {x: -0.00000166893, y: 0.015807588, z: 0.10973249}
+--- !u!114 &1414701370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414701365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Cash Register
+  description:
+  - Put that DOWN.
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &1416967667
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10578,6 +11303,133 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.17000006, y: 0.17000005, z: 0.16999997}
   m_Center: {x: -0.084999986, y: -0.08499999, z: 0.08499997}
+--- !u!1 &1447171067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1447171070}
+  - component: {fileID: 1447171069}
+  - component: {fileID: 1447171068}
+  m_Layer: 0
+  m_Name: Point Light (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1447171068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447171067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!108 &1447171069
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447171067}
+  m_Enabled: 1
+  serializedVersion: 12
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 6
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 4277
+  m_UseColorTemperature: 1
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!4 &1447171070
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447171067}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.03, y: 4.13, z: -10.13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1455272803
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10600,6 +11452,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &1457228235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5796062772784237157, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1457228239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457228235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1 &1457530980
 GameObject:
   m_ObjectHideFlags: 0
@@ -12440,6 +13315,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &1519843185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5248743383443865899, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1519843189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519843185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &1525423829
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12761,8 +13659,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 4277
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -13253,6 +14151,31 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a491ccf695381ab4a9dce37e637315ea, type: 3}
   m_PrefabInstance: {fileID: 1665605877}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1666078867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7160548564066758407, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1666078871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666078867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!1001 &1679456746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14030,6 +14953,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &1757840510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8264661685194310741, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1757840514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757840510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Suprise Box
+  description:
+  - You never know what you'll get...
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &1760813110
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14462,6 +15408,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &1837103302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6181758367071850208, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1837103306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837103302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: 500 Cigarettes
+  description:
+  - You wish you could have all of these..
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &1844766140
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14640,6 +15609,31 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3305594733743524921, guid: c49b9630fa6e4124e974455e0754c9b9, type: 3}
+--- !u!1 &1877254419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4567559291749901073, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1877254423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877254419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: Chunghwa Cigarettes
+  description:
+  - 'I need a smoke....
+
+'
+  fastquit: 1
+  grab: 1
+  interaction: 
 --- !u!64 &1881863991
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15390,6 +16384,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014010971}
   m_CullTransparentMesh: 1
+--- !u!1 &2015315663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5186421809582792633, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+  m_PrefabInstance: {fileID: 2233625981485653418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2015315667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015315663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37f31ec9bcb1664c8ed02b198a4137a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::interactable
+  title: SO MUCH SLURM
+  description:
+  - This is simply too much slurm for me..
+  fastquit: 1
+  grab: 1
+  interaction: 
+--- !u!65 &2015315668
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015315663}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 2.0000002, z: 2.4342122}
+  m_Center: {x: -0.50000155, y: -0.0000076293945, z: 0.21710572}
 --- !u!1001 &2016323649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16384,14 +17422,54 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 4362962105363994262, guid: fffb4c211a70ad142b0aaf1d5999f40f, type: 3}
+    - target: {fileID: 514331552797698097, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 594546491634076526, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 78420d6c46ac0b04ba480daa6220a02d, type: 2}
+    - target: {fileID: 747066654228548197, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 1012345604948322156, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 1384724884628975482, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 1487967685330134819, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608364728276770476, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903268292696040307, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005528178726599823, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 2143138658343175515, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 2397474039163956846, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: bf4e886f73858b84e8eeefbbed491042, type: 2}
+    - target: {fileID: 2549984274457839881, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 2586259691813295339, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -16399,6 +17477,10 @@ PrefabInstance:
     - target: {fileID: 2599005954321109026, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: m_Name
       value: gasstation
+      objectReference: {fileID: 0}
+    - target: {fileID: 3114720518238824868, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 3412134817030933144, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16440,13 +17522,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3730793556288384742, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 4236906142564061097, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: 'm_Materials.Array.data[2]'
       value: 
       objectReference: {fileID: 7576386722563338562, guid: fffb4c211a70ad142b0aaf1d5999f40f, type: 3}
+    - target: {fileID: 4326733406617041980, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567559291749901073, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186421809582792633, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 5230382131259127918, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 5.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5248743383443865899, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289491430396610990, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5426036238542446683, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440172655476042743, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 5475929249628152113, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -16456,6 +17570,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 4362962105363994262, guid: fffb4c211a70ad142b0aaf1d5999f40f, type: 3}
+    - target: {fileID: 5796062772784237157, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 6181758367071850208, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 6328718510315169033, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.505
@@ -16463,6 +17585,14 @@ PrefabInstance:
     - target: {fileID: 6328718510315169033, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 4.919
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706295234712636171, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843116444963441728, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
       objectReference: {fileID: 0}
     - target: {fileID: 6845663309275148813, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16508,6 +17638,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -48.068
       objectReference: {fileID: 0}
+    - target: {fileID: 6925074012275457608, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932632757832329579, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160548564066758407, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 7674592960478501775, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: m_Limits.max
       value: 0
@@ -16524,6 +17666,18 @@ PrefabInstance:
       propertyPath: m_Limits.contactDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8174760778905620255, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264661685194310741, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910126966816947506, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 8941363692985271642, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -16537,6 +17691,105 @@ PrefabInstance:
       insertIndex: 37
       addedObject: {fileID: 1258123497}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5766468387005082979, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 150480196}
+    - targetCorrespondingSourceObject: {fileID: 6181758367071850208, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1837103306}
+    - targetCorrespondingSourceObject: {fileID: 3114720518238824868, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1406778691}
+    - targetCorrespondingSourceObject: {fileID: 5426036238542446683, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1291594842}
+    - targetCorrespondingSourceObject: {fileID: 5426036238542446683, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1291594841}
+    - targetCorrespondingSourceObject: {fileID: 5186421809582792633, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2015315668}
+    - targetCorrespondingSourceObject: {fileID: 5186421809582792633, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2015315667}
+    - targetCorrespondingSourceObject: {fileID: 6706295234712636171, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 170063424}
+    - targetCorrespondingSourceObject: {fileID: 3730793556288384742, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1414701370}
+    - targetCorrespondingSourceObject: {fileID: 3730793556288384742, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1414701369}
+    - targetCorrespondingSourceObject: {fileID: 4326733406617041980, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 941208231}
+    - targetCorrespondingSourceObject: {fileID: 8910126966816947506, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 536720973}
+    - targetCorrespondingSourceObject: {fileID: 6932632757832329579, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1370616820}
+    - targetCorrespondingSourceObject: {fileID: 5289491430396610990, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1010434986}
+    - targetCorrespondingSourceObject: {fileID: 1487967685330134819, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 765549637}
+    - targetCorrespondingSourceObject: {fileID: 1384724884628975482, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 678219222}
+    - targetCorrespondingSourceObject: {fileID: 1608364728276770476, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 703103444}
+    - targetCorrespondingSourceObject: {fileID: 7160548564066758407, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1666078871}
+    - targetCorrespondingSourceObject: {fileID: 8174760778905620255, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1395313734}
+    - targetCorrespondingSourceObject: {fileID: 5440172655476042743, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 321017079}
+    - targetCorrespondingSourceObject: {fileID: 4567559291749901073, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1877254423}
+    - targetCorrespondingSourceObject: {fileID: 514331552797698097, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 696462066}
+    - targetCorrespondingSourceObject: {fileID: 1903268292696040307, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 597453451}
+    - targetCorrespondingSourceObject: {fileID: 6843116444963441728, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 958968418}
+    - targetCorrespondingSourceObject: {fileID: 747066654228548197, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 870232054}
+    - targetCorrespondingSourceObject: {fileID: 5796062772784237157, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1457228239}
+    - targetCorrespondingSourceObject: {fileID: 2549984274457839881, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 174201233}
+    - targetCorrespondingSourceObject: {fileID: 1012345604948322156, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 566585140}
+    - targetCorrespondingSourceObject: {fileID: 2143138658343175515, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1283800242}
+    - targetCorrespondingSourceObject: {fileID: 8264661685194310741, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1757840514}
+    - targetCorrespondingSourceObject: {fileID: 2005528178726599823, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1358917239}
+    - targetCorrespondingSourceObject: {fileID: 5248743383443865899, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1519843189}
+    - targetCorrespondingSourceObject: {fileID: 6925074012275457608, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 477561374}
     - targetCorrespondingSourceObject: {fileID: 127495187298143132, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 777205563}
@@ -16574,6 +17827,8 @@ SceneRoots:
   - {fileID: 660223636}
   - {fileID: 294297337}
   - {fileID: 1585684089}
+  - {fileID: 1447171070}
+  - {fileID: 1126808545}
   - {fileID: 1119736398}
   - {fileID: 541807535}
   - {fileID: 1695058549}
