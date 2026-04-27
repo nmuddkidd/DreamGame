@@ -15854,6 +15854,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 4362962105363994262, guid: fffb4c211a70ad142b0aaf1d5999f40f, type: 3}
+    - target: {fileID: 2397474039163956846, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: bf4e886f73858b84e8eeefbbed491042, type: 2}
     - target: {fileID: 2599005954321109026, guid: e3ef9943e9c523045bcdb647c8778e9b, type: 3}
       propertyPath: m_Name
       value: gasstation
