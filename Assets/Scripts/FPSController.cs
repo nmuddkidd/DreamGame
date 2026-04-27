@@ -552,7 +552,6 @@ public class FPSController : MonoBehaviour
             SceneManager.LoadScene("GriffinDream");
             teleportPlayer(new Vector3(0,90,0));
         }
-        Debug.Log(hit.gameObject.name);
         if (hit.gameObject.tag == "wakeup")
         {
             logic.teleportPlayer(new Vector3(-14,4,-7));

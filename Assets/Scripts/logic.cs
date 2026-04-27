@@ -60,6 +60,7 @@ public class logic : MonoBehaviour
         if(blindTimer>0){
             blindTimer -= Time.deltaTime;
             if(blindTimer < 0){
+                teleportPlayer(new Vector3(-14,4,-7));
                 wakeup();
             }
         }
@@ -243,7 +244,6 @@ public class logic : MonoBehaviour
 
     public void wakeup()
     {
-        blind.SetActive(false);
         SceneManager.LoadScene("SampleScene");
         days++;
         if(days>7){
@@ -254,6 +254,7 @@ public class logic : MonoBehaviour
         dayCounter.enabled = true;
         wakeupTextIndex = -17;
         textTimer = -14;
+        resetBlind();
         if(days>4){
             sfxlogic.changeBackground("RealWorldSoft");
         }else{
@@ -262,10 +263,16 @@ public class logic : MonoBehaviour
         }
     }
 
+    IEnumerator resetBlind(){
+        yield return null;
+        blind.SetActive(false);
+    }
+
     IEnumerator oneFrame()
     {
         yield return null;
         GameObject.FindWithTag("trash").SetActive(false);
+        blind.SetActive(false);
     }
     public void endgame(){
 

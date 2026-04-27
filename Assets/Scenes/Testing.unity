@@ -811,6 +811,7 @@ MonoBehaviour:
   alarm: {fileID: 8300000, guid: bb63744b03b523946b39ceef9202df5f, type: 3}
   sfxlogic: {fileID: 1321846557}
   Player: {fileID: 589546885}
+  blind: {fileID: 1858179685}
 --- !u!82 &579709961
 AudioSource:
   m_ObjectHideFlags: 0
@@ -963,6 +964,11 @@ MonoBehaviour:
   boatSpeed: 400
   exitDist: 100
   boatRotateSpeed: 0.2
+  dumpsterPointer: {fileID: 0}
+  dumpsterPointerPrefab: {fileID: 0}
+  dumpsterPointerDistanceFromCamera: 1.5
+  dumpsterPointerVerticalOffset: -0.15
+  dumpsterDropDistance: 3
 --- !u!136 &589546888
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3048,7 +3054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1858179686
 RectTransform:
   m_ObjectHideFlags: 0
