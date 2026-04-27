@@ -445,7 +445,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::interactable
   title: 
   description: []
-  response: []
   fastquit: 1
   grab: 0
   interaction: bed
@@ -865,13 +864,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 589546885}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.59699, y: 1.93, z: 0.79812}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.38724005, y: 0.2950399, z: 0.31633002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1309293720}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1076809294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &589546892
 CharacterController:
@@ -1351,7 +1350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::interactable
   title: SeaShell
   description: []
-  response: []
   fastquit: 1
   grab: 1
   interaction: 
@@ -1367,7 +1365,6 @@ GameObject:
   - component: {fileID: 1076567090}
   - component: {fileID: 1076567089}
   - component: {fileID: 1076567088}
-  - component: {fileID: 1076567092}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1454,25 +1451,60 @@ RectTransform:
   - {fileID: 1124425395}
   - {fileID: 1651482329}
   - {fileID: 726074592}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1076809294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1076567092
+--- !u!1 &1076809292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1076809294}
+  - component: {fileID: 1076809293}
+  m_Layer: 0
+  m_Name: playerPackage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1076809293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076567087}
+  m_GameObject: {fileID: 1076809292}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b88f125d84067214090c5f7293ff1902, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::persist
+--- !u!4 &1076809294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076809292}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.98423, y: 1.63496, z: 0.48179}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 589546891}
+  - {fileID: 1354707780}
+  - {fileID: 1076567091}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1084955941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,7 +2006,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1354707780}
   - component: {fileID: 1354707779}
-  - component: {fileID: 1354707781}
   m_Layer: 0
   m_Name: PlayInputHandler
   m_TagString: Untagged
@@ -2011,25 +2042,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354707778}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.48888, y: 0.26066, z: 2.93929}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.49535, y: -1.3743, z: 2.4575}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1076809294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1354707781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354707778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b88f125d84067214090c5f7293ff1902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::persist
 --- !u!1 &1478384238 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 93e9e29364a7f7a4d8578f916ce184fa, type: 3}
@@ -2050,7 +2069,6 @@ MonoBehaviour:
   title: slurm
   description:
   - mmm i fucking love slurm
-  response: []
   fastquit: 1
   grab: 1
   interaction: 
@@ -2078,7 +2096,6 @@ MonoBehaviour:
   - Fuck Fuck
   - Fuck Fuck Fuck Fuck
   - Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck
-  response: []
   fastquit: 1
   grab: 1
   interaction: 
@@ -2426,7 +2443,6 @@ MonoBehaviour:
   description:
   - i am going to talk to you
   - blub blub
-  response: []
   fastquit: 0
   grab: 0
   interaction: 
@@ -2449,7 +2465,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::interactable
   title: 
   description: []
-  response: []
   fastquit: 0
   grab: 0
   interaction: computer
@@ -2744,9 +2759,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 2110777910}
   - {fileID: 1687589567}
-  - {fileID: 589546891}
-  - {fileID: 1354707780}
-  - {fileID: 1076567091}
   - {fileID: 880408429}
   - {fileID: 784128806}
   - {fileID: 2108116085}
@@ -2756,3 +2768,4 @@ SceneRoots:
   - {fileID: 505194461}
   - {fileID: 926951389}
   - {fileID: 1215313283}
+  - {fileID: 1076809294}
