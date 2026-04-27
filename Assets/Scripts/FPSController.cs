@@ -149,21 +149,20 @@ public class FPSController : MonoBehaviour
 
     void HandleJumping()
     {
-        Ray jumpray = new Ray(mainCamera.transform.position, Vector3.down);
-        RaycastHit jumphit;
-        if( Physics.Raycast(jumpray, out jumphit, 2.2f, layerMask ))
-        {
-            currentMovement.y -= gravity * Time.deltaTime;
+        bool grounded = characterController.isGrounded;
 
-            if (inputHandler.JumpTriggered)
-            {
-                currentMovement.y = jumpForce;
-            }
-        }
-        else 
+        // Keep a slight downward force when grounded so the controller stays snapped to slopes/steps.
+        if (grounded && currentMovement.y < 0f)
         {
-            currentMovement.y -= gravity * Time.deltaTime;
+            currentMovement.y = -2f;
         }
+
+        if (grounded && inputHandler.JumpTriggered)
+        {
+            currentMovement.y = jumpForce;
+        }
+
+        currentMovement.y -= gravity * Time.deltaTime;
 
         inputHandler.ResetJump();
     }

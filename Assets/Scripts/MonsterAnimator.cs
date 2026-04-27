@@ -70,9 +70,24 @@ public class MonsterAnimator : MonoBehaviour
     {
         isChasing = false;
         chaseTarget = null;
+        TriggerWakeupSequence();
+    }
 
-        logic logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<logic>();
-        logic.teleportPlayer(new Vector3(-14, 4, -7));
-        logic.wakeup();
+    public void TriggerWakeupSequence()
+    {
+        GameObject logicObject = GameObject.FindGameObjectWithTag("Logic");
+        if (logicObject == null)
+        {
+            return;
+        }
+
+        logic logicScript = logicObject.GetComponent<logic>();
+        if (logicScript == null)
+        {
+            return;
+        }
+
+        logicScript.teleportPlayer(new Vector3(-14, 4, -7));
+        logicScript.wakeup();
     }
 }

@@ -151,11 +151,46 @@ public class NPC_Movement : MonoBehaviour
                 if (Mathf.Abs(transform.position.z - Pills.transform.position.z) > 1.75)
                 {
                     Paths = Paths + 1; 
-                    TrySetTargetToChild(target.transform.parent, Paths);
+                    Transform parentTransform = target.transform.parent;
+                    if (parentTransform != null && Paths < parentTransform.childCount)
+                    {
+                        TrySetTargetToChild(parentTransform, Paths);
+                    }
+                    else if (parentTransform != null && parentTransform.childCount > 0)
+                    {
+                        // Clamp to the last valid aisle node if the requested path index is out of range.
+                        Paths = parentTransform.childCount - 1;
+                        TrySetTargetToChild(parentTransform, Paths);
+                    }
                 }
                 else
                 {
-                    TrySetTargetToChild(target.transform, 0);
+                    Transform currentTargetTransform = target.transform;
+                    if (currentTargetTransform.childCount > 0)
+                    {
+                        TrySetTargetToChild(currentTargetTransform, 0);
+                    }
+                    else
+                    {
+                        Transform parentTransform = currentTargetTransform.parent;
+                        if (parentTransform != null)
+                        {
+                            int nextSiblingIndex = currentTargetTransform.GetSiblingIndex() + 1;
+                            if (nextSiblingIndex < parentTransform.childCount)
+                            {
+                                Paths = nextSiblingIndex;
+                                TrySetTargetToChild(parentTransform, nextSiblingIndex);
+                            }
+                            else
+                            {
+                                GameObject cashier = GameObject.Find("Cashier");
+                                if (cashier != null)
+                                {
+                                    SetTargetGameObject(cashier);
+                                }
+                            }
+                        }
+                    }
                 }
             }
             if (target.gameObject.name == "Aisle End" | target.gameObject.name == "Aisle 1")
@@ -431,6 +466,21 @@ public class NPC_Movement : MonoBehaviour
         transform.rotation = cur_rotation;
         time = 0;
         return true;
+    }
+
+    void SetTargetGameObject(GameObject nextTarget)
+    {
+        if (nextTarget == null)
+        {
+            return;
+        }
+
+        target = nextTarget;
+        cur_rotation = transform.rotation;
+        transform.LookAt(target.transform);
+        target_rotation = transform.rotation;
+        transform.rotation = cur_rotation;
+        time = 0;
     }
 
     void TryDropIndoorTrash()
