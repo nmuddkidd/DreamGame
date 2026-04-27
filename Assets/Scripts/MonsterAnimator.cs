@@ -2,20 +2,77 @@ using UnityEngine;
 
 public class MonsterAnimator : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    Animation anim;
+    [SerializeField] private float chaseSpeed = 3.6f;
+    [SerializeField] private float catchDistance = 1.1f;
+
+    private Animation anim;
+    private Transform chaseTarget;
+    private bool isChasing;
+
     void Start()
     {
         anim = GetComponent<Animation>();
         anim.Play("monsterIdle");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BeginChase(Transform target)
     {
-        if (anim.isPlaying == false)
+        chaseTarget = target;
+        isChasing = target != null;
+        if (anim != null)
+        {
+            anim.Play("monsterWalk");
+        }
+    }
+
+    public void StopChase()
+    {
+        isChasing = false;
+        chaseTarget = null;
+        if (anim != null)
         {
             anim.Play("monsterIdle");
         }
+    }
+
+    void Update()
+    {
+        if (!isChasing || chaseTarget == null)
+        {
+            if (anim != null && anim.IsPlaying("monsterWalk"))
+            {
+                anim.Play("monsterIdle");
+            }
+            return;
+        }
+
+        Vector3 chasePosition = new Vector3(chaseTarget.position.x, transform.position.y, chaseTarget.position.z);
+        transform.position = Vector3.MoveTowards(transform.position, chasePosition, chaseSpeed * Time.deltaTime);
+
+        Vector3 lookDirection = chasePosition - transform.position;
+        if (lookDirection.sqrMagnitude > 0.0001f)
+        {
+            transform.rotation = Quaternion.LookRotation(lookDirection.normalized, Vector3.up);
+        }
+
+        if (anim != null && !anim.IsPlaying("monsterWalk"))
+        {
+            anim.Play("monsterWalk");
+        }
+
+        if (Vector3.Distance(transform.position, chaseTarget.position) <= catchDistance)
+        {
+            CatchPlayer();
+        }
+    }
+
+    private void CatchPlayer()
+    {
+        isChasing = false;
+        chaseTarget = null;
+
+        logic logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<logic>();
+        logic.teleportPlayer(new Vector3(-14, 4, -7));
+        logic.wakeup();
     }
 }

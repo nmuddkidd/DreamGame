@@ -45,6 +45,16 @@ public class FPSController : MonoBehaviour
     private logic logic;
     private float timer;
 
+    [Header("Trash Cleanup")]
+    [SerializeField] private GameObject dumpsterPointer;
+    [SerializeField] private GameObject dumpsterPointerPrefab;
+    [SerializeField] private float dumpsterPointerDistanceFromCamera = 1.5f;
+    [SerializeField] private float dumpsterPointerVerticalOffset = -0.15f;
+    [SerializeField] private float dumpsterDropDistance = 3f;
+    private TrashBagDrag carriedTrashBag;
+    private GameObject runtimeDumpsterPointer;
+    private bool warnedMissingDumpsterPointer;
+
     LayerMask layerMask;
     private void Awake()
     {
@@ -91,6 +101,7 @@ public class FPSController : MonoBehaviour
         if(inspecMode){
             HandleRotation();
         }
+        HandleDumpsterPointer();
         testOOB();
         //reset mouse position if off center and still
         Vector2 mouse = Mouse.current.delta.ReadValue();
@@ -190,6 +201,12 @@ public class FPSController : MonoBehaviour
         inspecItem = other;
         interactionScript = inspecItem.GetComponent<interactable>();
         logic.interactText(interactionScript);
+
+        if (interactionScript != null && interactionScript.interaction == "trashpile")
+        {
+            return;
+        }
+
         //if the set interaction is to exit
         if (CustomEvents.current.currentMode == CustomEvents.InputMode.Absent)
         {
@@ -217,6 +234,16 @@ public class FPSController : MonoBehaviour
         {
             return;
         }
+
+        if (!boatmode && IsCarryingTrashBag())
+        {
+            if (!TryDeliverTrashBag())
+            {
+                DropCarriedTrashBag();
+            }
+            return;
+        }
+
         if(!inspecMode&&!boatmode){
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -227,6 +254,41 @@ public class FPSController : MonoBehaviour
                 {
                     npcMovement.InteractAtRegister();
                     return;
+                }
+
+                interactable clickedInteractable = hit.collider.GetComponentInParent<interactable>();
+                if (clickedInteractable != null)
+                {
+                    if (TryPickUpTrashBag(clickedInteractable))
+                    {
+                        return;
+                    }
+
+                    inspecItem = clickedInteractable.gameObject;
+                    interactionScript = clickedInteractable;
+                    logic.interactText(interactionScript);
+                    if (interactionScript.interaction == "trashpile")
+                    {
+                        return;
+                    }
+                    if (interactionScript.grab)
+                    {
+                        inputHandler.inspect();
+                        inspecMode = true;
+                        Vector3 newpos = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y + .25f, mainCamera.transform.position.z) + mainCamera.transform.forward;
+                        inspecItem.transform.position = newpos;
+                        return;
+                    }
+                    if (interactionScript.vehicle)
+                    {
+                        characterController.enabled = false;
+                        gameObject.transform.position = new Vector3(inspecItem.transform.position.x, inspecItem.transform.position.y + 2, inspecItem.transform.position.z);
+                        gameObject.transform.rotation = inspecItem.transform.rotation;
+                        characterController.enabled = true;
+                        currentMovement.y = 0;
+                        boatmode = true;
+                        return;
+                    }
                 }
             }
 
@@ -249,7 +311,17 @@ public class FPSController : MonoBehaviour
                     Debug.LogWarning("Interactable-tagged object is missing interactable component: " + inspecItem.name);
                     return;
                 }
+
+                if (TryPickUpTrashBag(interactionScript))
+                {
+                    return;
+                }
+
                 logic.interactText(interactionScript);
+                if (interactionScript.interaction == "trashpile")
+                {
+                    return;
+                }
                 if(interactionScript.grab){
                     inputHandler.inspect();
                     inspecMode=true;
@@ -300,19 +372,183 @@ public class FPSController : MonoBehaviour
                    
     public void exitInspecMode()
     {
+        if (inspecItem == null)
+        {
+            inputHandler.reset();
+            inspecMode = false;
+            logic.disableInteractionUI();
+            return;
+        }
+
         interactable script = inspecItem.GetComponent<interactable>();
-        script.reorigin();
+        if (script != null)
+        {
+            script.reorigin();
+        }
         inspecItem=null;
+        interactionScript = null;
         inputHandler.reset();
         inspecMode=false;
         logic.disableInteractionUI();
     }                            
 
+    void HandleDumpsterPointer()
+    {
+        GameObject activePointer = GetOrCreateDumpsterPointer();
+        if (activePointer == null)
+        {
+            return;
+        }
+
+        if (!IsCarryingTrashBag())
+        {
+            activePointer.SetActive(false);
+            return;
+        }
+
+        Transform nearestDumpster = FindClosestDumpster();
+        if (nearestDumpster == null)
+        {
+            activePointer.SetActive(false);
+            return;
+        }
+
+        activePointer.SetActive(true);
+        Vector3 cameraForward = mainCamera.transform.forward;
+        Vector3 cameraUp = mainCamera.transform.up;
+        Vector3 pointerPosition = mainCamera.transform.position + (cameraForward * dumpsterPointerDistanceFromCamera) + (cameraUp * dumpsterPointerVerticalOffset);
+        activePointer.transform.position = pointerPosition;
+
+        Vector3 toDumpster = nearestDumpster.position - pointerPosition;
+        if (toDumpster.sqrMagnitude > 0.0001f)
+        {
+            activePointer.transform.rotation = Quaternion.LookRotation(toDumpster.normalized, cameraUp);
+        }
+    }
+
+    GameObject GetOrCreateDumpsterPointer()
+    {
+        if (dumpsterPointer != null)
+        {
+            return dumpsterPointer;
+        }
+
+        if (runtimeDumpsterPointer != null)
+        {
+            return runtimeDumpsterPointer;
+        }
+
+        if (dumpsterPointerPrefab != null)
+        {
+            runtimeDumpsterPointer = Instantiate(dumpsterPointerPrefab);
+            runtimeDumpsterPointer.SetActive(false);
+            return runtimeDumpsterPointer;
+        }
+
+        if (!warnedMissingDumpsterPointer)
+        {
+            Debug.LogWarning("FPSController: assign either Dumpster Pointer scene object or Dumpster Pointer Prefab.");
+            warnedMissingDumpsterPointer = true;
+        }
+
+        return null;
+    }
+
+    bool IsCarryingTrashBag()
+    {
+        return carriedTrashBag != null && carriedTrashBag.IsBeingDragged;
+    }
+
+    Transform FindClosestDumpster()
+    {
+        GameObject[] dumpsters = GameObject.FindGameObjectsWithTag("Dumpster");
+        Transform closest = null;
+        float bestDistance = float.MaxValue;
+
+        foreach (GameObject dumpster in dumpsters)
+        {
+            if (dumpster == null)
+            {
+                continue;
+            }
+
+            float distance = Vector3.Distance(transform.position, dumpster.transform.position);
+            if (distance < bestDistance)
+            {
+                bestDistance = distance;
+                closest = dumpster.transform;
+            }
+        }
+
+        return closest;
+    }
+
+    bool TryDeliverTrashBag()
+    {
+        if (!IsCarryingTrashBag())
+        {
+            return false;
+        }
+
+        Transform closestDumpster = FindClosestDumpster();
+        if (closestDumpster == null)
+        {
+            return false;
+        }
+
+        if (Vector3.Distance(transform.position, closestDumpster.position) > dumpsterDropDistance)
+        {
+            return false;
+        }
+
+        carriedTrashBag.Consume();
+        carriedTrashBag = null;
+        logic.disableInteractionUI();
+        return true;
+    }
+
+    void DropCarriedTrashBag()
+    {
+        if (carriedTrashBag == null)
+        {
+            return;
+        }
+
+        carriedTrashBag.EndDrag();
+        carriedTrashBag = null;
+        interactionScript = null;
+        logic.disableInteractionUI();
+    }
+
+    bool TryPickUpTrashBag(interactable clickedInteractable)
+    {
+        if (clickedInteractable == null || clickedInteractable.interaction != "trashbag")
+        {
+            return false;
+        }
+
+        TrashBagDrag bag = clickedInteractable.GetComponentInParent<TrashBagDrag>();
+        if (bag == null)
+        {
+            Debug.LogWarning("Trashbag interactable is missing TrashBagDrag: " + clickedInteractable.name);
+            return true;
+        }
+
+        if (carriedTrashBag != null && carriedTrashBag != bag)
+        {
+            return true;
+        }
+
+        bag.BeginDrag(mainCamera.transform);
+        carriedTrashBag = bag;
+        interactionScript = clickedInteractable;
+        logic.disableInteractionUI();
+        return true;
+    }
+
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        
         if (hit.gameObject.name == "earth")
-        {
             SceneManager.LoadScene("GriffinDream");
             teleportPlayer(new Vector3(0,90,0));
         }

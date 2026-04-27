@@ -18,6 +18,15 @@ public class NPC_Movement : MonoBehaviour
     [SerializeField] private bool moving = true;
     [SerializeField] private float outsideMoveSpeed = 3f;
     [SerializeField] private float insideMoveSpeed = 1.5f;
+    [Header("Trash Drop")]
+    [SerializeField] private GameObject trashPilePrefab;
+    [SerializeField] private float indoorTrashDropChancePerSecond = 0.03f;
+    [SerializeField] private float indoorTrashDropCooldown = 3f;
+    [SerializeField] private float indoorTrashDropMinDistance = 1.5f;
+    [SerializeField] private float trashDropRaycastHeight = 2f;
+    [SerializeField] private float trashDropRaycastDistance = 10f;
+    [SerializeField] private float trashDropFloorOffset = 0.02f;
+    [SerializeField] private float fixedTrashDropY = 2.341731f;
     [SerializeField] private string[] registerWaitObjectNames;
     private readonly List<GameObject> registerWaitObjects = new List<GameObject>();
     private bool waitingAtRegister = false;
@@ -32,6 +41,8 @@ public class NPC_Movement : MonoBehaviour
 
     Animation anim;
     private float time = 0;
+    private float trashDropCooldownTimer = 0f;
+    private Vector3 lastTrashDropPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -52,6 +63,7 @@ public class NPC_Movement : MonoBehaviour
         transform.LookAt(target.transform);
         target_rotation = transform.rotation;
         transform.rotation = cur_rotation;
+        lastTrashDropPosition = transform.position;
         CacheRegisterWaitObjects();
         SetRegisterWaitObjectsVisible(false);
         //transform.LookAt(target.transform);
@@ -72,6 +84,11 @@ public class NPC_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (trashDropCooldownTimer > 0f)
+        {
+            trashDropCooldownTimer -= Time.deltaTime;
+        }
+
         if (anim.isPlaying == false)
         {
             if (moving)
@@ -99,6 +116,7 @@ public class NPC_Movement : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, GetMoveSpeed() * Time.deltaTime);
                 anim.Play("walkerWalk");
+                TryDropIndoorTrash();
             }
             if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z) && !(inside))
             {
@@ -185,6 +203,10 @@ public class NPC_Movement : MonoBehaviour
 
                     waitingAtRegister = true;
                     CashRegisterQueue.Enqueue(this);
+                    if (SurvivalGameManager.Instance != null)
+                    {
+                        SurvivalGameManager.Instance.OnCustomerWaitStarted(this);
+                    }
                     SetRegisterWaitObjectsVisible(true);
                     moving = false;
                     anim.Play("idle");
@@ -274,6 +296,10 @@ public class NPC_Movement : MonoBehaviour
     void Waiter()
     {
         waitingAtRegister = false;
+        if (SurvivalGameManager.Instance != null)
+        {
+            SurvivalGameManager.Instance.OnCustomerWaitEnded(this);
+        }
         CashRegisterQueue.Remove(this);
         SetRegisterWaitObjectsVisible(false);
         anim.Play("dance");
@@ -368,11 +394,19 @@ public class NPC_Movement : MonoBehaviour
 
     void OnDisable()
     {
+        if (SurvivalGameManager.Instance != null)
+        {
+            SurvivalGameManager.Instance.OnCustomerWaitEnded(this);
+        }
         CashRegisterQueue.Remove(this);
     }
 
     void OnDestroy()
     {
+        if (SurvivalGameManager.Instance != null)
+        {
+            SurvivalGameManager.Instance.OnCustomerWaitEnded(this);
+        }
         CashRegisterQueue.Remove(this);
     }
 
@@ -397,5 +431,55 @@ public class NPC_Movement : MonoBehaviour
         transform.rotation = cur_rotation;
         time = 0;
         return true;
+    }
+
+    void TryDropIndoorTrash()
+    {
+        if (!inside || leaving || trashPilePrefab == null)
+        {
+            return;
+        }
+
+        if (trashDropCooldownTimer > 0f)
+        {
+            return;
+        }
+
+        if (Vector3.Distance(transform.position, lastTrashDropPosition) < indoorTrashDropMinDistance)
+        {
+            return;
+        }
+
+        float chanceThisFrame = indoorTrashDropChancePerSecond * Time.deltaTime;
+        if (Random.value <= chanceThisFrame)
+        {
+            Vector3 spawnPosition = transform.position;
+            Vector3 rayOrigin = transform.position + Vector3.up * trashDropRaycastHeight;
+            RaycastHit floorHit;
+
+            if (Physics.Raycast(rayOrigin, Vector3.down, out floorHit, trashDropRaycastDistance))
+            {
+                spawnPosition = floorHit.point + Vector3.up * trashDropFloorOffset;
+            }
+
+            spawnPosition.y = fixedTrashDropY;
+
+            GameObject trashPileInstance = Instantiate(trashPilePrefab, spawnPosition, Quaternion.Euler(-90f, 0f, 0f));
+            int trashTaskId = SurvivalGameManager.Instance != null ? SurvivalGameManager.Instance.RegisterTrashDrop() : -1;
+            if (trashTaskId >= 0)
+            {
+                TrashPileInteract pile = trashPileInstance.GetComponent<TrashPileInteract>();
+                if (pile == null)
+                {
+                    pile = trashPileInstance.GetComponentInChildren<TrashPileInteract>();
+                }
+                if (pile != null)
+                {
+                    pile.SetTaskId(trashTaskId);
+                }
+            }
+            lastTrashDropPosition = spawnPosition;
+            trashDropCooldownTimer = indoorTrashDropCooldown;
+        }
     }
 }

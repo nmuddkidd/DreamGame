@@ -118,6 +118,20 @@ public class logic : MonoBehaviour
             return;
         }
 
+        if (script.interaction == "trashpile")
+        {
+            TrashPileInteract pile = script.GetComponent<TrashPileInteract>();
+            if (pile == null)
+            {
+                pile = script.GetComponentInParent<TrashPileInteract>();
+            }
+            if (pile != null && pile.SpawnTrashBag())
+            {
+                StartCoroutine(ShowTimedMessage("Trash Collected", "Bagged the mess. Take it to a dumpster.", 1.5f));
+            }
+            return;
+        }
+
         dialogueIndex = -1;
         interactableScript = script;
         if (title != null)
@@ -191,16 +205,21 @@ public class logic : MonoBehaviour
 
     IEnumerator ShowCashRegisterCheckoutMessage()
     {
+        yield return StartCoroutine(ShowTimedMessage("Checked Out!", "Another customer served...", 2f));
+    }
+
+    IEnumerator ShowTimedMessage(string messageTitle, string messageBody, float duration)
+    {
         interactTimer = -1;
 
         if (title != null)
         {
-            title.text = "Checked Out!";
+            title.text = messageTitle;
         }
 
         if (description != null)
         {
-            description.text = "Another customer served...";
+            description.text = messageBody;
         }
 
         if (interactionUI != null)
@@ -208,7 +227,7 @@ public class logic : MonoBehaviour
             interactionUI.SetActive(true);
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(duration);
 
         disableInteractionUI();
     }

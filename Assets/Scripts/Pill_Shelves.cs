@@ -23,14 +23,36 @@ public class Pill_Shelves : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Items = new GameObject[] { chips, evil, soda, gummi, crispy, greese };
+        List<GameObject> validItems = new List<GameObject>();
+        GameObject[] configuredItems = new GameObject[] { chips, evil, soda, gummi, crispy, greese };
+        foreach (GameObject configuredItem in configuredItems)
+        {
+            if (configuredItem != null)
+            {
+                validItems.Add(configuredItem);
+            }
+        }
+
+        Items = validItems.ToArray();
+        if (Items.Length == 0)
+        {
+            Debug.LogError("Pill_Shelves: no item prefabs configured.");
+            return;
+        }
+
         Shelves = Physics.OverlapBox(box_pos, box_dim, Quaternion.Euler(Vector3.zero), layer);
         for (int i = 0; i < Shelves.Length; i++)
         { 
+            if (Shelves[i] == null)
+            {
+                continue;
+            }
+
             GameObject temp = Shelves[i].gameObject;
             int select = Random.Range(0, Items.Length);
             GameObject baby = Instantiate(Items[select], temp.gameObject.transform.position, temp.gameObject.transform.rotation);
-            baby.transform.parent = temp.gameObject.transform.parent.transform;
+            Transform parentTransform = temp.transform.parent != null ? temp.transform.parent : transform;
+            baby.transform.SetParent(parentTransform, true);
             Vector3 pos = baby.transform.position;
             Vector3 rot = transform.rotation.eulerAngles;
           /*  if (temp.transform.parent.gameObject.name == "Aisle 2" || temp.transform.parent.gameObject.name == "Aisle 4")
@@ -71,14 +93,26 @@ public class Pill_Shelves : MonoBehaviour
             Shelves[i] = baby.GetComponent<Collider>();
             Destroy(temp.gameObject);
         }
-        Restock.current.PillsTaken += Restock_Shelves;
+        if (Restock.current != null)
+        {
+            Restock.current.PillsTaken += Restock_Shelves;
+        }
+        else
+        {
+            Debug.LogWarning("Pill_Shelves: Restock.current was null in Start; shelves will not auto-refill.");
+        }
     }
 
     void Restock_Shelves(GameObject other)
     {
+        if (other == null)
+        {
+            return;
+        }
+
         for(int i = 0; i < Shelves.Length; i++)
         {
-            if (other.name == Shelves[i].gameObject.name)
+            if (Shelves[i] != null && other.name == Shelves[i].gameObject.name)
             {
                 StartCoroutine(Refill(other));
                // Debug.Log(other.name);
