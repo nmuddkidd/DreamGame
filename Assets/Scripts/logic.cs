@@ -244,9 +244,10 @@ public class logic : MonoBehaviour
 
     public void wakeup()
     {
+        Player.GetComponent<FPSController>().setSpeed(3);
         SceneManager.LoadScene("SampleScene");
         days++;
-        if(days>7){
+        if(days>6){
             endgame();
         }
         wakeupText = "Today is day "+days+" of the trial";
@@ -281,12 +282,13 @@ public class logic : MonoBehaviour
     }
     
     public void dream(){
+        dayCounter.text = "";
         if(days>3){
             sfxlogic.changeBackground("Mirror");
         }else{
             sfxlogic.changeBackground("Reflection");
         }
-        switch(Random.Range(3, 4)){
+        switch(Random.Range(0, 4)){
             case 0:
                 handleSpaceDream();
                 break;
