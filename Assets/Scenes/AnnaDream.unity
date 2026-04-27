@@ -468,6 +468,7 @@ Transform:
   - {fileID: 1895137771}
   - {fileID: 2398531901525327429}
   - {fileID: 2059645223}
+  - {fileID: 1487711192}
   m_Father: {fileID: 98302158}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &80593725
@@ -1781,7 +1782,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7be5dd70bfd921b4fbf1c2bd62a595df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1742417991}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7be5dd70bfd921b4fbf1c2bd62a595df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1083755031}
   m_SourcePrefab: {fileID: 100100000, guid: 7be5dd70bfd921b4fbf1c2bd62a595df, type: 3}
 --- !u!4 &400807570 stripped
 Transform:
@@ -1869,7 +1873,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d208e13b0a7aaae46939713186144600, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1851431064}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d208e13b0a7aaae46939713186144600, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1851431063}
   m_SourcePrefab: {fileID: 100100000, guid: d208e13b0a7aaae46939713186144600, type: 3}
 --- !u!4 &445976462 stripped
 Transform:
@@ -1928,9 +1938,11 @@ MonoBehaviour:
   - {fileID: 1392814486}
   - {fileID: 1378649413}
   dropedItemPrefab: {fileID: 919132149155446097, guid: 8950210f7ba2f3f4fa360f0f72d988e0, type: 3}
+  boatTransform: {fileID: 1847951333}
   maxSpiders: 5
   spawnRadius: 5
   requiredKills: 10
+  boatLowerAmount: 5
 --- !u!4 &489609211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1488015054496965713, guid: b4659d647b835474e9a9f3421c04cb91, type: 3}
@@ -4323,6 +4335,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bde9512b9cb84184eb76968370d4c62c, type: 3}
+--- !u!1 &1083755028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7be5dd70bfd921b4fbf1c2bd62a595df, type: 3}
+  m_PrefabInstance: {fileID: 400807569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1083755031
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083755028}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3950692663120319556, guid: 7be5dd70bfd921b4fbf1c2bd62a595df, type: 3}
 --- !u!1 &1087062768
 GameObject:
   m_ObjectHideFlags: 0
@@ -6502,6 +6541,54 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5209678455576036042, guid: bde9512b9cb84184eb76968370d4c62c, type: 3}
   m_PrefabInstance: {fileID: 843380922}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1487711191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1487711192}
+  - component: {fileID: 1487711193}
+  m_Layer: 0
+  m_Name: PlantWatcher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1487711192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487711191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 67406337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1487711193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487711191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54650bfd1c48b5544b01e28da2bfeee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlantBedWatcher
+  bedTransform: {fileID: 445976462}
+  bedLowerAmount: 5
+  checkInterval: 0.5
+  lowerBedWhilePlantsExist: 1
 --- !u!1001 &1519118743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7873,6 +7960,49 @@ MonoBehaviour:
   grab: 0
   vehicle: 1
   interaction: vehicle
+--- !u!4 &1847951333 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e37cf499694b5114a965c3391f8687af, type: 3}
+  m_PrefabInstance: {fileID: 1847951326}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1851431060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d208e13b0a7aaae46939713186144600, type: 3}
+  m_PrefabInstance: {fileID: 445976461}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1851431063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851431060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cb629eeee383b48a30cb477a951dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!65 &1851431064
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851431060}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.034577593, y: 0.056110445, z: 0.02623799}
+  m_Center: {x: 0.00000007718161, y: -0.004007883, z: 0.013118873}
 --- !u!1001 &1855868294
 PrefabInstance:
   m_ObjectHideFlags: 0

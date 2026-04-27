@@ -6,15 +6,25 @@ public class SpiderManager : MonoBehaviour
     public GameObject spiderPrefab;
     public Transform[] spawnPoints;
     public GameObject dropedItemPrefab;
+    public Transform boatTransform;
     public int maxSpiders = 5;
     public float spawnRadius = 5f;
     public int requiredKills = 10;
-
+    public float boatLowerAmount = 5f;
+    
     private int currentKills = 0;
     private int activeSpiders = 0;
+    private bool boatIsLowered = false;
+    private Vector3 boatStartPosition;
 
     void Start()
     {
+        if (boatTransform != null)
+        {
+            boatStartPosition = boatTransform.position;
+            LowerBoat();
+        }
+
         //spawn first wave of spiders
         for (int i = 0; i < maxSpiders; i++) SpawnSpider();
     }
@@ -31,6 +41,7 @@ public class SpiderManager : MonoBehaviour
             if (activeSpiders == 0)
             {
                 Instantiate(dropedItemPrefab, deathPos, Quaternion.identity);
+                RaiseBoat();
                 Debug.Log("All spiders killed. Item dropped.");
             }
         } else
@@ -62,5 +73,27 @@ public class SpiderManager : MonoBehaviour
         {
             Invoke("SpawnSpider", 0.5f);
         }
+    }
+
+    void LowerBoat()
+    {
+        if (boatTransform == null || boatIsLowered)
+        {
+            return;
+        }
+
+        boatTransform.position = boatStartPosition + Vector3.down * boatLowerAmount;
+        boatIsLowered = true;
+    }
+
+    void RaiseBoat()
+    {
+        if (boatTransform == null || !boatIsLowered)
+        {
+            return;
+        }
+
+        boatTransform.position = boatStartPosition;
+        boatIsLowered = false;
     }
 }

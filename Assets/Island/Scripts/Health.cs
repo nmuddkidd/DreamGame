@@ -48,7 +48,10 @@ public class Health : MonoBehaviour
             if (CompareTag("Enemy"))
             {
                 SpiderManager manager = Object.FindFirstObjectByType<SpiderManager>();
-                if (manager != null) manager.NotifyDeath(transform.position);
+                if (manager != null && GetComponent<PlantAi>() == null)
+                {
+                    manager.NotifyDeath(transform.position);
+                }
             }
 
             if (hasDeathAnimation && anim != null)

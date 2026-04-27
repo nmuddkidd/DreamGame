@@ -578,8 +578,21 @@ public class FPSController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Blind")) {
+        if (SafeCompareTag(other, "Blind")) {
             logic.blindUI();
+        }
+    }
+
+    bool SafeCompareTag(Component component, string tagName)
+    {
+        try
+        {
+            return component != null && component.CompareTag(tagName);
+        }
+        catch (UnityException)
+        {
+
+            return false;
         }
     }
 
