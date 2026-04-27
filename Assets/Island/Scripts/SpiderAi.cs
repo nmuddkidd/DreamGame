@@ -77,10 +77,16 @@ public class SpiderAi : MonoBehaviour
         //if destination reached
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
-            waitTimer += Time.deltaTime; //start tijmer
+            waitTimer += Time.deltaTime; //start timer
 
-            if (waitTimer >= roamWaitTime) //if timer hits wait time roam again
+            if (Time.frameCount % 60 == 0)
             {
+                Debug.Log(gameObject.name + "wait timer: " + waitTimer);
+            }
+
+            if (waitTimer >= roamWaitTime) // roam again after timer
+            {
+                Debug.Log(gameObject.name + "new roam position");
                 Roam();
                 waitTimer = 0; //reset timer
 
@@ -96,9 +102,13 @@ public class SpiderAi : MonoBehaviour
         NavMeshHit hit;
 
         //check if point is on navmesh/set destination if it is
-        if (NavMesh.SamplePosition(randomDirection, out hit, roamRadius, 1))
+        if (NavMesh.SamplePosition(randomDirection, out hit, 2f, NavMesh.AllAreas))
         {
+            Debug.Log(gameObject.name + "Navmesh point found " + hit.position);
             agent.SetDestination(hit.position);
+        } else
+        {
+            Debug.Log(gameObject.name + "No navmesh point found");
         }
     }
 
