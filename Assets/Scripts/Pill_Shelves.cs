@@ -90,11 +90,11 @@ public class Pill_Shelves : MonoBehaviour
     //wait for the automatic restock, not immediate 
     IEnumerator Refill(GameObject other)
     {
-       /* yield return new WaitForSeconds(15f);
-        if (Random.Range(1,101) < (Time.deltaTime / 2))
+        yield return new WaitForSeconds(15f);
+        /*if (Random.Range(1,101) < (Time.deltaTime / 2))
         {
 
-        }     */
+        }   */  
         other.GetComponent<Collider>().enabled = true;
         other.GetComponent<MeshRenderer>().enabled = true;
     }
