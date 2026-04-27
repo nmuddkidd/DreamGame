@@ -147,6 +147,12 @@ public class NPC_Movement : MonoBehaviour
             //once inside the store, switch up navigation if statements
             else if ((transform.position.x == target.transform.position.x) && (transform.position.z == target.transform.position.z))
             {
+                if (target.gameObject.name == "Aisle End")
+                {
+                    //for now invoke anyways, granny is missing her pills bc they're goners 
+                    NextTargetPostPill();
+                }
+
                 //if pills are a certain distance away, move to next aisle 
                 if (Mathf.Abs(transform.position.z - Pills.transform.position.z) > 1.75)
                 {

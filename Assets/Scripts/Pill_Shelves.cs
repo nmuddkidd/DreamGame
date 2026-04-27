@@ -13,7 +13,7 @@ public class Pill_Shelves : MonoBehaviour
     [SerializeField] private GameObject greese;
     [SerializeField] private GameObject pills;
 
-
+    private int barcode_scanner = 0;
     private Vector3 box_pos = new Vector3((float)-9.5, 2, 8);
     private Vector3 box_dim = new Vector3(3, 2, 4);
     public Collider[] Shelves = { };
@@ -48,21 +48,17 @@ public class Pill_Shelves : MonoBehaviour
                 continue;
             }
 
+        
+            barcode_scanner = i;
             GameObject temp = Shelves[i].gameObject;
             int select = Random.Range(0, Items.Length);
             GameObject baby = Instantiate(Items[select], temp.gameObject.transform.position, temp.gameObject.transform.rotation);
             Transform parentTransform = temp.transform.parent != null ? temp.transform.parent : transform;
             baby.transform.SetParent(parentTransform, true);
+            baby.GetComponent<interact_pt2>().barcode = i;
+            //baby.transform.parent = temp.gameObject.transform.parent.transform;
             Vector3 pos = baby.transform.position;
             Vector3 rot = transform.rotation.eulerAngles;
-          /*  if (temp.transform.parent.gameObject.name == "Aisle 2" || temp.transform.parent.gameObject.name == "Aisle 4")
-            {
-                flip = true;
-            }
-            else
-            {
-                flip = false;
-            } */
             switch (select)
             {
                 case 0:
@@ -109,33 +105,49 @@ public class Pill_Shelves : MonoBehaviour
         {
             return;
         }
+        StartCoroutine(Refill(other));
+        // Debug.Log(other.name);
+    }
 
-        for(int i = 0; i < Shelves.Length; i++)
+    void Replace(GameObject other)
+    {
+        for (int i = 0; i < Shelves.Length; i++)
         {
-            if (Shelves[i] != null && other.name == Shelves[i].gameObject.name)
+           // Debug.Log("barcode: " + other.GetComponent<interact_pt2>().barcode);
+            if (other.GetComponent<interact_pt2>().barcode == Shelves[i].gameObject.GetComponent<interact_pt2>().barcode)
             {
-                StartCoroutine(Refill(other));
-               // Debug.Log(other.name);
+                GameObject temp = other;
+                GameObject baby = Instantiate(pills, temp.gameObject.transform.position, temp.gameObject.transform.rotation);
+                baby.transform.parent = temp.gameObject.transform.parent.transform;
+                baby.GetComponent<interact_pt2>().barcode = Shelves[i].gameObject.GetComponent<interact_pt2>().barcode;
+                Shelves[i] = baby.GetComponent<Collider>();
+                Debug.Log("DESTROYED");
+                Destroy(temp);
+                // Debug.Log(other.name);
+                return;
             }
         }
-
+        Debug.Log("Not Found");
     }
 
     //wait for the automatic restock, not immediate 
     IEnumerator Refill(GameObject other)
     {
         yield return new WaitForSeconds(15f);
-        /*if (Random.Range(1,101) < (Time.deltaTime / 2))
+        int rand = Random.Range(0, 100);
+        //less than 1% chance at start that goes up by 1 every other second
+        if (rand < (timer))
         {
-
-        }   */  
+            Replace(other);
+        }
         other.GetComponent<Collider>().enabled = true;
         other.GetComponent<MeshRenderer>().enabled = true;
     }
+    private float timer = 0;
     // Update is called once per frame
     void Update()
     {
-                      
+        timer = timer + Time.deltaTime;  
     }
 }
 
