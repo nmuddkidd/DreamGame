@@ -54,7 +54,7 @@ public class FPSController : MonoBehaviour
     private TrashBagDrag carriedTrashBag;
     private GameObject runtimeDumpsterPointer;
     private bool warnedMissingDumpsterPointer;
-
+    public Scene currentscene;
     LayerMask layerMask;
     private void Awake()
     {
@@ -62,8 +62,8 @@ public class FPSController : MonoBehaviour
         mainCamera = Camera.main;
         layerMask = LayerMask.GetMask("Default"); 
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<logic>();
-
-        DontDestroyOnLoad(gameObject);
+         //dont destroy on load is infeasible since it cannot be used on objects that are not root and its in player package anyay
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -78,6 +78,7 @@ public class FPSController : MonoBehaviour
         ///this won't really happen in unity debugging unless you click the screen
         Cursor.visible = false;
         CustomEvents.current.PickUp += RayHit;
+        currentscene = SceneManager.GetActiveScene();  
     }
 
     private void OnDestroy()
@@ -105,7 +106,7 @@ public class FPSController : MonoBehaviour
         testOOB();
         //reset mouse position if off center and still
         Vector2 mouse = Mouse.current.delta.ReadValue();
-        if (mouse == priorpos)
+        if (currentscene.name != "TitleScreen" && mouse == priorpos)
         {
             Mouse.current.WarpCursorPosition(center);
         }
