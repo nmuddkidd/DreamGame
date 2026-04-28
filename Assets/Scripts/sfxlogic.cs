@@ -13,7 +13,7 @@ public class sfxlogic : MonoBehaviour
     }
     public List<MyDictionaryEntry> inspectorList;
 
-    private Dictionary<string, AudioClip> music = new Dictionary<string, AudioClip>(StringComparer.OrdinalIgnoreCase);
+    private Dictionary<string, AudioClip> music = new Dictionary<string, AudioClip>();
     [Header("Common Ambiance")]
     public AudioClip[] cambiance;
     [Header("Rare Ambiance")]
@@ -23,11 +23,13 @@ public class sfxlogic : MonoBehaviour
     void Start(){
         foreach (var entry in inspectorList)
         {
-            if (string.IsNullOrWhiteSpace(entry.key) || entry.value == null)
+            /*if (string.IsNullOrWhiteSpace(entry.key) || entry.value == null)
             {
                 continue;
-            }
+            }*/
             music[entry.key] = entry.value;
+            Debug.Log(entry.key+ " " +entry.value);
+            Debug.Log(music[entry.key]);
         }
 
         if (audioSource != null && audioSource.clip != null)
@@ -41,7 +43,7 @@ public class sfxlogic : MonoBehaviour
     }
 
     public void changeBackground(string song){
-        if (audioSource == null)
+        /*(if (audioSource == null)
         {
             Debug.LogWarning("sfxlogic.changeBackground: AudioSource is not assigned.");
             return;
@@ -68,7 +70,12 @@ public class sfxlogic : MonoBehaviour
         if (!audioSource.isPlaying)
         {
             audioSource.Play();
+        }*/
+        foreach(var key in music){
+            Debug.Log(key.Key + " "+key.Value);
         }
+        audioSource.clip = music[song];
+        audioSource.Play();
     }
 
     public void ambiant(){

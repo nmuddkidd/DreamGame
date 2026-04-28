@@ -261,10 +261,10 @@ public class logic : MonoBehaviour
         textTimer = -14;
         resetBlind();
         if(days>4){
-            sfxlogic.changeBackground("RealWorldSoft");
+            sfxlogic.changeBackground("RealWorld");
         }else{
             StartCoroutine(oneFrame());
-            sfxlogic.changeBackground("RealWorld");
+            sfxlogic.changeBackground("RealWorldSoft");
         }
     }
 

@@ -288,7 +288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &232068382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,7 +899,6 @@ Transform:
   - {fileID: 1097206695}
   - {fileID: 2095087713}
   - {fileID: 2038980225}
-  - {fileID: 1674171793}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &425923715
@@ -1985,7 +1984,7 @@ Transform:
   m_GameObject: {fileID: 735453545}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.016, y: 0.974, z: 0}
+  m_LocalPosition: {x: 0.013, y: 1.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2668,7 +2667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b9f6de1de1d1e845b82812ce6555790, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.48380998
+      value: 0.7388746
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b9f6de1de1d1e845b82812ce6555790, type: 3}
       propertyPath: m_LocalScale.z
@@ -2676,11 +2675,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b9f6de1de1d1e845b82812ce6555790, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.017
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b9f6de1de1d1e845b82812ce6555790, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.488
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b9f6de1de1d1e845b82812ce6555790, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3680,75 +3679,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   speed: 1
   maxSway: 1
---- !u!1 &1674171792
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1674171793}
-  - component: {fileID: 1674171795}
-  - component: {fileID: 1674171794}
-  m_Layer: 0
-  m_Name: 'Logic '
-  m_TagString: Logic
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1674171793
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674171792}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.0477, y: 5.12204, z: 29.515059}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 371977123}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1674171794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674171792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bffbdd3960942ea408f33ab417b6584c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CustomEvents
-  currentMode: 1
---- !u!114 &1674171795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1674171792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40ee97988e8664d47aeb4d3816179b2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::logic
-  title: {fileID: 2090931052}
-  description: {fileID: 1151130627}
-  interactionUI: {fileID: 497463754}
-  computerMenu: {fileID: 964724597}
-  dayCounter: {fileID: 250373150}
-  days: 0
-  audioSource: {fileID: 479498794}
-  alarm: {fileID: 8300000, guid: bb63744b03b523946b39ceef9202df5f, type: 3}
-  sfxlogic: {fileID: 479498793}
-  Player: {fileID: 232068381}
-  blind: {fileID: 2142092214}
 --- !u!1 &1832449147
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,7 +3920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7abc80a54636b145b17372189ef659b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 371977121}
+  player: {fileID: 232068381}
 --- !u!4 &1869400035
 Transform:
   m_ObjectHideFlags: 0
