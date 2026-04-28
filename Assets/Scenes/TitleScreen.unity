@@ -882,7 +882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b88f125d84067214090c5f7293ff1902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::persist
-  currentscene: {}
 --- !u!4 &371977123
 Transform:
   m_ObjectHideFlags: 0
