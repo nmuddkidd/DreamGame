@@ -297,8 +297,8 @@ public class FPSController : MonoBehaviour
             foreach (GameObject pickup in pickups)
             {
                 //Debug.Log(Vector3.Distance(transform.position, pickup.transform.position)+" "+Vector3.Angle(pickup.transform.position - transform.position, transform.forward));
-                if(Vector3.Distance(transform.position, pickup.transform.position)<5
-                &&Vector3.Angle(pickup.transform.position - mainCamera.transform.position, mainCamera.transform.forward)<20)
+                if(Vector3.Distance(transform.position, pickup.transform.position)<2
+                &&Vector3.Angle(pickup.transform.position - mainCamera.transform.position, mainCamera.transform.forward)<10)
                 {
                     inspecItem = pickup;
                     break;

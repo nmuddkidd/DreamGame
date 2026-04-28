@@ -43,6 +43,8 @@ public class logic : MonoBehaviour
     public GameObject blind;
     private float blindTimer;
 
+    private bool medicated;
+
     //timers
     void Update()
     {
@@ -146,6 +148,11 @@ public class logic : MonoBehaviour
         advanceInteractText();
         switch (interactableScript.interaction)
         {
+            case "Pills":
+                interactionUI.SetActive(true);
+                medicated = true;
+                UnityEngine.Debug.Log(medicated);
+                break;
             case "vehicle":
                 break;
             case "cashregister":
@@ -155,7 +162,12 @@ public class logic : MonoBehaviour
                 }
                 break;
             case "bed":
-                dream();
+                if(medicated){
+                    medicated = false;
+                    dream();
+                }else{
+                    interactionUI.SetActive(true);
+                }
                 break;
             case "computer":
                 if (computerMenu != null)
