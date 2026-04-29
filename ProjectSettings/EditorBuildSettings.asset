@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Testing.unity
     guid: 9a1d25f0e966d2147993eb50b55c8499
   - enabled: 1
@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SnowDream.unity
     guid: 4420b58edf414aa41a3b52690e0ddb89
+  - enabled: 1
+    path: Assets/Scenes/endgame.unity
+    guid: cc07431e0fc9fc848966c66714d6ee64
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PillShooter : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class PillShooter : MonoBehaviour
 
     void Shoot()
     {
-        if (pillPrefab == null || spawnPoint == null) return;
+        if (SceneManager.GetActiveScene().name != "AnnaDream" || pillPrefab == null || spawnPoint == null) return;
 
         GameObject pill = Instantiate(pillPrefab, spawnPoint.position, spawnPoint.rotation);
         Rigidbody rb = pill.GetComponent<Rigidbody>();

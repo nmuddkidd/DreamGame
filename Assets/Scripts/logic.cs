@@ -8,7 +8,7 @@ using System.Collections;
 
 public class logic : MonoBehaviour
 {
-    private const int DreamCount = 4;
+    private const int DreamCount = 5;
     private static readonly bool[] dreamSeen = new bool[DreamCount];
     private static int seenDreamCount = 0;
 
@@ -260,6 +260,7 @@ public class logic : MonoBehaviour
 
     public void wakeup()
     {
+        resetBlind();
         Player.GetComponent<FPSController>().setSpeed(3);
         SceneManager.LoadScene("SampleScene");
         days++;
@@ -271,7 +272,6 @@ public class logic : MonoBehaviour
         dayCounter.enabled = true;
         wakeupTextIndex = -17;
         textTimer = -14;
-        resetBlind();
         if(days>4){
             sfxlogic.changeBackground("RealWorld");
         }else{
@@ -318,6 +318,9 @@ public class logic : MonoBehaviour
                 break;
             case 3:
                 handleSnowDream();
+                break;
+            case 4:
+                handleTestingDream();
                 break;
         }
     }
@@ -368,6 +371,11 @@ public class logic : MonoBehaviour
     public void handleSnowDream(){
         SceneManager.LoadScene("SnowDream");
         Player.GetComponent<FPSController>().teleportPlayer(new Vector3(1215,8,1890));
+    }
+
+    public void handleTestingDream(){
+        teleportPlayer(new Vector3(0,5,0));
+        SceneManager.LoadScene("Testing");
     }
 
     public void teleportPlayer(Vector3 newpos){

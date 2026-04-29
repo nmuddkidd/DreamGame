@@ -969,6 +969,7 @@ MonoBehaviour:
   dumpsterPointerDistanceFromCamera: 1.5
   dumpsterPointerVerticalOffset: -0.15
   dumpsterDropDistance: 3
+  currentscene: {}
 --- !u!136 &589546888
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1804,7 +1805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1076809293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2665,7 +2666,7 @@ MonoBehaviour:
   fastquit: 1
   grab: 1
   vehicle: 0
-  interaction: 
+  interaction: Pills
 --- !u!1 &1601653707
 GameObject:
   m_ObjectHideFlags: 0
