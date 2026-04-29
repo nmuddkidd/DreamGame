@@ -260,6 +260,7 @@ public class logic : MonoBehaviour
 
     public void wakeup()
     {
+        dayCounter.text = "";
         resetBlind();
         Player.GetComponent<FPSController>().setSpeed(3);
         SceneManager.LoadScene("SampleScene");
@@ -299,6 +300,7 @@ public class logic : MonoBehaviour
     }
     
     public void dream(){
+        wakeupTextIndex = 99;
         dayCounter.text = "";
         if(days>3){
             sfxlogic.changeBackground("Mirror");
@@ -353,8 +355,13 @@ public class logic : MonoBehaviour
     }
 
     public void handleAnnaDream(){
-        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(2363,10,289));
+        Player.GetComponent<FPSController>().teleportPlayer(new Vector3(2427,25,1114));
         Player.GetComponent<FPSController>().setSpeed(50);
+        SceneManager.LoadScene("AnnaDream");
+    }
+
+    IEnumerator teleport(){
+        yield return null;
         SceneManager.LoadScene("AnnaDream");
     }
 

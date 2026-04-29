@@ -41,7 +41,9 @@ public class Health : MonoBehaviour
 
         if (isPlayer)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+            logic logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<logic>();
+            logic.teleportPlayer(new Vector3(-14,4,-7));
+            logic.wakeup();
         }
         else
         {
