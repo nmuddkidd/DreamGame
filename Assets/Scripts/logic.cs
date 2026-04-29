@@ -293,6 +293,7 @@ public class logic : MonoBehaviour
     }
 
     public void endgame(){
+        dayCounter.enabled = false;
         SceneManager.LoadScene("endgame");
         Destroy(Player);
     }

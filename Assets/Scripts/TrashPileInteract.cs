@@ -3,7 +3,7 @@ using UnityEngine;
 public class TrashPileInteract : MonoBehaviour
 {
     [SerializeField] private GameObject trashBagPrefab;
-    [SerializeField] private Vector3 spawnOffset = new Vector3(0f, 0.2f, 0f);
+    [SerializeField] private Vector3 spawnOffset = new Vector3(0f, 0.5f, 0f);
     [SerializeField] private bool destroyPileAfterSpawn = true;
 
     private bool hasSpawned = false;
