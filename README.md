@@ -2,6 +2,10 @@
 
 TEAM SPLAT RISE UP
 
+## VIDEO
+
+https://www.youtube.com/watch?v=OK3OL0ldtG8
+
 ## Getting Started
 
 Follow these steps to clone the repository and start contributing.
