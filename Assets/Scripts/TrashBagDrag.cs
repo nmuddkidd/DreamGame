@@ -7,6 +7,7 @@ public class TrashBagDrag : MonoBehaviour
 
     private Transform followTarget;
     private Rigidbody rb;
+    private Collider[] colliders;
     private int trashTaskId = -1;
 
     public bool IsBeingDragged { get; private set; }
@@ -19,6 +20,7 @@ public class TrashBagDrag : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        colliders = GetComponentsInChildren<Collider>();
     }
 
     void Update()
@@ -42,6 +44,8 @@ public class TrashBagDrag : MonoBehaviour
         followTarget = target;
         IsBeingDragged = true;
 
+        SetCollidersEnabled(false);
+
         if (rb != null)
         {
             rb.linearVelocity = Vector3.zero;
@@ -53,6 +57,8 @@ public class TrashBagDrag : MonoBehaviour
     public void EndDrag()
     {
         IsBeingDragged = false;
+
+        SetCollidersEnabled(true);
 
         if (rb != null)
         {
@@ -68,5 +74,21 @@ public class TrashBagDrag : MonoBehaviour
         }
         EndDrag();
         Destroy(gameObject);
+    }
+
+    private void SetCollidersEnabled(bool enabled)
+    {
+        if (colliders == null)
+        {
+            return;
+        }
+
+        foreach (Collider collider in colliders)
+        {
+            if (collider != null)
+            {
+                collider.enabled = enabled;
+            }
+        }
     }
 }

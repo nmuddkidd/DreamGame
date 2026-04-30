@@ -117,7 +117,7 @@ MonoBehaviour:
   outsideMoveSpeed: 3
   insideMoveSpeed: 1.5
   trashPilePrefab: {fileID: 4677543517044998426, guid: 2e714c54c4355544b92090dd373bd50a, type: 3}
-  indoorTrashDropChancePerSecond: 0.01
+  indoorTrashDropChancePerSecond: 0.025
   indoorTrashDropCooldown: 3
   indoorTrashDropMinDistance: 1.5
   trashDropRaycastHeight: 2
